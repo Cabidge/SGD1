@@ -16,18 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="SGD 1"
+run/main_scene="res://assets/Main.tscn"
 config/icon="res://icon.png"
-
-[autoload]
-
-PluginSettings="*res://addons/github-integration/scripts/PluginSettings.gd"
-IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
-RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
-UserData="*res://addons/github-integration/scripts/user_data.gd"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "github-integration" )
+enabled=PoolStringArray(  )
 
 [rendering]
 
