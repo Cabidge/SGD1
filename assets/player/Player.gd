@@ -1,16 +1,14 @@
 extends KinematicBody2D
 
+const MAX_SPEED = Global.TILE * 4 # tiles per second
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var velocity : Vector2 = Vector2.ZERO
 
+func _physics_process(_delta):
+	velocity = velocity.linear_interpolate(move_dir() * MAX_SPEED, 0.2)
+	velocity = move_and_slide(velocity)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func move_dir() -> Vector2:
+	var x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	var y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	return Vector2(x,y).normalized()
