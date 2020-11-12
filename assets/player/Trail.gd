@@ -16,6 +16,8 @@ func _process(delta):
 	line.add_point(point_pos)
 	while line.points.size() > trail_length:
 		line.remove_point(0)
+		if line.points.size() == 0:
+			set_physics_process(false)
 
 func play_swipe():
 	if reverse:
@@ -24,7 +26,7 @@ func play_swipe():
 		anim_player.play("Swipe")
 	reverse = !reverse
 	
-	tween.interpolate_property(self,"trail_length",20.0,0,0.4,Tween.TRANS_QUAD,Tween.EASE_OUT)
+	tween.interpolate_property(self,"trail_length",20.0,0,0.6,Tween.TRANS_QUAD,Tween.EASE_OUT)
 	tween.start()
 	
 	set_physics_process(true)

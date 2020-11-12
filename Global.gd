@@ -1,3 +1,3 @@
 extends Node
 
-const TILE = 64
+const TILE = 24
