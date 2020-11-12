@@ -8,20 +8,19 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0 ), 0.0, 0.868636, 0, 0, Vector2( 1, 1 ), -0.802204, 0.0, 0, 0 ]
 
-[sub_resource type="Animation" id=2]
-resource_name = "Swipe"
-length = 0.2
+[sub_resource type="Animation" id=3]
+length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Trail/TrailPivot:rotation_degrees")
+tracks/0/path = NodePath("TrailPivot:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
+"times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
 "values": [ -45.0, 45.0 ]
@@ -43,18 +42,17 @@ script = ExtResource( 3 )
 script = ExtResource( 4 )
 
 [node name="Line2D" type="Line2D" parent="Pivot/Trail"]
-width_curve = SubResource( 3 )
+width = 20.0
+width_curve = SubResource( 2 )
 default_color = Color( 1, 1, 1, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/Trail"]
-anims/Swipe = SubResource( 2 )
+anims/Swipe = SubResource( 3 )
 
 [node name="TrailPivot" type="Node2D" parent="Pivot/Trail"]
-rotation = 0.785398
-scale = Vector2( 1, 1 )
+rotation = -0.785398
 
 [node name="TrailHead" type="Sprite" parent="Pivot/Trail/TrailPivot"]
-visible = false
 position = Vector2( 73, 0 )
 scale = Vector2( 0.21875, 0.21875 )
 texture = ExtResource( 1 )

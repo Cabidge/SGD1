@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const MAX_SPEED = Global.TILE * 4 # tiles per second
+const MAX_SPEED = Global.TILE * 5 # tiles per second
 
 var velocity : Vector2 = Vector2.ZERO
 
