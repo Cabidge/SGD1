@@ -14,7 +14,7 @@
 [ext_resource path="res://assets/player/sprites/parry.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 9, 3 )
+extents = Vector2( 9, 4 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 9 )
@@ -237,7 +237,6 @@ current = true
 editor_draw_screen = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
@@ -250,6 +249,7 @@ position = Vector2( 0, -12 )
 script = ExtResource( 3 )
 
 [node name="Trail" type="Node2D" parent="Pivot"]
+z_index = 1
 script = ExtResource( 4 )
 
 [node name="Line2D" type="Line2D" parent="Pivot/Trail"]

@@ -14,7 +14,7 @@ onready var sprite = $Sprite
 onready var pivot = $Pivot
 
 func lerp_vel(dir : Vector2, speed = MAX_SPEED):
-	velocity = velocity.linear_interpolate(dir * speed, 0.2)
+	velocity = velocity.linear_interpolate(dir * speed, 0.3)
 
 func handle_movement():
 	velocity = move_and_slide(velocity)
