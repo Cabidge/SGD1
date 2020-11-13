@@ -283,7 +283,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="CRT" type="ColorRect" parent="CanvasLayer"]
 material = ExtResource( 5 )
 margin_right = 288.0
 margin_bottom = 162.0
@@ -292,5 +292,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="ColorModule" type="CanvasModulate" parent="."]
 color = Color( 0.87451, 0.87451, 0.87451, 1 )

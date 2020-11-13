@@ -3,7 +3,10 @@ extends KinematicBody2D
 const MAX_SPEED = Global.TILE * 5 # tiles per second
 const SLOW_SPEED = MAX_SPEED * 0.1
 
-const STEALTH_BRIGHTNESS = 0.6
+const DEFAULT_ENERGY = 1.0
+const DEFAULT_SCALE = 0.78
+const STEALTH_ENERGY = 0.9
+const STEALTH_SCALE = 0.5
 
 var velocity : Vector2 = Vector2.ZERO
 
@@ -12,13 +15,16 @@ var stealth = false
 var flipped = false setget set_flipped
 var animation : String setget set_animation
 
-var light_brightness = 1.0
+var light_energy = DEFAULT_ENERGY
+var light_scale = DEFAULT_SCALE
 
 onready var sprite = $Sprite
 onready var pivot = $Pivot
+onready var light = $Light2D
 
 func _physics_process(delta):
-	$Light2D.energy = lerp($Light2D.energy, light_brightness, 0.2)
+	light.energy = lerp(light.energy,light_energy, 0.1)
+	light.texture_scale = lerp(light.texture_scale,light_scale, 0.1)
 
 func lerp_vel(dir : Vector2, speed = MAX_SPEED):
 	velocity = velocity.linear_interpolate(dir * speed, 0.3)
@@ -52,9 +58,11 @@ func toggle_stealth():
 	sprite.play("transition",!stealth)
 	
 	if stealth:
-		light_brightness = STEALTH_BRIGHTNESS
+		light_energy = STEALTH_ENERGY
+		light_scale = STEALTH_SCALE
 	else:
-		light_brightness = 1.0
+		light_energy = DEFAULT_ENERGY
+		light_scale = DEFAULT_SCALE
 
 func parry():
 	set_flipped(get_global_mouse_position().x < position.x)
