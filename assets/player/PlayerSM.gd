@@ -1,0 +1,69 @@
+extends StateMachine
+
+var dir : Vector2 = Vector2.ZERO
+
+func _ready():
+	add_state("idle")
+	add_state("run")
+	add_state("stealth")
+	add_state("parry")
+	call_deferred("set_state",states.idle)
+
+func _state_logic(_delta):
+	dir = parent.move_dir()
+	
+	match state:
+		states.idle:
+			parent.lerp_vel(Vector2.ZERO)
+		states.run:
+			parent.lerp_vel(dir)
+			auto_flip()
+		states.stealth,states.parry:
+			parent.lerp_vel(dir, parent.SLOW_SPEED)
+	parent.handle_movement()
+
+func _unhandled_input(event):
+	if event.is_action_pressed("stealth") and can_stealth():
+		set_state(states.stealth)
+	elif event.is_action_pressed("attack") and can_parry():
+		set_state(states.parry)
+		parent.parry()
+
+func _transition(_delta):
+	match state:
+		states.idle:
+			if dir != Vector2.ZERO:
+				return states.run
+		states.run:
+			if dir == Vector2.ZERO:
+				return states.idle
+
+func _enter(new, _old):
+	match new:
+		states.idle:
+			parent.animation = "default"
+		states.run:
+			parent.animation = "walk"
+			auto_flip()
+		states.stealth:
+			parent.toggle_stealth()
+			wait_for_animation()
+		states.parry:
+			wait_for_animation()
+
+func auto_flip():
+	if dir.x != 0:
+		parent.flipped = dir.x < 0
+
+func can_stealth() -> bool:
+	return [states.idle,states.run].has(state)
+
+func can_parry() -> bool:
+	return [states.idle,states.run].has(state) and !parent.stealth
+
+func _on_Sprite_animation_finished():
+	parent.sprite.disconnect("animation_finished",self,"_on_Sprite_animation_finished")
+	set_state(states.idle)
+
+func wait_for_animation():
+	parent.sprite.connect("animation_finished",self,"_on_Sprite_animation_finished")
