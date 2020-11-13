@@ -1,6 +1,6 @@
-extends CanvasLayer
+extends Control
 
-onready var mana = $Control/Mana
+onready var mana = $Mana
 
 func _ready():
 	var err = Player.connect("updated_mana",self,"_on_Player_updated_mana")
