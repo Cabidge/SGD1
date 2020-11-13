@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="Shadow" type="Polygon2D"]
+z_index = -1
+color = Color( 0, 0, 0, 0.4 )
+polygon = PoolVector2Array( -1, -1, -1, 1, 1, 1, 1, -1 )
