@@ -25,5 +25,11 @@ __meta__ = {
 }
 
 [node name="Mana" type="Label" parent="UI/Control"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = 1.83541
+margin_top = 3.00339
+margin_right = 41.8354
+margin_bottom = 17.0034
+text = "10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
