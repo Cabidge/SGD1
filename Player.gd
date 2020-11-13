@@ -1,0 +1,21 @@
+extends Node
+
+signal updated_health(new)
+signal updated_mana(new)
+
+const MAX_HEALTH = 3
+const MAX_MANA = 5
+var health := MAX_HEALTH setget set_health
+var mana := MAX_MANA setget set_mana
+
+func set_health(new : int):
+	new = int(clamp(new,0,MAX_HEALTH))
+	if new != health:
+		health = new
+		emit_signal("updated_health",health)
+
+func set_mana(new : int):
+	new = int(clamp(new,0,MAX_MANA))
+	if new != mana:
+		mana = new
+		emit_signal("updated_mana",mana)
