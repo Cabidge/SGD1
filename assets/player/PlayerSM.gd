@@ -52,7 +52,7 @@ func _enter(new, _old):
 			parent.toggle_stealth()
 			wait_for_animation()
 			if parent.stealth:
-				Player.mana -= 1
+				#Player.mana -= 1
 				mana_decay.start()
 				mana_regen.stop()
 			else:

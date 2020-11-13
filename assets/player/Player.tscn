@@ -275,7 +275,6 @@ texture = ExtResource( 1 )
 script = ExtResource( 8 )
 
 [node name="ManaDecay" type="Timer" parent="StateMachine"]
-wait_time = 1.2
 
 [node name="ManaRegen" type="Timer" parent="StateMachine"]
 wait_time = 5.0
