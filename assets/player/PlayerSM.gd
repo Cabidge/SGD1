@@ -2,6 +2,9 @@ extends StateMachine
 
 var dir : Vector2 = Vector2.ZERO
 
+onready var mana_decay = $ManaDecay
+onready var mana_regen = $ManaRegen
+
 func _ready():
 	add_state("idle")
 	add_state("run")
@@ -48,6 +51,13 @@ func _enter(new, _old):
 		states.stealth:
 			parent.toggle_stealth()
 			wait_for_animation()
+			if parent.stealth:
+				Player.mana -= 1
+				mana_decay.start()
+				mana_regen.stop()
+			else:
+				mana_regen.start()
+				mana_decay.stop()
 		states.parry:
 			wait_for_animation()
 
@@ -56,7 +66,7 @@ func auto_flip():
 		parent.flipped = dir.x < 0
 
 func can_stealth() -> bool:
-	return [states.idle,states.run].has(state)
+	return [states.idle,states.run].has(state) and Player.mana > 0
 
 func can_parry() -> bool:
 	return [states.idle,states.run].has(state) and !parent.stealth
@@ -67,3 +77,11 @@ func _on_Sprite_animation_finished():
 
 func wait_for_animation():
 	parent.sprite.connect("animation_finished",self,"_on_Sprite_animation_finished")
+
+func _on_ManaDecay_timeout():
+	Player.mana -= 1
+	if Player.mana == 0 and parent.stealth and state != states.stealth:
+		set_state(states.stealth)
+
+func _on_ManaRegen_timeout():
+	Player.mana += 1
