@@ -33,7 +33,7 @@ func scan_auto():
 
 func scan_stop():
 	scanning = false
-	tween.stop_all()
+	tween.remove_all()
 
 func tween_angle(new_angle : float):
 	var time = abs((angle - new_angle) / SCAN_ANGLE) * SCAN_TIME
