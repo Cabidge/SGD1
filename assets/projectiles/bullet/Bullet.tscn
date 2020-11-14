@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/projectiles/Projectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/projectiles/bullet/Trail.gd" type="Script" id=2]
+[ext_resource path="res://assets/projectiles/bullet/Bullet.gd" type="Script" id=3]
+[ext_resource path="res://assets/Spotlight.png" type="Texture" id=4]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.533058, 1 ), -2.77391e-07, -2.77391e-07, 0, 0, Vector2( 1, 1 ), -0.0323529, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.2891, 0.322275, 1 )
+colors = PoolColorArray( 0.958412, 0.693304, 0.18719, 1, 0.945313, 0.761258, 0.409882, 1, 0.976563, 0.971943, 0.858307, 1, 1, 0.990234, 0.75, 1 )
+
+[node name="Bullet" instance=ExtResource( 1 )]
+collision_layer = 0
+script = ExtResource( 3 )
+speed = 280.0
+
+[node name="Trail" type="Node" parent="." index="1"]
+script = ExtResource( 2 )
+
+[node name="Line2D" type="Line2D" parent="Trail" index="0"]
+width = 2.0
+width_curve = SubResource( 1 )
+default_color = Color( 0, 0, 0, 1 )
+gradient = SubResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="." index="2"]
+texture = ExtResource( 4 )
+texture_scale = 0.6
+color = Color( 1, 0.988235, 0.737255, 1 )
+energy = 0.9
+shadow_enabled = true
+
+[node name="Timer" type="Timer" parent="." index="3"]
+wait_time = 8.0
+one_shot = true
+autostart = true
+
+[node name="Polygon2D" type="Polygon2D" parent="." index="4"]
+polygon = PoolVector2Array( -1, -1, 1, -1, 1, 1, -1, 1 )
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
