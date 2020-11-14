@@ -18,11 +18,15 @@ func _physics_process(_delta):
 	if raycast.is_colliding():
 		p = raycast.get_collision_point() - global_position
 		point.position = p
-	point.visible = raycast.is_colliding()
+	point.visible = raycast.is_colliding() and (raycast.position - p).length() > 1
 	
 	set_point_position(1, p)
 
 func set_angle(new):
 	angle = new
-	raycast.cast_to = (Vector2.LEFT * length).rotated(angle)
-	set_point_position(0, raycast.cast_to * 0.1)
+	var vec = (Vector2.LEFT).rotated(angle)
+	
+	raycast.cast_to = vec * length
+	raycast.position = vec * 8
+	
+	set_point_position(0, vec * 8)

@@ -10,10 +10,10 @@ offsets = PoolRealArray( 0, 0.975467, 0.994159, 1 )
 colors = PoolColorArray( 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0.870588, 1, 0, 0, 0.243137 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 6.0
+radius = 7.0
 
 [sub_resource type="OccluderPolygon2D" id=3]
-polygon = PoolVector2Array( -6, -5, -6, 3, -3, 5, 3, 5, 6, 3, 6, -5, 3, -7, -3, -7 )
+polygon = PoolVector2Array( -6, -4, -6, 3, -3, 5, 3, 5, 6, 3, 6, -4, 3, -6, -3, -6 )
 
 [node name="Turret" type="Node2D"]
 script = ExtResource( 3 )
@@ -27,7 +27,6 @@ gradient = SubResource( 1 )
 script = ExtResource( 4 )
 
 [node name="RayCast2D" type="RayCast2D" parent="Laser"]
-visible = false
 collision_mask = 3
 
 [node name="Point" type="Polygon2D" parent="Laser"]
