@@ -290,28 +290,26 @@ position = Vector2( 506, 275 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" type="Control" parent="CanvasLayer"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.0
+margin_top = -85.5
+margin_right = 152.0
+margin_bottom = 85.5
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Mana" type="Label" parent="CanvasLayer/UI"]
-margin_left = 1.83541
-margin_top = 3.00339
-margin_right = 41.8354
-margin_bottom = 17.0034
-text = "Mana: 10"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Vitals" type="Control" parent="CanvasLayer/UI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
 margin_left = 1.0
-margin_top = 126.0
+margin_top = -36.0
 margin_right = 116.0
-margin_bottom = 161.0
+margin_bottom = -1.0
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -388,8 +386,8 @@ anims/Transition = SubResource( 35 )
 
 [node name="CRT" type="ColorRect" parent="CanvasLayer"]
 material = ExtResource( 5 )
-margin_right = 288.0
-margin_bottom = 162.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
 "_edit_lock_": true,

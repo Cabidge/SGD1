@@ -4,7 +4,7 @@
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/screen_size = Vector2( 288, 162 )
+shader_param/screen_size = Vector2( 304, 171 )
 shader_param/show_curvature = false
 shader_param/curvature_x_amount = 8.0
 shader_param/curvature_y_amount = 6.0

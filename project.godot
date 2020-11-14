@@ -31,8 +31,8 @@ Player="*res://Player.gd"
 
 [display]
 
-window/size/width=288
-window/size/height=162
+window/size/width=304
+window/size/height=171
 window/size/test_width=1280
 window/size/test_height=720
 window/stretch/mode="viewport"
