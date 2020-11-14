@@ -55,8 +55,8 @@ polygon = PoolVector2Array( -1, -1, -1, 1, 1, 1, 1, -1 )
 light_mask = 0
 position = Vector2( 0, -3 )
 texture = ExtResource( 2 )
-vframes = 6
-hframes = 2
+vframes = 3
+hframes = 4
 script = ExtResource( 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
