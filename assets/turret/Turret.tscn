@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/turret/sprites/Sprite.gd" type="Script" id=1]
 [ext_resource path="res://assets/turret/sprites/sheet.png" type="Texture" id=2]
@@ -17,8 +17,11 @@ radius = 7.0
 polygon = PoolVector2Array( -6, -4, -6, 3, -3, 5, 3, 5, 6, 3, 6, -4, 3, -6, -3, -6 )
 
 [sub_resource type="CapsuleShape2D" id=4]
-radius = 14.0
-height = 88.0
+radius = 19.0
+height = 82.0
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 36.6879
 
 [node name="Turret" type="Node2D"]
 script = ExtResource( 3 )
@@ -28,17 +31,19 @@ script = ExtResource( 5 )
 
 [node name="Laser" type="Line2D" parent="."]
 position = Vector2( 0, -3 )
-z_index = 1
+z_index = -1
 width = 1.0
 default_color = Color( 1, 0, 0, 1 )
 gradient = SubResource( 1 )
 script = ExtResource( 4 )
 
 [node name="RayCast2D" type="RayCast2D" parent="Laser"]
+enabled = true
 collision_mask = 3
 
 [node name="Point" type="Polygon2D" parent="Laser"]
 visible = false
+z_index = 1
 color = Color( 1, 0, 0, 0.729412 )
 polygon = PoolVector2Array( -1, -1, -1, 1, 1, 1, 1, -1 )
 
@@ -64,10 +69,18 @@ occluder = SubResource( 3 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Sight" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sight"]
-position = Vector2( 0, 40 )
+position = Vector2( 42, 0 )
+rotation = 1.5708
 shape = SubResource( 4 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sight"]
+shape = SubResource( 5 )
+
+[node name="LineOfSight" type="RayCast2D" parent="."]
+collision_mask = 3
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

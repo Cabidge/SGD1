@@ -10,12 +10,12 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.533058, 1 ), -2.77391e-07,
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.2891, 0.322275, 1 )
-colors = PoolColorArray( 0.958412, 0.693304, 0.18719, 1, 0.945313, 0.761258, 0.409882, 1, 0.976563, 0.971943, 0.858307, 1, 1, 0.990234, 0.75, 1 )
+colors = PoolColorArray( 0.956863, 0.694118, 0.188235, 0.678431, 0.945313, 0.761258, 0.409882, 1, 0.976563, 0.971943, 0.858307, 1, 1, 0.990234, 0.75, 1 )
 
 [node name="Bullet" instance=ExtResource( 1 )]
 collision_layer = 0
 script = ExtResource( 3 )
-speed = 280.0
+speed = 800.0
 
 [node name="Trail" type="Node" parent="." index="1"]
 script = ExtResource( 2 )

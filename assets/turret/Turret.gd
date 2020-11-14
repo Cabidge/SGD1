@@ -11,16 +11,21 @@ var angle := 0.0 setget set_angle
 
 var scanning = false
 
+var player : KinematicBody
+
 onready var sprite = $Sprite
 onready var laser = $Laser
+onready var sight = $Sight
 
 onready var tween = $Tween
+
+onready var los = $LineOfSight
 
 func _ready():
 	set_angle(central_angle)
 
 func _input(event):
-	if event.is_action_pressed("attack"):
+	if event.is_action_pressed("ui_select"):
 		fire()
 
 
@@ -51,14 +56,22 @@ func set_angle(new):
 	
 	sprite.angle = angle
 	laser.angle = angle
+	sight.rotation = angle + PI
 
 
 func fire():
 	var bullet = bullet_scene.instance()
-	bullet.position = global_position + Vector2.LEFT.rotated(angle) * 8
+	bullet.position = global_position + Vector2.LEFT.rotated(angle) * 4 + Vector2.UP * 4
 	get_parent().add_child(bullet)
 	bullet.fire_at_angle(angle)
 	
 	sprite.fire = true
 	yield(get_tree().create_timer(0.1),"timeout")
 	sprite.fire = false
+
+func can_see(body : PhysicsBody2D):
+	los.cast_to = body.global_position - los.global_position
+	los.force_raycast_update()
+	if los.is_colliding():
+		return los.get_collider() == body
+	return false

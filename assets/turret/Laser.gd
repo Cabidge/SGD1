@@ -13,12 +13,12 @@ func _ready():
 
 func _physics_process(_delta):
 	var p = raycast.cast_to
-	raycast.force_raycast_update()
+#	raycast.force_raycast_update()
 	
 	if raycast.is_colliding():
 		p = raycast.get_collision_point() - global_position
 		point.position = p
-	point.visible = raycast.is_colliding() and (raycast.position - p).length() > 1
+	point.visible = raycast.is_colliding() #and (raycast.position - p).length() > 1
 	
 	set_point_position(1, p)
 

@@ -338,7 +338,7 @@ radius = 5.0
 height = 12.0
 
 [node name="Player" type="KinematicBody2D"]
-collision_layer = 32
+collision_layer = 0
 collision_mask = 5
 script = ExtResource( 2 )
 
@@ -410,12 +410,12 @@ shadow_enabled = true
 shadow_color = Color( 0, 0, 0, 1 )
 
 [node name="Body" type="StaticBody2D" parent="."]
-visible = false
-position = Vector2( 0, -12 )
-collision_layer = 2
+position = Vector2( 0, -10 )
+collision_layer = 34
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+position = Vector2( 0, -2 )
 shape = SubResource( 56 )
 [connection signal="animation_finished" from="Sprite" to="Sprite" method="_on_Sprite_animation_finished"]
 [connection signal="tween_all_completed" from="Pivot/Trail/Tween" to="Pivot/Trail" method="_on_Tween_tween_all_completed"]
