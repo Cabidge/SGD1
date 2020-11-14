@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/walk_stealth.png-4e6f62b98c72755cf23e7af381779385.stex"
+path="res://.import/normal.png-7fd0462c3ef07b11d3bff0348e76bd98.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/sprites/walk_stealth.png"
-dest_files=[ "res://.import/walk_stealth.png-4e6f62b98c72755cf23e7af381779385.stex" ]
+source_file="res://assets/player/sprites/normal.png"
+dest_files=[ "res://.import/normal.png-7fd0462c3ef07b11d3bff0348e76bd98.stex" ]
 
 [params]
 

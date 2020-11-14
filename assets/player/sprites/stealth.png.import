@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/death.png-dc4bc37b9ddc0dd0ebd20280a2a12c85.stex"
+path="res://.import/stealth.png-b194c833ddfdad38888fd928cd00d540.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/sprites/death.png"
-dest_files=[ "res://.import/death.png-dc4bc37b9ddc0dd0ebd20280a2a12c85.stex" ]
+source_file="res://assets/player/sprites/stealth.png"
+dest_files=[ "res://.import/stealth.png-b194c833ddfdad38888fd928cd00d540.stex" ]
 
 [params]
 
