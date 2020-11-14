@@ -65,6 +65,8 @@ func toggle_stealth():
 	else:
 		light_energy = DEFAULT_ENERGY
 		light_scale = DEFAULT_SCALE
+	
+	Player.update_stealth(stealth)
 
 func parry():
 	set_flipped(get_global_mouse_position().x < position.x)

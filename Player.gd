@@ -2,9 +2,11 @@ extends Node
 
 signal updated_health(new)
 signal updated_mana(new)
+signal updated_stealth(new)
 
 const MAX_HEALTH = 3
 const MAX_MANA = 10
+
 var health := MAX_HEALTH setget set_health
 var mana := MAX_MANA setget set_mana
 
@@ -19,3 +21,6 @@ func set_mana(new : int):
 	if new != mana:
 		mana = new
 		emit_signal("updated_mana",mana)
+
+func update_stealth(stealth):
+	emit_signal("updated_stealth",stealth)
