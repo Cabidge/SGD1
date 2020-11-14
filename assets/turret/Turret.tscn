@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/turret/sprites/Sprite.gd" type="Script" id=1]
 [ext_resource path="res://assets/turret/sprites/sheet.png" type="Texture" id=2]
 [ext_resource path="res://assets/turret/Turret.gd" type="Script" id=3]
 [ext_resource path="res://assets/turret/Laser.gd" type="Script" id=4]
+[ext_resource path="res://assets/turret/TurretSM.gd" type="Script" id=5]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.975467, 0.994159, 1 )
@@ -17,6 +18,9 @@ polygon = PoolVector2Array( -6, -4, -6, 3, -3, 5, 3, 5, 6, 3, 6, -4, 3, -6, -3, 
 
 [node name="Turret" type="Node2D"]
 script = ExtResource( 3 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 5 )
 
 [node name="Laser" type="Line2D" parent="."]
 position = Vector2( 0, -3 )

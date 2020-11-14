@@ -9,6 +9,8 @@ var bullet_scene = load("res://assets/projectiles/bullet/Bullet.tscn")
 
 var angle := 0.0 setget set_angle
 
+var scanning = false
+
 onready var sprite = $Sprite
 onready var laser = $Laser
 
@@ -16,7 +18,6 @@ onready var tween = $Tween
 
 func _ready():
 	set_angle(central_angle)
-	scan_auto()
 
 func _input(event):
 	if event.is_action_pressed("attack"):
@@ -24,10 +25,15 @@ func _input(event):
 
 
 func scan_auto():
+	scanning = true
 	if angle < central_angle:
 		tween_angle(central_angle + SCAN_ANGLE)
 	else:
 		tween_angle(central_angle - SCAN_ANGLE)
+
+func scan_stop():
+	scanning = false
+	tween.stop_all()
 
 func tween_angle(new_angle : float):
 	var time = abs((angle - new_angle) / SCAN_ANGLE) * SCAN_TIME
@@ -36,7 +42,8 @@ func tween_angle(new_angle : float):
 	tween.start()
 
 func _on_Tween_tween_all_completed():
-	scan_auto()
+	if scanning:
+		scan_auto()
 
 
 func set_angle(new):
