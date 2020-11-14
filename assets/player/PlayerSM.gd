@@ -4,6 +4,7 @@ var dir : Vector2 = Vector2.ZERO
 
 onready var mana_decay = $ManaDecay
 onready var mana_regen = $ManaRegen
+onready var idle_time = $IdleTime
 
 func _ready():
 	add_state("idle")
@@ -45,6 +46,8 @@ func _enter(new, _old):
 	match new:
 		states.idle:
 			parent.animation = "default"
+			if !parent.stealth:
+				idle_time.start()
 		states.run:
 			parent.animation = "walk"
 			auto_flip()
@@ -61,15 +64,23 @@ func _enter(new, _old):
 		states.parry:
 			wait_for_animation()
 
+func _exit(old, _new):
+	match old:
+		states.idle:
+			idle_time.stop()
+
+
 func auto_flip():
 	if dir.x != 0:
 		parent.flipped = dir.x < 0
+
 
 func can_stealth() -> bool:
 	return [states.idle,states.run].has(state) and Player.mana > 0
 
 func can_parry() -> bool:
 	return [states.idle,states.run].has(state) and !parent.stealth
+
 
 func _on_Sprite_animation_finished():
 	parent.sprite.disconnect("animation_finished",self,"_on_Sprite_animation_finished")
@@ -78,6 +89,7 @@ func _on_Sprite_animation_finished():
 func wait_for_animation():
 	parent.sprite.connect("animation_finished",self,"_on_Sprite_animation_finished")
 
+
 func _on_ManaDecay_timeout():
 	Player.mana -= 1
 	if Player.mana == 0 and parent.stealth and state != states.stealth:
@@ -85,3 +97,6 @@ func _on_ManaDecay_timeout():
 
 func _on_ManaRegen_timeout():
 	Player.mana += 1
+
+func _on_IdleTime_timeout():
+	parent.animation = "idle_start"
