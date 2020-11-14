@@ -298,8 +298,6 @@ shape = SubResource( 1 )
 light_mask = 0
 position = Vector2( 0, -12 )
 frames = SubResource( 52 )
-animation = "transition"
-frame = 8
 playing = true
 script = ExtResource( 15 )
 
