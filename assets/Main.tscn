@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://assets/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tiles/Walls.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/ui/vitals/VitalBar2.png" type="Texture" id=11]
 [ext_resource path="res://assets/ui/vitals/VitalBar3.png" type="Texture" id=12]
 [ext_resource path="res://assets/ui/vitals/VitalBar4.png" type="Texture" id=13]
+[ext_resource path="res://assets/turret/Turret.tscn" type="PackedScene" id=14]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Floor.png 0"
@@ -286,6 +287,9 @@ tile_data = PoolIntArray( -196587, 0, 0, -196586, 0, 1, -196585, 0, 1, -196584, 
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 506, 275 )
+
+[node name="Turret" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 465, 284 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
