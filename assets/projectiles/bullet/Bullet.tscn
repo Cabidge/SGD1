@@ -21,7 +21,7 @@ speed = 800.0
 script = ExtResource( 2 )
 
 [node name="Line2D" type="Line2D" parent="Trail" index="0"]
-width = 2.0
+width = 3.0
 width_curve = SubResource( 1 )
 default_color = Color( 0, 0, 0, 1 )
 gradient = SubResource( 2 )

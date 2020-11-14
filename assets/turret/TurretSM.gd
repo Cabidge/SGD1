@@ -3,6 +3,7 @@ extends StateMachine
 var player : PhysicsBody2D
 
 onready var sight = parent.get_node("Sight") as Area2D
+onready var firerate = $FireRate
 
 func _ready():
 	add_state("scan")
@@ -12,7 +13,7 @@ func _ready():
 func _state_logic(delta):
 	match state:
 		states.alert:
-			parent.angle = lerp_angle(parent.angle, angle_to_player(), 0.25)
+			parent.angle = lerp_angle(parent.angle, angle_to_player(), 0.4)
 
 func _transition(delta):
 	match state:
@@ -29,14 +30,21 @@ func _enter(new, _old):
 	match new:
 		states.scan:
 			parent.scan_auto()
+		states.alert:
+			firerate.start()
 
 func _exit(old, _new):
 	match old:
 		states.scan:
 			parent.scan_stop()
 		states.alert:
+			firerate.stop()
 			parent.angle = fposmod(parent.angle, 2 * PI)
 
 
 func angle_to_player():
 	return parent.global_position.angle_to_point(player.global_position)
+
+
+func _on_Timer_timeout():
+	parent.fire()

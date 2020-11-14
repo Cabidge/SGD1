@@ -24,10 +24,6 @@ onready var los = $LineOfSight
 func _ready():
 	set_angle(central_angle)
 
-func _input(event):
-	if event.is_action_pressed("ui_select"):
-		fire()
-
 
 func scan_auto():
 	scanning = true

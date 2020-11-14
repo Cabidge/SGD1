@@ -29,6 +29,10 @@ script = ExtResource( 3 )
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 5 )
 
+[node name="FireRate" type="Timer" parent="StateMachine"]
+wait_time = 0.2
+autostart = true
+
 [node name="Laser" type="Line2D" parent="."]
 position = Vector2( 0, -3 )
 z_index = -1
@@ -83,4 +87,5 @@ shape = SubResource( 5 )
 
 [node name="LineOfSight" type="RayCast2D" parent="."]
 collision_mask = 3
+[connection signal="timeout" from="StateMachine/FireRate" to="StateMachine" method="_on_Timer_timeout"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
