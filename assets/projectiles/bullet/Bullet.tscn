@@ -17,7 +17,7 @@ collision_layer = 0
 script = ExtResource( 3 )
 speed = 800.0
 
-[node name="Trail" type="Node" parent="." index="1"]
+[node name="Trail" type="Node2D" parent="." index="1"]
 script = ExtResource( 2 )
 
 [node name="Line2D" type="Line2D" parent="Trail" index="0"]
@@ -37,7 +37,4 @@ shadow_enabled = true
 wait_time = 8.0
 one_shot = true
 autostart = true
-
-[node name="Polygon2D" type="Polygon2D" parent="." index="4"]
-polygon = PoolVector2Array( -1, -1, 1, -1, 1, 1, -1, 1 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

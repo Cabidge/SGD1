@@ -57,7 +57,7 @@ func set_angle(new):
 
 func fire():
 	var bullet = bullet_scene.instance()
-	bullet.position = global_position + Vector2.LEFT.rotated(angle) * 4 + Vector2.UP * 4
+	bullet.position = global_position + Vector2.UP * 2
 	get_parent().add_child(bullet)
 	bullet.fire_at_angle(angle)
 	
