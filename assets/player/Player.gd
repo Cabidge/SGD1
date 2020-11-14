@@ -25,6 +25,8 @@ onready var light = $Light2D
 func _physics_process(delta):
 	light.energy = lerp(light.energy,light_energy, 0.1)
 	light.texture_scale = lerp(light.texture_scale,light_scale, 0.1)
+	
+	modulate.a = lerp(modulate.a, 1.0 - 0.6 * int(stealth), 0.05)
 
 func lerp_vel(dir : Vector2, speed = MAX_SPEED):
 	velocity = velocity.linear_interpolate(dir * speed, 0.3)
