@@ -289,7 +289,8 @@ tile_data = PoolIntArray( -196587, 0, 0, -196586, 0, 1, -196585, 0, 1, -196584, 
 position = Vector2( 506, 275 )
 
 [node name="Turret" parent="YSort" instance=ExtResource( 14 )]
-position = Vector2( 465, 284 )
+position = Vector2( 468, 249 )
+central_angle = 4.713
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
