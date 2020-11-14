@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://assets/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tiles/Walls.png" type="Texture" id=2]
@@ -9,6 +9,10 @@
 [ext_resource path="res://assets/ui/vitals/Portrait0.png" type="Texture" id=7]
 [ext_resource path="res://assets/ui/vitals/Vitals.gd" type="Script" id=8]
 [ext_resource path="res://assets/ui/vitals/VitalBar0.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/vitals/VitalBar1.png" type="Texture" id=10]
+[ext_resource path="res://assets/ui/vitals/VitalBar2.png" type="Texture" id=11]
+[ext_resource path="res://assets/ui/vitals/VitalBar3.png" type="Texture" id=12]
+[ext_resource path="res://assets/ui/vitals/VitalBar4.png" type="Texture" id=13]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Floor.png 0"
@@ -309,6 +313,9 @@ margin_top = 126.0
 margin_right = 116.0
 margin_bottom = 161.0
 script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Back" type="TextureRect" parent="CanvasLayer/UI/Vitals"]
 margin_left = 28.0
@@ -316,6 +323,50 @@ margin_top = 6.0
 margin_right = 114.0
 margin_bottom = 46.0
 texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ManaWhite" type="TextureProgress" parent="CanvasLayer/UI/Vitals"]
+margin_left = 28.0
+margin_top = 6.0
+margin_right = 114.0
+margin_bottom = 30.0
+value = 100.0
+texture_progress = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ManaProgress" type="TextureProgress" parent="CanvasLayer/UI/Vitals"]
+margin_left = 28.0
+margin_top = 6.0
+margin_right = 114.0
+margin_bottom = 30.0
+value = 100.0
+texture_progress = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthWhite" type="TextureProgress" parent="CanvasLayer/UI/Vitals"]
+margin_left = 28.0
+margin_top = 6.0
+margin_right = 114.0
+margin_bottom = 30.0
+value = 100.0
+texture_progress = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthProgress" type="TextureProgress" parent="CanvasLayer/UI/Vitals"]
+margin_left = 28.0
+margin_top = 6.0
+margin_right = 114.0
+margin_bottom = 30.0
+value = 100.0
+texture_progress = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
