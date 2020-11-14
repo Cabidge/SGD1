@@ -1,7 +1,7 @@
 extends Node2D
 
 const SCAN_ANGLE = deg2rad(45)
-const SCAN_TIME = 1.0
+const SCAN_TIME = 0.8
 
 export var central_angle = 0.0
 

@@ -251,7 +251,7 @@ points = PoolVector2Array( 0, 24, 24, 24, 24, 48, 0, 48 )
 
 [sub_resource type="Animation" id=35]
 resource_name = "Transition"
-length = 0.4
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:value")
 tracks/0/interp = 1
@@ -259,7 +259,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0.1, 0.4 ),
 "transitions": PoolRealArray( -3.03143, -3.03143 ),
 "update": 0,
 "values": [ 0.0, 100.0 ]
@@ -386,6 +386,7 @@ margin_right = 35.0
 margin_bottom = 35.0
 mouse_filter = 2
 step = 0.01
+value = 0.01
 texture_under = ExtResource( 7 )
 texture_progress = ExtResource( 6 )
 fill_mode = 7
