@@ -4,9 +4,9 @@ const MAX_SPEED = Global.TILE * 5 # tiles per second
 const SLOW_SPEED = MAX_SPEED * 0.1
 
 const DEFAULT_ENERGY = 1.0
-const DEFAULT_SCALE = 0.78
+const DEFAULT_SCALE = 0.6
 const STEALTH_ENERGY = 0.9
-const STEALTH_SCALE = 0.5
+const STEALTH_SCALE = 0.4
 
 var velocity : Vector2 = Vector2.ZERO
 
