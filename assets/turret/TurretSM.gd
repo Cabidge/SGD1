@@ -34,6 +34,8 @@ func _exit(old, _new):
 	match old:
 		states.scan:
 			parent.scan_stop()
+		states.alert:
+			parent.angle = fposmod(parent.angle, 2 * PI)
 
 
 func angle_to_player():

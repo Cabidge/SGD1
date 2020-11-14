@@ -69,6 +69,7 @@ func fire():
 	yield(get_tree().create_timer(0.1),"timeout")
 	sprite.fire = false
 
+
 func can_see(body : PhysicsBody2D):
 	los.cast_to = body.global_position - los.global_position
 	los.force_raycast_update()
