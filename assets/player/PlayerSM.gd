@@ -91,12 +91,17 @@ func wait_for_animation():
 
 
 func _on_ManaDecay_timeout():
+	Player.health += 1
 	Player.mana -= 1
 	if Player.mana == 0 and parent.stealth and state != states.stealth:
 		set_state(states.stealth)
 
 func _on_ManaRegen_timeout():
-	Player.mana += 1
+	if Player.mana == Player.MAX_MANA:
+		if parent.combat_duration.is_stopped():
+			Player.health += 1
+	else:
+		Player.mana += 1
 
 func _on_IdleTime_timeout():
 	parent.animation = "idle_start"

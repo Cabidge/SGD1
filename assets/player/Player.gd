@@ -20,6 +20,8 @@ onready var camera = $Camera2D
 
 onready var transition_player = $TransitionPlayer
 
+onready var combat_duration = $CombatDuration
+
 func lerp_vel(dir : Vector2, speed = MAX_SPEED):
 	velocity = velocity.linear_interpolate(dir * speed, 0.3)
 
@@ -75,6 +77,7 @@ func damage(amount : int = 1):
 func _on_Body_hit(info):
 	damage(info.damage)
 	sprite.modulate = Color.white * 20
+	combat_duration.start()
 
 func _on_Body_recovered():
 	sprite.modulate = Color.white

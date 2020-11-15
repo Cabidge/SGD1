@@ -2,7 +2,7 @@ extends "res://assets/projectiles/Projectile.gd"
 
 var spark_scene = load("res://assets/projectiles/bullet/BulletSpark.tscn")
 
-var hit_info = HitInfo.new()
+var hit_info = HitInfo.new(2)
 
 onready var light = $Light2D
 
