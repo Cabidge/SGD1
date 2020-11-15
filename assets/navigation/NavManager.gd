@@ -19,5 +19,12 @@ func _input(event):
 		entities[0].path = generate_path(entities[0], get_global_mouse_position())
 
 func generate_path(entity : PatrolCharacter2D, destination : Vector2):
-	var path = nav_gen.get_simple_path(entity.position,destination)
+	destination = snap_to_tile(destination)
+	var from = snap_to_tile(entity.position)
+	var path = nav_gen.get_simple_path(from,destination)
 	return path
+
+func snap_to_tile(pos : Vector2):
+	pos = (pos / Global.TILE).floor() * Global.TILE
+	pos += Vector2.ONE * Global.TILE/2
+	return pos
