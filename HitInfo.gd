@@ -4,6 +4,6 @@ extends Object
 var damage : int
 var dealer
 
-func _init(damage : int = 1, dealer = null):
-	self.damage = damage
-	self.dealer = dealer
+func _init(Damage : int = 1, Dealer = null):
+	self.damage = Damage
+	self.dealer = Dealer
