@@ -18,9 +18,9 @@ func _state_logic(_delta):
 	
 	match state:
 		states.idle:
-			parent.lerp_vel(Vector2.ZERO)
+			parent.lerp_vel(Vector2.ZERO, 0)
 		states.run:
-			parent.lerp_vel(dir)
+			parent.lerp_vel(dir, parent.MAX_SPEED)
 			auto_flip()
 		states.stealth,states.parry:
 			parent.lerp_vel(dir, parent.SLOW_SPEED)

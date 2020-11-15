@@ -1,11 +1,9 @@
-extends KinematicBody2D
+extends Character2D
 
 signal damaged(health)
 
 const MAX_SPEED = Global.TILE * 5 # tiles per second
 const SLOW_SPEED = MAX_SPEED * 0.1
-
-var velocity : Vector2 = Vector2.ZERO
 
 var stealth = false
 
@@ -22,17 +20,15 @@ onready var transition_player = $TransitionPlayer
 
 onready var combat_duration = $CombatDuration
 
-func lerp_vel(dir : Vector2, speed = MAX_SPEED):
-	velocity = velocity.linear_interpolate(dir * speed, 0.3)
-
 func handle_movement():
-	velocity = move_and_slide(velocity)
+	.handle_movement()
 	camera.align()
 
 func move_dir() -> Vector2:
 	var x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	var y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	return Vector2(x,y).normalized()
+
 
 func set_flipped(new):
 	flipped = new

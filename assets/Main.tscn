@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://assets/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tiles/Walls.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://assets/projectiles/bullet/BulletSpark.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/tiles/grey.png" type="Texture" id=16]
 [ext_resource path="res://assets/Walls.gd" type="Script" id=17]
+[ext_resource path="res://assets/navigation/NavGen.tscn" type="PackedScene" id=18]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Floor.png 0"
@@ -321,6 +322,8 @@ position = Vector2( 668, 64 )
 [node name="Turret3" parent="YSort" instance=ExtResource( 14 )]
 position = Vector2( 396, 322 )
 starting_angle = 180.0
+
+[node name="NavGen" parent="YSort" instance=ExtResource( 18 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

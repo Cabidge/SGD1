@@ -23,5 +23,5 @@ func _on_Bullet_collided(collision : KinematicCollision2D):
 	
 	spark.look_at(collision.normal + spark.position)
 	
-	if collision.collider.is_in_group("Hurtbox"):
+	if collision.collider is Hurtbox:
 		collision.collider.hit(hit_info)
