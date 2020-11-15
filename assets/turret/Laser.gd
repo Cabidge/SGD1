@@ -29,6 +29,6 @@ func set_angle(new):
 	raycast.cast_to = vec * length
 	raycast.position = vec * 8
 	
-	z_index = int(fposmod(angle,2 * PI) > PI) * 2 - 1
+	#z_index = int(fposmod(angle,2 * PI) > PI) * 2 - 1
 	
 	set_point_position(0, vec * 8)

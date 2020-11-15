@@ -318,6 +318,10 @@ position = Vector2( 506, 275 )
 [node name="Turret2" parent="YSort" instance=ExtResource( 14 )]
 position = Vector2( 668, 64 )
 
+[node name="Turret3" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 396, 322 )
+starting_angle = 180.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" type="Control" parent="CanvasLayer"]
