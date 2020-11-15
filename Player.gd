@@ -4,7 +4,7 @@ signal updated_health(new)
 signal updated_mana(new)
 signal updated_stealth(new)
 
-const MAX_HEALTH = 3
+const MAX_HEALTH = 8
 const MAX_MANA = 10
 
 var health := MAX_HEALTH setget set_health

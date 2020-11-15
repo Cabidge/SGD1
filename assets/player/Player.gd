@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal damaged(health)
+
 const MAX_SPEED = Global.TILE * 5 # tiles per second
 const SLOW_SPEED = MAX_SPEED * 0.1
 
@@ -61,3 +63,18 @@ func parry():
 	set_flipped(get_global_mouse_position().x < position.x)
 	set_animation("parry")
 	pivot.swipe()
+
+func damage(amount : int = 1):
+	if amount <= 0:
+		return
+	
+	emit_signal("damaged",Player.health)
+	Player.health -= amount
+
+
+func _on_Body_hit(info):
+	damage(info.damage)
+	sprite.modulate = Color.white * 20
+
+func _on_Body_recovered():
+	sprite.modulate = Color.white

@@ -2,6 +2,8 @@ extends "res://assets/projectiles/Projectile.gd"
 
 var spark_scene = load("res://assets/projectiles/bullet/BulletSpark.tscn")
 
+var hit_info = HitInfo.new()
+
 onready var light = $Light2D
 
 func _physics_process(delta):
@@ -20,3 +22,6 @@ func _on_Bullet_collided(collision : KinematicCollision2D):
 	spark.emitting = true
 	
 	spark.look_at(collision.normal + spark.position)
+	
+	if collision.collider.is_in_group("Hurtbox"):
+		collision.collider.hit(hit_info)

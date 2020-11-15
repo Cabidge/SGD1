@@ -21,7 +21,7 @@ func _process(delta):
 	mana_bars[0].value = max(mana_bars[1].value,mana_bars[0].value - delta * 2)
 	mana_bars[1].value = min(mana_count,mana_bars[1].value + delta * 3)
 	
-	health_bars[0].value = max(health_bars[1].value,health_bars[0].value - delta * 2)
+	health_bars[0].value = max(health_bars[1].value,health_bars[0].value - delta * 5)
 
 func update_stealth(stealth):
 	if stealth:

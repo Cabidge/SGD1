@@ -9,12 +9,24 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Object",
+"class": "HitInfo",
+"language": "GDScript",
+"path": "res://HitInfo.gd"
+}, {
+"base": "StaticBody2D",
+"class": "Hurtbox",
+"language": "GDScript",
+"path": "res://Hurtbox.gd"
+}, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://StateMachine.gd"
 } ]
 _global_script_class_icons={
+"HitInfo": "",
+"Hurtbox": "",
 "StateMachine": ""
 }
 
