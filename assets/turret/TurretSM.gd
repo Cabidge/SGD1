@@ -10,12 +10,12 @@ func _ready():
 	add_state("alert")
 	call_deferred("set_state", states.scan)
 
-func _state_logic(delta):
+func _state_logic(_delta):
 	match state:
 		states.alert:
 			parent.angle = lerp_angle(parent.angle, angle_to_player(), 0.4)
 
-func _transition(delta):
+func _transition(_delta):
 	match state:
 		states.scan:
 			if sight.get_overlapping_bodies().size() > 0:
