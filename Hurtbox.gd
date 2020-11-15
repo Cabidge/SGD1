@@ -14,7 +14,8 @@ func _ready():
 	add_child(timer)
 	timer.wait_time = 0.1
 	timer.one_shot = true
-	timer.connect("timeout",self,"_on_Timer_timeout")
+	var err = timer.connect("timeout",self,"_on_Timer_timeout")
+	assert(err == OK)
 
 func hit(info : HitInfo):
 	if disabled: return
