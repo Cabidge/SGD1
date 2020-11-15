@@ -14,6 +14,8 @@ onready var sprite = $Sprite
 onready var pivot = $Pivot
 onready var light = $Light2D
 
+onready var camera = $Camera2D
+
 onready var transition_player = $TransitionPlayer
 
 func lerp_vel(dir : Vector2, speed = MAX_SPEED):
@@ -21,6 +23,7 @@ func lerp_vel(dir : Vector2, speed = MAX_SPEED):
 
 func handle_movement():
 	velocity = move_and_slide(velocity)
+	camera.align()
 
 func move_dir() -> Vector2:
 	var x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
