@@ -31,7 +31,6 @@ script = ExtResource( 5 )
 
 [node name="FireRate" type="Timer" parent="StateMachine"]
 wait_time = 0.2
-autostart = true
 
 [node name="Laser" type="Line2D" parent="."]
 position = Vector2( 0, -2 )

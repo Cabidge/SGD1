@@ -3,7 +3,8 @@ extends Node2D
 const SCAN_ANGLE = deg2rad(45)
 const SCAN_TIME = 0.8
 
-export var central_angle = 0.0
+export(float,0,180) var starting_angle = 0
+onready var central_angle = deg2rad(starting_angle)
 
 var bullet_scene = load("res://assets/projectiles/bullet/Bullet.tscn")
 

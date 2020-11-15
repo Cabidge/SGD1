@@ -315,9 +315,8 @@ script = ExtResource( 17 )
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 506, 275 )
 
-[node name="Turret" parent="YSort" instance=ExtResource( 14 )]
-position = Vector2( 468, 249 )
-central_angle = 4.713
+[node name="Turret2" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 668, 64 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
