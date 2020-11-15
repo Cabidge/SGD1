@@ -103,6 +103,8 @@ stealth={
 2d_physics/layer_1="Solid"
 2d_physics/layer_2="Opaque"
 2d_physics/layer_3="PlayerBarrier"
+2d_physics/layer_4="EnemyBarrier"
+2d_physics/layer_5="ProjectileBarrier"
 2d_physics/layer_6="Player"
 2d_physics/layer_7="Enemy"
 

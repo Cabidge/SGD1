@@ -14,8 +14,9 @@ colors = PoolColorArray( 0.956863, 0.694118, 0.188235, 0.678431, 0.945313, 0.761
 
 [node name="Bullet" instance=ExtResource( 1 )]
 collision_layer = 0
+collision_mask = 2147483697
 script = ExtResource( 3 )
-speed = 800.0
+speed = 1200.0
 
 [node name="Trail" type="Node2D" parent="." index="1"]
 script = ExtResource( 2 )

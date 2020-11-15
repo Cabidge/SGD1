@@ -67,7 +67,7 @@ func fire():
 
 
 func can_see(body : PhysicsBody2D):
-	los.cast_to = body.global_position - los.global_position
+	los.cast_to = body.global_position - global_position
 	los.force_raycast_update()
 	if los.is_colliding():
 		return los.get_collider() == body
