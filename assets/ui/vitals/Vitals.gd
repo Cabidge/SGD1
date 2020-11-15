@@ -1,5 +1,7 @@
 extends Control
 
+var mana_count := Player.mana
+
 onready var portrait_anim = $Portrait/AnimationPlayer
 onready var mana_bars = [$ManaWhite,$ManaProgress]
 onready var health_bars = [$HealthWhite,$HealthProgress]
@@ -17,6 +19,8 @@ func _ready():
 
 func _process(delta):
 	mana_bars[0].value = max(mana_bars[1].value,mana_bars[0].value - delta * 2)
+	mana_bars[1].value = min(mana_count,mana_bars[1].value + delta * 3)
+	
 	health_bars[0].value = max(health_bars[1].value,health_bars[0].value - delta * 2)
 
 func update_stealth(stealth):
@@ -26,7 +30,8 @@ func update_stealth(stealth):
 		portrait_anim.play_backwards("Transition")
 
 func update_mana(mana):
-	mana_bars[1].value = mana
+	mana_count = mana
+	mana_bars[1].value = min(mana,mana_bars[1].value)
 
 func update_health(health):
 	health_bars[1].value = health
