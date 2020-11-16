@@ -8,6 +8,8 @@ func _physics_process(_delta):
 	if follow_path(MAX_SPEED):
 		sprite.animation = "walk"
 		sprite.flip_h = velocity.x > 0
+		var a = velocity.angle()
+		$Light2D.rotation = lerp_angle($Light2D.rotation,a,0.3)
 	else:
 		sprite.animation = "default"
 		velocity = Vector2.ZERO

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://assets/guard/sprites/default.png" type="Texture" id=1]
 [ext_resource path="res://assets/guard/sprites/walk.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/guard/Guard.gd" type="Script" id=5]
 [ext_resource path="res://StateMachine.gd" type="Script" id=6]
 [ext_resource path="res://assets/Shadow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/Spotlight45.png" type="Texture" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
@@ -150,7 +151,7 @@ light_mask = 0
 position = Vector2( 0, -16 )
 frames = SubResource( 26 )
 animation = "walk"
-frame = 5
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -164,3 +165,9 @@ default_color = Color( 0.992157, 1, 0, 0.376471 )
 
 [node name="Shadow" parent="." instance=ExtResource( 7 )]
 scale = Vector2( 10, 3 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 8 )
+texture_scale = 0.8
+color = Color( 0.976471, 1, 0.27451, 1 )
+shadow_enabled = true
