@@ -319,10 +319,11 @@ position = Vector2( 506, 275 )
 
 [node name="Turret2" parent="YSort" instance=ExtResource( 14 )]
 position = Vector2( 668, 64 )
+starting_angle = 180.0
 
 [node name="Turret3" parent="YSort" instance=ExtResource( 14 )]
 position = Vector2( 396, 322 )
-starting_angle = 180.0
+starting_angle = 90.0
 
 [node name="NavManager" parent="YSort" instance=ExtResource( 18 )]
 wall_path = NodePath("../Walls")
@@ -330,6 +331,12 @@ floor_path = NodePath("../../Floor")
 
 [node name="Guard" parent="YSort/NavManager" instance=ExtResource( 19 )]
 position = Vector2( 305, 286 )
+
+[node name="Guard2" parent="YSort/NavManager" instance=ExtResource( 19 )]
+position = Vector2( 323, 197 )
+
+[node name="Guard3" parent="YSort/NavManager" instance=ExtResource( 19 )]
+position = Vector2( 245, 243 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
