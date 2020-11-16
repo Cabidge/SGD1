@@ -10,5 +10,12 @@ export(NodePath) var player_path
 var player : Character2D
 
 func _ready():
-	if player_path:
-		print("a")
+	assert(player_path, name + " is missing path to player")
+	
+	player = get_node(player_path)
+	player.connect("damaged",self,"_on_Player_damaged")
+
+
+func _on_Player_damaged(health):
+	if health <= 0:
+		emit_signal("player_died")
