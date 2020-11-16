@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Hurtbox.gd"
 }, {
+"base": "Node2D",
+"class": "Level2D",
+"language": "GDScript",
+"path": "res://levels/Level2D.gd"
+}, {
 "base": "Character2D",
 "class": "PatrolCharacter2D",
 "language": "GDScript",
@@ -38,6 +43,7 @@ _global_script_class_icons={
 "Character2D": "",
 "HitInfo": "",
 "Hurtbox": "",
+"Level2D": "",
 "PatrolCharacter2D": "",
 "StateMachine": ""
 }
