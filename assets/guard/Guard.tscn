@@ -150,14 +150,17 @@ light_mask = 0
 position = Vector2( 0, -16 )
 frames = SubResource( 26 )
 animation = "walk"
-frame = 3
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource( 27 )
 
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -1
+width = 5.0
+default_color = Color( 0.992157, 1, 0, 0.376471 )
+
 [node name="Shadow" parent="." instance=ExtResource( 7 )]
 scale = Vector2( 10, 3 )
-
-[node name="Line2D" type="Line2D" parent="."]
