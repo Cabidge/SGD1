@@ -15,13 +15,14 @@ func _ready():
 			entities.append(child)
 
 func _input(event):
-	if event.is_action_pressed("attack"):
+	if event.is_action_pressed("ui_accept"):
 		entities[0].path = generate_path(entities[0], get_global_mouse_position())
 
 func generate_path(entity : PatrolCharacter2D, destination : Vector2):
 	destination = snap_to_tile(destination)
 	var from = snap_to_tile(entity.position)
-	var path = nav_gen.get_simple_path(from,destination)
+	
+	var path = nav_gen.get_simple_path(from,destination,true)
 	return path
 
 func snap_to_tile(pos : Vector2):
