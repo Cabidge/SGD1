@@ -16,7 +16,8 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		entities[0].path = generate_path(entities[0], get_global_mouse_position())
+		var entity = entities[randi() % entities.size()]
+		entity.path = generate_path(entity, get_global_mouse_position())
 
 func generate_path(entity : PatrolCharacter2D, destination : Vector2):
 	destination = snap_to_tile(destination)
