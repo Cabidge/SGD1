@@ -9,12 +9,12 @@ func _ready():
 	add_to_group("Patrol")
 
 func follow_path(speed : float) -> bool:
-	if path.size() > 0:
-		var dist = position.distance_to(path[0])
+	if path.size() > 1:
+		var dist = position.distance_to(path[1])
 		if dist > 12:
-			var vec = (path[0] - position) / dist
-			vec = vec.round().normalized()
-			lerp_vel(vec,speed,0.2)
+			var vec = (path[1] - position) / dist
+#			vec = vec.round().normalized()
+			lerp_vel(vec,speed,0.1)
 			handle_movement()
 		else:
 			path.remove(0)
