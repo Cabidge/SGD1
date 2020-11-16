@@ -24,7 +24,7 @@ func _physics_process(_delta):
 
 func set_angle(new):
 	angle = new
-	var vec = (Vector2.LEFT).rotated(angle)
+	var vec = (Vector2.RIGHT).rotated(angle)
 	
 	raycast.cast_to = vec * length
 	raycast.position = vec * 8

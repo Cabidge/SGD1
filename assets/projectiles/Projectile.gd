@@ -13,7 +13,7 @@ func fire_at(pos : Vector2):
 	emit_signal("fired",vec)
 
 func fire_at_angle(angle : float):
-	var vec = Vector2.LEFT.rotated(angle)
+	var vec = Vector2.RIGHT.rotated(angle)
 	velocity = vec * speed
 	emit_signal("fired",vec)
 

@@ -10,8 +10,8 @@ func set_angle(new):
 	
 	var beta = fposmod(angle + PI/2, 2 * PI) - PI
 	var x = int(round(abs(beta) / (PI / 4.0)))
-	turn_frame = 4 - x
-	flip_h = beta < 0 and turn_frame != 0 and turn_frame != 4
+	turn_frame = x
+	flip_h = beta > 0 and turn_frame != 0 and turn_frame != 4
 	update_frame()
 
 func update_frame():

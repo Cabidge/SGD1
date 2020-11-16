@@ -43,7 +43,7 @@ func _exit(old, _new):
 
 
 func angle_to_player():
-	return parent.global_position.angle_to_point(player.global_position)
+	return player.global_position.angle_to_point(parent.global_position)
 
 
 func _on_Timer_timeout():
