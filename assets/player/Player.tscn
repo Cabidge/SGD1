@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://assets/player/Player.gd" type="Script" id=2]
@@ -140,6 +140,18 @@ region = Rect2( 72, 48, 24, 24 )
 atlas = ExtResource( 6 )
 region = Rect2( 48, 48, 24, 24 )
 
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 6 )
+region = Rect2( 24, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 6 )
+region = Rect2( 48, 0, 24, 24 )
+
 [sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 24, 24 )
@@ -182,47 +194,47 @@ region = Rect2( 24, 48, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=31]
 atlas = ExtResource( 7 )
-region = Rect2( 24, 0, 24, 24 )
+region = Rect2( 0, 0, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 7 )
-region = Rect2( 48, 0, 24, 24 )
+region = Rect2( 24, 0, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=33]
 atlas = ExtResource( 7 )
-region = Rect2( 72, 0, 24, 24 )
+region = Rect2( 48, 0, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=34]
 atlas = ExtResource( 7 )
-region = Rect2( 0, 24, 24, 24 )
+region = Rect2( 72, 0, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=35]
 atlas = ExtResource( 7 )
-region = Rect2( 24, 24, 24, 24 )
+region = Rect2( 0, 24, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=36]
 atlas = ExtResource( 7 )
-region = Rect2( 48, 24, 24, 24 )
+region = Rect2( 24, 24, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=37]
 atlas = ExtResource( 7 )
-region = Rect2( 72, 24, 24, 24 )
+region = Rect2( 48, 24, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=38]
 atlas = ExtResource( 7 )
-region = Rect2( 0, 48, 24, 24 )
+region = Rect2( 72, 24, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=39]
 atlas = ExtResource( 7 )
-region = Rect2( 24, 48, 24, 24 )
+region = Rect2( 0, 48, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=40]
 atlas = ExtResource( 7 )
-region = Rect2( 48, 48, 24, 24 )
+region = Rect2( 24, 48, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=41]
 atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 24, 24 )
+region = Rect2( 48, 48, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=42]
 atlas = ExtResource( 6 )
@@ -242,33 +254,25 @@ region = Rect2( 24, 72, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=46]
 atlas = ExtResource( 6 )
-region = Rect2( 72, 120, 24, 24 )
+region = Rect2( 96, 120, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=47]
 atlas = ExtResource( 6 )
-region = Rect2( 96, 120, 24, 24 )
+region = Rect2( 144, 120, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=48]
 atlas = ExtResource( 6 )
-region = Rect2( 120, 120, 24, 24 )
+region = Rect2( 0, 144, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 6 )
-region = Rect2( 144, 120, 24, 24 )
+region = Rect2( 24, 144, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=50]
 atlas = ExtResource( 6 )
-region = Rect2( 0, 144, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=51]
-atlas = ExtResource( 6 )
-region = Rect2( 24, 144, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=52]
-atlas = ExtResource( 6 )
 region = Rect2( 48, 144, 24, 24 )
 
-[sub_resource type="SpriteFrames" id=53]
+[sub_resource type="SpriteFrames" id=51]
 animations = [ {
 "frames": [ SubResource( 3 ) ],
 "loop": false,
@@ -290,36 +294,41 @@ animations = [ {
 "name": "parry",
 "speed": 12.0
 }, {
+"frames": [ SubResource( 55 ), SubResource( 56 ), SubResource( 57 ) ],
+"loop": false,
+"name": "dying",
+"speed": 6.0
+}, {
 "frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ) ],
 "loop": true,
 "name": "walk",
 "speed": 15.0
 }, {
-"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ],
-"loop": true,
-"name": "walk_stealth",
-"speed": 15.0
-}, {
-"frames": [ SubResource( 41 ) ],
+"frames": [ SubResource( 31 ) ],
 "loop": false,
 "name": "default_stealth",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
+"loop": true,
+"name": "walk_stealth",
+"speed": 15.0
 }, {
 "frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
 "loop": false,
 "name": "idle_start",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ) ],
+"frames": [ SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ) ],
 "loop": false,
 "name": "stab",
 "speed": 10.0
 } ]
 
-[sub_resource type="Curve" id=54]
+[sub_resource type="Curve" id=52]
 _data = [ Vector2( 0, 0 ), 0.0, 0.172348, 0, 0, Vector2( 1, 1 ), 0.127273, 0.0, 0, 0 ]
 
-[sub_resource type="Animation" id=55]
+[sub_resource type="Animation" id=53]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("TrailPivot:rotation_degrees")
@@ -334,7 +343,7 @@ tracks/0/keys = {
 "values": [ -40.0, 40.0 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=56]
+[sub_resource type="CapsuleShape2D" id=54]
 radius = 5.0
 height = 12.0
 
@@ -372,7 +381,7 @@ shape = SubResource( 2 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 light_mask = 0
 position = Vector2( 0, -12 )
-frames = SubResource( 53 )
+frames = SubResource( 51 )
 playing = true
 script = ExtResource( 15 )
 
@@ -386,11 +395,11 @@ script = ExtResource( 4 )
 
 [node name="Line2D" type="Line2D" parent="Pivot/Trail"]
 width = 5.0
-width_curve = SubResource( 54 )
+width_curve = SubResource( 52 )
 default_color = Color( 1, 1, 1, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/Trail"]
-anims/Swipe = SubResource( 55 )
+anims/Swipe = SubResource( 53 )
 
 [node name="TrailPivot" type="Node2D" parent="Pivot/Trail"]
 rotation = -0.436332
@@ -421,7 +430,7 @@ script = ExtResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 position = Vector2( 0, -2 )
-shape = SubResource( 56 )
+shape = SubResource( 54 )
 
 [node name="CombatDuration" type="Timer" parent="."]
 wait_time = 2.0
