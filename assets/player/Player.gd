@@ -10,6 +10,9 @@ var stealth = false
 var flipped = false setget set_flipped
 var animation : String setget set_animation
 
+var stab_info = HitInfo.new(9999, self)
+var target
+
 onready var sprite = $Sprite
 onready var pivot = $Pivot
 onready var light = $Light2D
@@ -19,6 +22,8 @@ onready var camera = $Camera2D
 onready var transition_player = $TransitionPlayer
 
 onready var combat_duration = $CombatDuration
+
+onready var stab_detector = $StabDetector
 
 func handle_movement():
 	.handle_movement()
@@ -77,3 +82,19 @@ func _on_Body_hit(info):
 
 func _on_Body_recovered():
 	sprite.modulate = Color.white
+
+
+func stab_begin(a_target):
+	target = a_target
+	
+	set_animation("stab")
+	transition_player.play("Stab")
+
+func stab_target():
+	if target:
+		if target.hurtbox:
+			target.hurtbox.hit(stab_info)
+		Player.mana += target.mana_count
+
+func get_stab_target():
+	return stab_detector.target

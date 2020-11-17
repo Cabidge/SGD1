@@ -16,7 +16,7 @@ func _ready():
 	add_state("death")
 	init_state(states.idle)
 
-func _state_logic(delta):
+func _state_logic(_delta):
 	match state:
 		states.idle,states.stall:
 			parent.lerp_vel(Vector2.ZERO, 0)
@@ -32,7 +32,7 @@ func _state_logic(delta):
 	
 	parent.handle_movement()
 
-func _transition(delta):
+func _transition(_delta):
 	match state:
 		states.turn:
 			if abs(turn_angle - wrapf(parent.angle, -PI, PI)) <= 0.1:
@@ -46,13 +46,16 @@ func _enter(new, _old):
 		states.idle:
 			idle_time.start()
 			continue
-		states.stall:
+		states.stall,states.idle:
 			parent.sprite.play("default")
 		states.turn:
 			parent.request_path()
 			turn_angle = parent.next_vector().angle()
 		states.patrol:
 			parent.sprite.play("walk")
+		states.death:
+			parent.sprite.play("dying")
+			parent.anim_player.play("Death")
 
 func _exit(old, _new):
 	match old:
@@ -62,3 +65,11 @@ func _exit(old, _new):
 
 func _on_IdleTime_timeout():
 	set_state(states.turn)
+
+
+func _on_StabRange_stalled():
+	set_state(states.stall)
+
+
+func _on_Guard_died():
+	set_state(states.death)

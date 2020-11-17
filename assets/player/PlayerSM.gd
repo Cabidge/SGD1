@@ -2,6 +2,10 @@ extends StateMachine
 
 var dir : Vector2 = Vector2.ZERO
 
+var buffered_state : int
+
+var stab_target
+
 onready var mana_decay = $ManaDecay
 onready var mana_regen = $ManaRegen
 onready var idle_time = $IdleTime
@@ -11,13 +15,15 @@ func _ready():
 	add_state("run")
 	add_state("stealth")
 	add_state("parry")
+	add_state("stab_stealth")
+	add_state("stab")
 	init_state(states.idle)
 
 func _state_logic(_delta):
 	dir = parent.move_dir()
 	
 	match state:
-		states.idle:
+		states.idle,states.stab_stealth,states.stab:
 			parent.lerp_vel(Vector2.ZERO, 0)
 		states.run:
 			parent.lerp_vel(dir, parent.MAX_SPEED)
@@ -29,9 +35,17 @@ func _state_logic(_delta):
 func _unhandled_input(event):
 	if event.is_action_pressed("stealth") and can_stealth():
 		set_state(states.stealth)
-	elif event.is_action_pressed("attack") and can_parry():
-		set_state(states.parry)
-		parent.parry()
+	elif event.is_action_pressed("attack"):
+		if parent.stealth:
+			var target = parent.get_stab_target()
+			if target != null:
+				target.stall()
+				set_state(states.stab_stealth)
+				
+				stab_target = target
+		elif can_parry():
+			set_state(states.parry)
+			parent.parry()
 
 func _transition(_delta):
 	match state:
@@ -63,11 +77,21 @@ func _enter(new, _old):
 				mana_decay.stop()
 		states.parry:
 			wait_for_animation()
+		states.stab_stealth:
+			parent.camera.zoom_in(0.8)
+			parent.toggle_stealth()
+			wait_for_animation(states.stab)
+			mana_decay.stop()
+		states.stab:
+			parent.stab_begin(stab_target)
+			wait_for_animation(states.stealth)
 
 func _exit(old, _new):
 	match old:
 		states.idle:
 			idle_time.stop()
+		states.stab:
+			parent.camera.zoom_in(1)
 
 
 func auto_flip():
@@ -79,15 +103,16 @@ func can_stealth() -> bool:
 	return [states.idle,states.run].has(state) and Player.mana > 0
 
 func can_parry() -> bool:
-	return [states.idle,states.run].has(state) and !parent.stealth
+	return [states.idle,states.run].has(state)
 
 
 func _on_Sprite_animation_finished():
 	parent.sprite.disconnect("animation_finished",self,"_on_Sprite_animation_finished")
-	set_state(states.idle)
+	call_deferred("set_state",buffered_state)
 
-func wait_for_animation():
+func wait_for_animation(buffer : int = states.idle):
 	parent.sprite.connect("animation_finished",self,"_on_Sprite_animation_finished")
+	buffered_state = buffer
 
 
 func _on_ManaDecay_timeout():
