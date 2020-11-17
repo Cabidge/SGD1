@@ -300,7 +300,7 @@ position = Vector2( 668, 64 )
 starting_angle = 180.0
 
 [node name="Turret3" parent="YSort" instance=ExtResource( 7 )]
-position = Vector2( 396, 322 )
+position = Vector2( 468, 250 )
 starting_angle = 90.0
 
 [node name="NavManager" parent="YSort" instance=ExtResource( 9 )]
