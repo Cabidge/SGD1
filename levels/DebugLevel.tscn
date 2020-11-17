@@ -312,11 +312,11 @@ position = Vector2( 305, 286 )
 waypoint_cluster_path = NodePath("../../../WaypointCluster")
 
 [node name="Guard2" parent="YSort/NavManager" instance=ExtResource( 6 )]
-position = Vector2( 323, 197 )
+position = Vector2( 826, 247 )
 waypoint_cluster_path = NodePath("../../../WaypointCluster")
 
 [node name="Guard3" parent="YSort/NavManager" instance=ExtResource( 6 )]
-position = Vector2( 245, 243 )
+position = Vector2( 472, 47 )
 waypoint_cluster_path = NodePath("../../../WaypointCluster")
 
 [node name="WaypointCluster" parent="." instance=ExtResource( 10 )]
