@@ -8,7 +8,7 @@ onready var firerate = $FireRate
 func _ready():
 	add_state("scan")
 	add_state("alert")
-	call_deferred("set_state", states.scan)
+	init_state(states.scan)
 
 func _state_logic(_delta):
 	match state:

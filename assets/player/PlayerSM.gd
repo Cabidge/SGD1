@@ -11,7 +11,7 @@ func _ready():
 	add_state("run")
 	add_state("stealth")
 	add_state("parry")
-	call_deferred("set_state",states.idle)
+	init_state(states.idle)
 
 func _state_logic(_delta):
 	dir = parent.move_dir()
