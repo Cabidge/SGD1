@@ -13,7 +13,8 @@ func _ready():
 	assert(player_path, name + " is missing path to player")
 	
 	player = get_node(player_path)
-	player.connect("damaged",self,"_on_Player_damaged")
+	var err = player.connect("damaged",self,"_on_Player_damaged")
+	assert(err == OK)
 
 
 func _on_Player_damaged(health):
