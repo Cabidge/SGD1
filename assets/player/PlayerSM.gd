@@ -97,10 +97,8 @@ func _on_ManaDecay_timeout():
 		set_state(states.stealth)
 
 func _on_ManaRegen_timeout():
-	if Player.mana == Player.MAX_MANA:
-		if parent.combat_duration.is_stopped():
-			Player.health += 1
-	else:
+	if parent.combat_duration.is_stopped():
+		Player.health += 1
 		Player.mana += 1
 
 func _on_IdleTime_timeout():
