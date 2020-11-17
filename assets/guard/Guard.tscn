@@ -153,7 +153,6 @@ one_shot = true
 light_mask = 0
 position = Vector2( 0, -16 )
 frames = SubResource( 26 )
-animation = "walk"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
