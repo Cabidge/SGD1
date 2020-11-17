@@ -30,7 +30,10 @@ func set_path(new : PoolVector2Array):
 
 func rand_waypoint() -> Vector2:
 	if waypoint_cluser:
-		return waypoint_cluser.rand_point()
+		var point = waypoint_cluser.rand_point()
+		if position.distance_squared_to(point) <= 400:
+			return rand_waypoint() # if point is too close, try again
+		return point
 	return position
 
 func request_path(destination : Vector2 = rand_waypoint()):
