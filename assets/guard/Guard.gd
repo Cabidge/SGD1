@@ -14,8 +14,9 @@ func _physics_process(_delta):
 	$Line2D.global_position = Vector2.ZERO
 
 func lerp_sight():
-	var a = vec.angle()
-	$Light2D.rotation = lerp_angle($Light2D.rotation,a,0.2)
+	if vec != Vector2.ZERO:
+		var a = vec.angle()
+		$Light2D.rotation = lerp_angle($Light2D.rotation,a,0.2)
 
 func set_flipped(new):
 	flipped = new
