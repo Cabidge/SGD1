@@ -7,6 +7,9 @@ var previous_state = null
 
 onready var parent = get_parent()
 
+func init_state(state : int):
+	call_deferred("set_state",state)
+
 func _physics_process(delta):
 	if state != null:
 		_state_logic(delta)
