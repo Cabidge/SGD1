@@ -13,11 +13,11 @@ func _ready():
 	for child in get_children():
 		if child is PatrolCharacter2D:
 			entities.append(child)
+			child.connect("path_requested", self, "_on_Entity_path_requested", [child])
+			child.path = generate_path(child, child.rand_waypoint())
 
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		var entity = entities[randi() % entities.size()]
-		entity.path = generate_path(entity, get_global_mouse_position())
+func _on_Entity_path_requested(destination : Vector2, entity : PatrolCharacter2D):
+	entity.path = generate_path(entity, destination)
 
 func generate_path(entity : PatrolCharacter2D, destination : Vector2):
 	destination = snap_to_tile(destination)
