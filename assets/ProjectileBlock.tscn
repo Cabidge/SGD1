@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 12, 10 )
+extents = Vector2( 12, 12 )
 
 [node name="ProjectileBlock" type="StaticBody2D"]
 collision_layer = 18
