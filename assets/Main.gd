@@ -2,7 +2,7 @@ extends Node
 
 var initial_scene = load("res://levels/DebugLevel.tscn")
 
-var current_level : Node2D
+var current_level : Level2D
 var current_scene : PackedScene
 
 func _ready():
