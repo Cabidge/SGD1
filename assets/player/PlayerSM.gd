@@ -33,16 +33,18 @@ func _state_logic(_delta):
 	parent.handle_movement()
 
 func _unhandled_input(event):
-	if event.is_action_pressed("stealth") and can_stealth():
-		set_state(states.stealth)
+	if event.is_action_pressed("stealth"):
+		if can_stealth():
+			set_state(states.stealth)
+		elif state == states.stab:
+			buffered_state = states.stealth
 	elif event.is_action_pressed("attack"):
-		if parent.stealth:
+		if can_stab():
 			var target = parent.get_stab_target()
-			if target != null:
-				target.stall()
-				set_state(states.stab_stealth)
-				
-				stab_target = target
+			target.stall()
+			stab_target = target
+			
+			set_state(states.stab_stealth)
 		elif can_parry():
 			set_state(states.parry)
 			parent.parry()
@@ -78,13 +80,18 @@ func _enter(new, _old):
 		states.parry:
 			wait_for_animation()
 		states.stab_stealth:
-			parent.camera.zoom_in(0.8)
-			parent.toggle_stealth()
-			wait_for_animation(states.stab)
-			mana_decay.stop()
+			if parent.stealth:
+				parent.camera.zoom_in(0.8)
+				
+				parent.toggle_stealth()
+				wait_for_animation(states.stab)
+				mana_decay.stop()
+				mana_regen.start()
+			else:
+				set_state(states.stab)
 		states.stab:
 			parent.stab_begin(stab_target)
-			wait_for_animation(states.stealth)
+			wait_for_animation(states.idle)
 
 func _exit(old, _new):
 	match old:
@@ -103,7 +110,10 @@ func can_stealth() -> bool:
 	return [states.idle,states.run].has(state) and Player.mana > 0
 
 func can_parry() -> bool:
-	return [states.idle,states.run].has(state)
+	return [states.idle,states.run].has(state) and !parent.stealth
+
+func can_stab() -> bool:
+	return [states.idle,states.run].has(state) and parent.get_stab_target() != null
 
 
 func _on_Sprite_animation_finished():
