@@ -9,6 +9,11 @@ func _ready():
 	load_scene(initial_scene)
 
 
+func _input(event):
+	if event.is_action_pressed("reload"):
+		get_tree().reload_current_scene()
+
+
 func load_scene(scene : PackedScene):
 	if current_level != null:
 		remove_child(current_level)
