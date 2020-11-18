@@ -12,6 +12,8 @@ var health := 10
 onready var sprite = $Sprite
 onready var anim_player = $AnimationPlayer
 
+onready var stab_range_collision = $StabRange/CollisionShape2D
+
 func _physics_process(_delta):
 	# debug line
 	$Line2D.points = path
@@ -38,6 +40,8 @@ func damage(amount : int = 1):
 	health -= amount
 	if health <= 0:
 		emit_signal("died")
+		stab_range_collision.set_deferred("disabled", true)
+
 
 func _on_Hurtbox_hit(info):
 	damage(info.damage)
