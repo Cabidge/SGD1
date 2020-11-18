@@ -80,6 +80,7 @@ func _enter(new, _old):
 		states.parry:
 			wait_for_animation()
 		states.stab_stealth:
+			parent.flipped = stab_target.global_position.x < parent.position.x
 			if parent.stealth:
 				parent.camera.zoom_in(0.8)
 				
