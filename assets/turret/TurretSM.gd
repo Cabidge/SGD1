@@ -39,7 +39,8 @@ func _exit(old, _new):
 			parent.scan_stop()
 		states.alert:
 			firerate.stop()
-			parent.angle = fposmod(parent.angle, 2 * PI)
+			parent.angle = fposmod(parent.angle - parent.central_angle + PI, 2 * PI) + \
+					parent.central_angle - PI
 
 
 func angle_to_player():
