@@ -139,8 +139,9 @@ animations = [ {
 radius = 5.0
 height = 8.0
 
-[sub_resource type="CircleShape2D" id=28]
-radius = 15.0
+[sub_resource type="CapsuleShape2D" id=31]
+radius = 12.0
+height = 14.0
 
 [sub_resource type="CapsuleShape2D" id=29]
 radius = 7.0
@@ -220,9 +221,9 @@ hurtbox_path = NodePath("../Hurtbox")
 mana_count = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StabRange"]
-visible = false
 position = Vector2( 0, 37 )
-shape = SubResource( 28 )
+rotation = 1.5708
+shape = SubResource( 31 )
 
 [node name="Hurtbox" type="StaticBody2D" parent="."]
 position = Vector2( 0, -16 )
