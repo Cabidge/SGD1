@@ -60,7 +60,7 @@ func fire():
 	var bullet = bullet_scene.instance()
 	bullet.position = global_position
 	get_parent().add_child(bullet)
-	bullet.fire_at_angle(angle)
+	bullet.fire_at_angle(angle + rand_range(-0.1,0.1))
 	
 	sprite.fire = true
 	yield(get_tree().create_timer(0.1),"timeout")
