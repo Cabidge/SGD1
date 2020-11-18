@@ -1,6 +1,6 @@
 extends "res://assets/backstab/StabRange.gd"
 
-const BACKSTAB_ANGLE = deg2rad(50)
+const BACKSTAB_ANGLE = deg2rad(80)
 
 func can_stab(player : Character2D) -> bool:
 	var player_vec = (player.position - get_parent().position)
