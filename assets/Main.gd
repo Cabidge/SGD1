@@ -11,7 +11,8 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("reload"):
-		get_tree().reload_current_scene()
+		var err = get_tree().reload_current_scene()
+		assert(err == OK)
 
 
 func load_scene(scene : PackedScene):
