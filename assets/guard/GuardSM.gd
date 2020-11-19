@@ -3,6 +3,8 @@ extends StateMachine
 var vec : Vector2 = Vector2.ZERO
 var turn_angle := 0.0
 
+var buffered_state := 0
+
 onready var idle_time = $IdleTime
 
 func _ready():
@@ -10,7 +12,7 @@ func _ready():
 	add_state("turn")
 	add_state("patrol")
 	add_state("attack")
-	add_state("alarmed")
+	add_state("alert")
 	# backstab
 	add_state("stall")
 	add_state("death")
@@ -18,13 +20,17 @@ func _ready():
 
 func _state_logic(_delta):
 	match state:
-		states.idle,states.stall:
+		states.attack:
+			var _in_sight = parent.player_in_sight()
+			parent.lerp_sight(parent.player_last_seen.angle_to_point(parent.position), 0.2)
+			continue
+		states.idle,states.stall,states.attack:
 			parent.lerp_vel(Vector2.ZERO, 0)
 		states.turn:
 			parent.lerp_sight(turn_angle)
-		states.patrol:
+		states.patrol,states.alert:
 			vec = parent.next_vector()
-			parent.lerp_vel(vec, parent.MAX_SPEED, 0.2)
+			parent.lerp_vel(vec, parent.MAX_SPEED, 0.1)
 			if vec.x != 0:
 				parent.flipped = vec.x > 0
 			if vec != Vector2.ZERO:
@@ -37,9 +43,14 @@ func _transition(_delta):
 		states.turn:
 			if abs(turn_angle - wrapf(parent.angle, -PI, PI)) <= 0.1:
 				return states.patrol
-		states.patrol:
+			continue
+		states.patrol,states.alert:
 			if vec == Vector2.ZERO:
 				return states.idle
+			continue
+		states.idle,states.turn,states.patrol,states.alert:
+			if parent.player_in_sight():
+				return states.attack
 
 func _enter(new, _old):
 	match new:
@@ -51,7 +62,13 @@ func _enter(new, _old):
 		states.turn:
 			parent.request_path()
 			turn_angle = parent.next_vector().angle()
-		states.patrol:
+		states.attack:
+			parent.sprite.play("attack")
+			wait_for_animation(states.alert)
+		states.alert:
+			parent.request_path(parent.alert_pos)
+			continue
+		states.patrol,states.alert:
 			parent.sprite.play("walk")
 		states.death:
 			parent.sprite.play("dying")
@@ -61,6 +78,9 @@ func _exit(old, _new):
 	match old:
 		states.idle:
 			idle_time.stop()
+		states.attack:
+			parent.fire_orb()
+			parent.alert_pos = parent.player_last_seen
 
 
 func _on_IdleTime_timeout():
@@ -73,3 +93,12 @@ func _on_StabRange_stalled():
 
 func _on_Guard_died():
 	set_state(states.death)
+
+
+func _on_Sprite_animation_finished():
+	parent.sprite.disconnect("animation_finished",self,"_on_Sprite_animation_finished")
+	call_deferred("set_state",buffered_state)
+
+func wait_for_animation(buffer : int = states.idle):
+	parent.sprite.connect("animation_finished",self,"_on_Sprite_animation_finished")
+	buffered_state = buffer

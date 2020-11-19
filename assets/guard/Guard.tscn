@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://assets/guard/sprites/default.png" type="Texture" id=1]
 [ext_resource path="res://assets/guard/sprites/walk.png" type="Texture" id=2]
@@ -12,143 +12,145 @@
 [ext_resource path="res://assets/guard/GuardStabRange.gd" type="Script" id=10]
 [ext_resource path="res://Hurtbox.gd" type="Script" id=11]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 4 )
-region = Rect2( 64, 0, 32, 32 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 11.0454
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 4 )
-region = Rect2( 96, 0, 32, 32 )
+region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 4 )
-region = Rect2( 128, 0, 32, 32 )
+region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 4 )
-region = Rect2( 0, 32, 32, 32 )
+region = Rect2( 128, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 4 )
-region = Rect2( 32, 32, 32, 32 )
+region = Rect2( 0, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 4 )
-region = Rect2( 64, 32, 32, 32 )
+region = Rect2( 32, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 4 )
-region = Rect2( 96, 32, 32, 32 )
+region = Rect2( 64, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 4 )
-region = Rect2( 128, 32, 32, 32 )
+region = Rect2( 96, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 4 )
-region = Rect2( 0, 64, 32, 32 )
+region = Rect2( 128, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 4 )
-region = Rect2( 32, 64, 32, 32 )
+region = Rect2( 0, 64, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 4 )
-region = Rect2( 64, 64, 32, 32 )
+region = Rect2( 32, 64, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 4 )
-region = Rect2( 96, 64, 32, 32 )
+region = Rect2( 64, 64, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 4 )
-region = Rect2( 128, 64, 32, 32 )
+region = Rect2( 96, 64, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 4 )
-region = Rect2( 0, 96, 32, 32 )
+region = Rect2( 128, 64, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 4 )
-region = Rect2( 32, 96, 32, 32 )
+region = Rect2( 0, 96, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 4 )
-region = Rect2( 64, 96, 32, 32 )
+region = Rect2( 32, 96, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 32, 32 )
+atlas = ExtResource( 4 )
+region = Rect2( 64, 96, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 3 )
-region = Rect2( 32, 0, 32, 32 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 3 )
-region = Rect2( 0, 32, 32, 32 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 32, 32 )
+atlas = ExtResource( 3 )
+region = Rect2( 0, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 32, 32 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 2 )
-region = Rect2( 64, 0, 32, 32 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 32, 32, 32 )
+region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 32, 32, 32 )
+region = Rect2( 0, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 2 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 2 )
 region = Rect2( 64, 32, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=26]
+[sub_resource type="SpriteFrames" id=27]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
-"loop": true,
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": false,
 "name": "attack",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
 "loop": false,
 "name": "dying",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
 "loop": true,
 "name": "walk",
 "speed": 10.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=27]
+[sub_resource type="CapsuleShape2D" id=28]
 radius = 5.0
 height = 8.0
 
-[sub_resource type="CapsuleShape2D" id=31]
+[sub_resource type="CapsuleShape2D" id=29]
 radius = 12.0
 height = 14.0
 
-[sub_resource type="CapsuleShape2D" id=29]
+[sub_resource type="CapsuleShape2D" id=30]
 radius = 7.0
 height = 16.0
 
-[sub_resource type="Animation" id=30]
-resource_name = "Death"
+[sub_resource type="Animation" id=31]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shadow:scale")
 tracks/0/interp = 1
@@ -162,7 +164,7 @@ tracks/0/keys = {
 "values": [ Vector2( 10, 3 ), Vector2( 19, 4 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Light2D:energy")
+tracks/1/path = NodePath("Pivot/Light2D:energy")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -181,6 +183,11 @@ collision_layer = 0
 collision_mask = 9
 script = ExtResource( 5 )
 
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+color = Color( 0.266667, 0.266667, 0.266667, 1 )
+polygon = PoolVector2Array( -35, -81, -43, 58, 198, 60, 179, -91 )
+
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 6 )
 
@@ -188,17 +195,39 @@ script = ExtResource( 6 )
 wait_time = 3.0
 one_shot = true
 
+[node name="LineOfSight" type="RayCast2D" parent="."]
+visible = false
+collision_mask = 50
+
+[node name="Pivot" type="Position2D" parent="."]
+
+[node name="Light2D" type="Light2D" parent="Pivot"]
+texture = ExtResource( 8 )
+color = Color( 0.976471, 1, 0.27451, 1 )
+shadow_enabled = true
+
+[node name="Sight" type="Area2D" parent="Pivot"]
+visible = false
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Pivot/Sight"]
+polygon = PoolVector2Array( 0, -11, 115, -62, 120, 0, 115, 62, 0, 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Sight"]
+shape = SubResource( 1 )
+
 [node name="Sprite" type="AnimatedSprite" parent="."]
 light_mask = 0
 position = Vector2( 0, -16 )
-frames = SubResource( 26 )
+frames = SubResource( 27 )
 playing = true
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 rotation = 1.5708
-shape = SubResource( 27 )
+shape = SubResource( 28 )
 
 [node name="Line2D" type="Line2D" parent="."]
 z_index = -1
@@ -208,12 +237,6 @@ default_color = Color( 0.992157, 1, 0, 0.376471 )
 [node name="Shadow" parent="." instance=ExtResource( 7 )]
 scale = Vector2( 10, 3 )
 
-[node name="Light2D" type="Light2D" parent="."]
-texture = ExtResource( 8 )
-texture_scale = 0.8
-color = Color( 0.976471, 1, 0.27451, 1 )
-shadow_enabled = true
-
 [node name="StabRange" parent="." instance=ExtResource( 9 )]
 position = Vector2( 0, -37 )
 script = ExtResource( 10 )
@@ -221,9 +244,10 @@ hurtbox_path = NodePath("../Hurtbox")
 mana_count = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StabRange"]
+visible = false
 position = Vector2( 0, 37 )
 rotation = 1.5708
-shape = SubResource( 31 )
+shape = SubResource( 29 )
 
 [node name="Hurtbox" type="StaticBody2D" parent="."]
 position = Vector2( 0, -16 )
@@ -232,10 +256,11 @@ collision_mask = 0
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-shape = SubResource( 29 )
+visible = false
+shape = SubResource( 30 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Death = SubResource( 30 )
+anims/Death = SubResource( 31 )
 [connection signal="died" from="." to="StateMachine" method="_on_Guard_died"]
 [connection signal="timeout" from="StateMachine/IdleTime" to="StateMachine" method="_on_IdleTime_timeout"]
 [connection signal="stalled" from="StabRange" to="StateMachine" method="_on_StabRange_stalled"]
