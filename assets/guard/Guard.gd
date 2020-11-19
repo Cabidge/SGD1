@@ -7,7 +7,7 @@ const MAX_SPEED = Global.TILE * 3
 var flipped = false setget set_flipped
 var angle := 0.0 setget set_angle, get_angle
 
-var health := 10
+var health := 8
 
 var alert_pos : Vector2 = position
 var player_last_seen : Vector2 = position
