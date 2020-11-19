@@ -142,6 +142,7 @@ reload={
 2d_physics/layer_5="ProjectileBarrier"
 2d_physics/layer_6="Player"
 2d_physics/layer_7="Enemy"
+2d_physics/layer_8="MagicOrb"
 2d_physics/layer_11="StabRange"
 
 [rendering]
