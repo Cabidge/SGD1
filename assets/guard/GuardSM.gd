@@ -24,7 +24,7 @@ func _state_logic(_delta):
 			var _in_sight = parent.player_in_sight()
 			parent.lerp_sight(parent.player_last_seen.angle_to_point(parent.position), 0.2)
 			continue
-		states.idle,states.stall,states.attack:
+		states.idle,states.attack,states.stall,states.death:
 			parent.lerp_vel(Vector2.ZERO, 0)
 		states.turn:
 			parent.lerp_sight(turn_angle)
@@ -71,16 +71,18 @@ func _enter(new, _old):
 		states.patrol,states.alert:
 			parent.sprite.play("walk")
 		states.death:
+			unbuffer()
 			parent.sprite.play("dying")
 			parent.anim_player.play("Death")
 
-func _exit(old, _new):
+func _exit(old, new):
 	match old:
 		states.idle:
 			idle_time.stop()
 		states.attack:
-			parent.fire_orb()
-			parent.alert_pos = parent.player_last_seen
+			if new != states.death:
+				parent.fire_orb()
+				parent.alert_pos = parent.player_last_seen
 
 
 func _on_IdleTime_timeout():
@@ -96,9 +98,12 @@ func _on_Guard_died():
 
 
 func _on_Sprite_animation_finished():
-	parent.sprite.disconnect("animation_finished",self,"_on_Sprite_animation_finished")
+	unbuffer()
 	call_deferred("set_state",buffered_state)
 
 func wait_for_animation(buffer : int = states.idle):
 	parent.sprite.connect("animation_finished",self,"_on_Sprite_animation_finished")
 	buffered_state = buffer
+
+func unbuffer():
+	parent.sprite.disconnect("animation_finished",self,"_on_Sprite_animation_finished")

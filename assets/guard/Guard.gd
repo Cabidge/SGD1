@@ -18,6 +18,7 @@ onready var sprite = $Sprite
 onready var anim_player = $AnimationPlayer
 
 onready var stab_range_collision = $StabRange/CollisionShape2D
+onready var hurtbox_collision = $Hurtbox/CollisionShape2D
 
 onready var state_machine = $StateMachine as StateMachine
 
@@ -52,11 +53,14 @@ func damage(amount : int = 1):
 	if health <= 0:
 		emit_signal("died")
 		stab_range_collision.set_deferred("disabled", true)
+		hurtbox_collision.set_deferred("disabled", true)
 
 
-func _on_Hurtbox_hit(info):
+func _on_Hurtbox_hit(info : HitInfo):
 	damage(info.damage)
 	sprite.modulate = Color.white * 20
+	
+	velocity += info.knockback
 
 func _on_Hurtbox_recovered():
 	sprite.modulate = Color.white

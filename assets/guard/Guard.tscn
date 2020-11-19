@@ -199,6 +199,7 @@ collision_mask = 50
 [node name="Light2D" type="Light2D" parent="Pivot"]
 texture = ExtResource( 8 )
 color = Color( 0.976471, 1, 0.27451, 1 )
+energy = 0.81
 shadow_enabled = true
 
 [node name="Sight" type="Area2D" parent="Pivot"]
