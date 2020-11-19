@@ -4,6 +4,8 @@ export var length := 100.0
 
 var angle := 0.0 setget set_angle
 
+var disabled := false setget set_disabled
+
 onready var raycast = $RayCast2D
 onready var point = $Point
 
@@ -32,3 +34,10 @@ func set_angle(new):
 	#z_index = int(fposmod(angle,2 * PI) > PI) * 2 - 1
 	
 	set_point_position(0, vec * 8)
+
+
+func set_disabled(new : bool):
+	disabled = new
+	set_physics_process(!disabled)
+	visible = !disabled
+	raycast.enabled = !disabled
