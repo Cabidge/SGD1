@@ -10,7 +10,7 @@ var stealth = false
 var flipped = false setget set_flipped
 var animation : String setget set_animation
 
-var stab_info = HitInfo.new(9999, self)
+var stab_info = HitInfo.new(9999, Vector2.ZERO, self)
 var target
 
 onready var sprite = $Sprite
@@ -75,10 +75,12 @@ func damage(amount : int = 1):
 	Player.health -= amount
 
 
-func _on_Body_hit(info):
+func _on_Body_hit(info : HitInfo):
 	damage(info.damage)
 	sprite.modulate = Color.white * 20
 	combat_duration.start()
+	
+	velocity += info.knockback
 
 func _on_Body_recovered():
 	sprite.modulate = Color.white

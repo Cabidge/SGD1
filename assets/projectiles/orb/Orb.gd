@@ -1,5 +1,7 @@
 extends "res://assets/projectiles/Projectile.gd"
 
+const KNOCKBACK = 128
+
 var hit_info = HitInfo.new(2)
 
 func _physics_process(delta):
@@ -11,3 +13,4 @@ func _on_Orb_collided(collision):
 
 func _on_Orb_fired(vec):
 	position += vec * 12
+	hit_info.knockback = vec * KNOCKBACK

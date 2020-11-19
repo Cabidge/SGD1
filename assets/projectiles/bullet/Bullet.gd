@@ -1,5 +1,7 @@
 extends "res://assets/projectiles/Projectile.gd"
 
+const KNOCKBACK = 64
+
 var spark_scene = load("res://assets/projectiles/bullet/BulletSpark.tscn")
 
 var hit_info = HitInfo.new(2)
@@ -25,3 +27,7 @@ func _on_Bullet_collided(collision : KinematicCollision2D):
 	
 	if collision.collider is Hurtbox:
 		collision.collider.hit(hit_info)
+
+
+func _on_Bullet_fired(vec):
+	hit_info.knockback = vec * KNOCKBACK
