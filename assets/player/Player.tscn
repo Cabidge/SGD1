@@ -16,7 +16,7 @@
 [ext_resource path="res://assets/Spotlight.png" type="Texture" id=14]
 [ext_resource path="res://assets/player/Sprite.gd" type="Script" id=15]
 
-[sub_resource type="CapsuleShape2D" id=60]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 11.0
 height = 12.0
 
@@ -195,64 +195,64 @@ atlas = ExtResource( 6 )
 region = Rect2( 48, 0, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=31]
-atlas = ExtResource( 6 )
-region = Rect2( 120, 48, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=32]
-atlas = ExtResource( 6 )
-region = Rect2( 144, 48, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=33]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 72, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=34]
-atlas = ExtResource( 6 )
-region = Rect2( 24, 72, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=35]
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=36]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=37]
+[sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 5 )
 region = Rect2( 24, 0, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=38]
+[sub_resource type="AtlasTexture" id=33]
 atlas = ExtResource( 5 )
 region = Rect2( 48, 0, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=39]
+[sub_resource type="AtlasTexture" id=34]
 atlas = ExtResource( 5 )
 region = Rect2( 72, 0, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=40]
+[sub_resource type="AtlasTexture" id=35]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 24, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=41]
+[sub_resource type="AtlasTexture" id=36]
 atlas = ExtResource( 5 )
 region = Rect2( 24, 24, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=42]
+[sub_resource type="AtlasTexture" id=37]
 atlas = ExtResource( 5 )
 region = Rect2( 48, 24, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=43]
+[sub_resource type="AtlasTexture" id=38]
 atlas = ExtResource( 5 )
 region = Rect2( 72, 24, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=44]
+[sub_resource type="AtlasTexture" id=39]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 48, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=45]
+[sub_resource type="AtlasTexture" id=40]
 atlas = ExtResource( 5 )
 region = Rect2( 24, 48, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 6 )
+region = Rect2( 120, 48, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 6 )
+region = Rect2( 144, 48, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 72, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 6 )
+region = Rect2( 24, 72, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=46]
 atlas = ExtResource( 7 )
@@ -326,20 +326,20 @@ animations = [ {
 "name": "dying",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ],
+"loop": true,
+"name": "walk",
+"speed": 15.0
+}, {
+"frames": [ SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ) ],
 "loop": false,
 "name": "idle_start",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 35 ) ],
+"frames": [ SubResource( 45 ) ],
 "loop": false,
 "name": "default_stealth",
 "speed": 5.0
-}, {
-"frames": [ SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
-"loop": true,
-"name": "walk",
-"speed": 15.0
 }, {
 "frames": [ SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ) ],
 "loop": true,
@@ -393,8 +393,9 @@ collision_mask = 2147484672
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StabDetector"]
+visible = false
 rotation = 1.5708
-shape = SubResource( 60 )
+shape = SubResource( 1 )
 
 [node name="TransitionPlayer" type="AnimationPlayer" parent="."]
 anims/Stab = SubResource( 2 )
