@@ -100,3 +100,7 @@ func stab_target():
 
 func get_stab_target():
 	return stab_detector.target
+
+
+func _on_DeflectHitbox_body_entered(body):
+	body.deflect(pivot.rotation)
