@@ -98,12 +98,16 @@ func _on_Guard_died():
 
 
 func _on_Sprite_animation_finished():
-	unbuffer()
+	disconnect_animation()
 	call_deferred("set_state",buffered_state)
 
 func wait_for_animation(buffer : int = states.idle):
 	parent.sprite.connect("animation_finished",self,"_on_Sprite_animation_finished")
 	buffered_state = buffer
 
-func unbuffer():
+func disconnect_animation():
 	parent.sprite.disconnect("animation_finished",self,"_on_Sprite_animation_finished")
+
+func unbuffer():
+	if parent.sprite.is_connected("animation_finished",self,"_on_Sprite_animation_finished"):
+		parent.sprite.disconnect("animation_finished",self,"_on_Sprite_animation_finished")
