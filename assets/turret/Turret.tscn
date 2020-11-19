@@ -1,10 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/turret/sprites/Sprite.gd" type="Script" id=1]
 [ext_resource path="res://assets/turret/sprites/sheet.png" type="Texture" id=2]
 [ext_resource path="res://assets/turret/Turret.gd" type="Script" id=3]
 [ext_resource path="res://assets/turret/Laser.gd" type="Script" id=4]
 [ext_resource path="res://assets/turret/TurretSM.gd" type="Script" id=5]
+[ext_resource path="res://Hurtbox.gd" type="Script" id=6]
+
+[sub_resource type="OccluderPolygon2D" id=3]
+polygon = PoolVector2Array( -6, -4, -6, 3, -3, 5, 3, 5, 6, 3, 6, -4, 3, -6, -3, -6 )
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.975467, 0.994159, 1 )
@@ -13,15 +17,15 @@ colors = PoolColorArray( 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0.870588, 1, 0, 0, 0.2
 [sub_resource type="CircleShape2D" id=2]
 radius = 8.0
 
-[sub_resource type="OccluderPolygon2D" id=3]
-polygon = PoolVector2Array( -6, -4, -6, 3, -3, 5, 3, 5, 6, 3, 6, -4, 3, -6, -3, -6 )
-
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 22.9998
 height = 78.0003
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 36.6879
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 8.0
 
 [node name="Turret" type="Node2D"]
 script = ExtResource( 3 )
@@ -31,6 +35,9 @@ script = ExtResource( 5 )
 
 [node name="FireRate" type="Timer" parent="StateMachine"]
 wait_time = 0.2
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 3 )
 
 [node name="Laser" type="Line2D" parent="."]
 position = Vector2( 0, -2 )
@@ -67,9 +74,6 @@ collision_mask = 0
 visible = false
 shape = SubResource( 2 )
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource( 3 )
-
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Sight" type="Area2D" parent="."]
@@ -89,5 +93,17 @@ shape = SubResource( 5 )
 visible = false
 position = Vector2( 0, -2 )
 collision_mask = 18
+
+[node name="Hurtbox" type="StaticBody2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+visible = false
+shape = SubResource( 6 )
+[connection signal="died" from="." to="StateMachine" method="_on_Turret_died"]
 [connection signal="timeout" from="StateMachine/FireRate" to="StateMachine" method="_on_Timer_timeout"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
+[connection signal="hit" from="Hurtbox" to="." method="_on_Hurtbox_hit"]
+[connection signal="recovered" from="Hurtbox" to="." method="_on_Hurtbox_recovered"]

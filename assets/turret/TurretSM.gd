@@ -8,6 +8,7 @@ onready var firerate = $FireRate
 func _ready():
 	add_state("scan")
 	add_state("alert")
+	add_state("death")
 	init_state(states.scan)
 
 func _state_logic(_delta):
@@ -49,3 +50,7 @@ func angle_to_player():
 
 func _on_Timer_timeout():
 	parent.fire()
+
+
+func _on_Turret_died():
+	set_state(states.death)

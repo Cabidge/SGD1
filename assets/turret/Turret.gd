@@ -1,5 +1,7 @@
 extends Node2D
 
+signal died
+
 const SCAN_ANGLE = deg2rad(45)
 const SCAN_TIME = 0.8
 
@@ -13,6 +15,8 @@ var angle := 0.0 setget set_angle
 var scanning = false
 
 var player : KinematicBody
+
+var health := 2
 
 onready var sprite = $Sprite
 onready var laser = $Laser
@@ -73,3 +77,21 @@ func can_see(body : PhysicsBody2D):
 	if los.is_colliding():
 		return los.get_collider() == body
 	return false
+
+
+func damage(amount : int = 1):
+	if amount <= 0:
+		return
+	
+	health -= amount
+	if health <= 0:
+		emit_signal("died")
+		laser.disabled = true
+		sprite.frame = 10
+
+func _on_Hurtbox_hit(info : HitInfo):
+	damage(info.damage)
+	sprite.modulate = Color.white * 20
+
+func _on_Hurtbox_recovered():
+	sprite.modulate = Color.white
