@@ -22,7 +22,7 @@ func _state_logic(_delta):
 	match state:
 		states.attack:
 			var _in_sight = parent.player_in_sight()
-			parent.lerp_sight(parent.player_last_seen.angle_to_point(parent.position), 0.2)
+			parent.lerp_sight(parent.player_last_seen.angle_to_point(parent.position), 0.15)
 			continue
 		states.idle,states.attack,states.stall,states.death:
 			parent.lerp_vel(Vector2.ZERO, 0)
@@ -82,6 +82,8 @@ func _exit(old, new):
 		states.attack:
 			if new != states.death:
 				parent.fire_orb()
+				if !parent.player_in_sight():
+					parent.extend_player_seen()
 				parent.alert_pos = parent.player_last_seen
 
 

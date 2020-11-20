@@ -11,6 +11,7 @@ var health := 8
 
 var alert_pos : Vector2 = position
 var player_last_seen : Vector2 = position
+var previous_last_seen : Vector2 = position
 
 var orb_scene = load("res://assets/projectiles/orb/Orb.tscn")
 
@@ -67,6 +68,8 @@ func _on_Hurtbox_recovered():
 
 
 func player_in_sight() -> bool:
+	previous_last_seen = player_last_seen
+	
 	var bodies = sight.get_overlapping_bodies()
 	if bodies.size() == 0:
 		return false
@@ -76,10 +79,15 @@ func player_in_sight() -> bool:
 	los.cast_to = player_pos - position
 	los.force_raycast_update()
 	
-	if los.get_collider() == player:
-		player_last_seen = player_pos
-		return true
-	return false
+	if los.get_collider() != player:
+		return false
+	
+	player_last_seen = player_pos
+	return true
+
+func extend_player_seen():
+	player_last_seen = player_last_seen.linear_interpolate(previous_last_seen,-60)
+	previous_last_seen = player_last_seen
 
 
 func fire_orb():
