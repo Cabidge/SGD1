@@ -17,13 +17,14 @@ func _ready():
 	add_state("parry")
 	add_state("stab_stealth")
 	add_state("stab")
+	add_state("death")
 	init_state(states.idle)
 
 func _state_logic(_delta):
 	dir = parent.move_dir()
 	
 	match state:
-		states.idle,states.stab_stealth,states.stab:
+		states.idle,states.stab_stealth,states.stab,states.death:
 			parent.lerp_vel(Vector2.ZERO, 0)
 		states.run:
 			parent.lerp_vel(dir, parent.MAX_SPEED)
@@ -93,6 +94,11 @@ func _enter(new, _old):
 		states.stab:
 			parent.stab_begin(stab_target)
 			wait_for_animation(states.idle)
+		states.death:
+			mana_regen.stop()
+			mana_decay.stop()
+			unbuffer()
+			parent.animation = "dying"
 
 func _exit(old, _new):
 	match old:
@@ -118,12 +124,19 @@ func can_stab() -> bool:
 
 
 func _on_Sprite_animation_finished():
-	parent.sprite.disconnect("animation_finished",self,"_on_Sprite_animation_finished")
+	disconnect_animation()
 	call_deferred("set_state",buffered_state)
 
 func wait_for_animation(buffer : int = states.idle):
 	parent.sprite.connect("animation_finished",self,"_on_Sprite_animation_finished")
 	buffered_state = buffer
+
+func disconnect_animation():
+	parent.sprite.disconnect("animation_finished",self,"_on_Sprite_animation_finished")
+
+func unbuffer():
+	if parent.sprite.is_connected("animation_finished",self,"_on_Sprite_animation_finished"):
+		parent.sprite.disconnect("animation_finished",self,"_on_Sprite_animation_finished")
 
 
 func _on_ManaDecay_timeout():
@@ -139,3 +152,7 @@ func _on_ManaRegen_timeout():
 
 func _on_IdleTime_timeout():
 	parent.animation = "idle_start"
+
+
+func _on_Player_died():
+	set_state(states.death)

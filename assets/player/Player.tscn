@@ -20,6 +20,46 @@
 radius = 11.0
 height = 12.0
 
+[sub_resource type="Animation" id=61]
+resource_name = "Death"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 1.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:texture_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ 0.8, 0.4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Shadow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 8, 2 ), Vector2( 14, 3 ) ]
+}
+
 [sub_resource type="Animation" id=2]
 resource_name = "Stab"
 tracks/0/type = "method"
@@ -223,76 +263,72 @@ atlas = ExtResource( 7 )
 region = Rect2( 48, 48, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=38]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=39]
-atlas = ExtResource( 6 )
-region = Rect2( 120, 48, 24, 24 )
+atlas = ExtResource( 5 )
+region = Rect2( 24, 0, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=40]
-atlas = ExtResource( 6 )
-region = Rect2( 144, 48, 24, 24 )
+atlas = ExtResource( 5 )
+region = Rect2( 48, 0, 24, 24 )
 
 [sub_resource type="AtlasTexture" id=41]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 72, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=42]
-atlas = ExtResource( 6 )
-region = Rect2( 24, 72, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=43]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=44]
-atlas = ExtResource( 6 )
-region = Rect2( 24, 0, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=45]
-atlas = ExtResource( 6 )
-region = Rect2( 48, 0, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=46]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=47]
-atlas = ExtResource( 5 )
-region = Rect2( 24, 0, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=48]
-atlas = ExtResource( 5 )
-region = Rect2( 48, 0, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 5 )
 region = Rect2( 72, 0, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=50]
+[sub_resource type="AtlasTexture" id=42]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 24, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=51]
+[sub_resource type="AtlasTexture" id=43]
 atlas = ExtResource( 5 )
 region = Rect2( 24, 24, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=52]
+[sub_resource type="AtlasTexture" id=44]
 atlas = ExtResource( 5 )
 region = Rect2( 48, 24, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=53]
+[sub_resource type="AtlasTexture" id=45]
 atlas = ExtResource( 5 )
 region = Rect2( 72, 24, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=54]
+[sub_resource type="AtlasTexture" id=46]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 48, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=55]
+[sub_resource type="AtlasTexture" id=47]
 atlas = ExtResource( 5 )
 region = Rect2( 24, 48, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 6 )
+region = Rect2( 24, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 6 )
+region = Rect2( 48, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 6 )
+region = Rect2( 120, 48, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 6 )
+region = Rect2( 144, 48, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 72, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 6 )
+region = Rect2( 24, 72, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 24, 24 )
 
 [sub_resource type="SpriteFrames" id=56]
 animations = [ {
@@ -326,25 +362,25 @@ animations = [ {
 "name": "walk_stealth",
 "speed": 15.0
 }, {
-"frames": [ SubResource( 38 ) ],
-"loop": false,
-"name": "default_stealth",
-"speed": 5.0
+"frames": [ SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
+"loop": true,
+"name": "walk",
+"speed": 15.0
 }, {
-"frames": [ SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ) ],
+"frames": [ SubResource( 49 ), SubResource( 50 ) ],
+"loop": false,
+"name": "dying",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ) ],
 "loop": false,
 "name": "idle_start",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
+"frames": [ SubResource( 55 ) ],
 "loop": false,
-"name": "dying",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ) ],
-"loop": true,
-"name": "walk",
-"speed": 15.0
+"name": "default_stealth",
+"speed": 5.0
 } ]
 
 [sub_resource type="Curve" id=57]
@@ -378,7 +414,7 @@ tracks/1/keys = {
 "values": [ true, true, false, false, true, true ]
 }
 
-[sub_resource type="RectangleShape2D" id=61]
+[sub_resource type="RectangleShape2D" id=59]
 extents = Vector2( 5, 7 )
 
 [sub_resource type="CapsuleShape2D" id=60]
@@ -414,6 +450,7 @@ rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="TransitionPlayer" type="AnimationPlayer" parent="."]
+anims/Death = SubResource( 61 )
 anims/Stab = SubResource( 2 )
 anims/Transition = SubResource( 3 )
 
@@ -471,7 +508,7 @@ collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/DeflectHitbox"]
 visible = false
-shape = SubResource( 61 )
+shape = SubResource( 59 )
 disabled = true
 
 [node name="Shadow" parent="." instance=ExtResource( 13 )]
@@ -497,6 +534,7 @@ shape = SubResource( 60 )
 [node name="CombatDuration" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+[connection signal="died" from="." to="StateMachine" method="_on_Player_died"]
 [connection signal="timeout" from="StateMachine/ManaDecay" to="StateMachine" method="_on_ManaDecay_timeout"]
 [connection signal="timeout" from="StateMachine/ManaRegen" to="StateMachine" method="_on_ManaRegen_timeout"]
 [connection signal="timeout" from="StateMachine/IdleTime" to="StateMachine" method="_on_IdleTime_timeout"]

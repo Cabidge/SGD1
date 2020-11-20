@@ -1,6 +1,6 @@
 extends Character2D
 
-signal damaged(health)
+signal died
 
 const MAX_SPEED = Global.TILE * 5 # tiles per second
 const SLOW_SPEED = MAX_SPEED * 0.1
@@ -24,6 +24,8 @@ onready var transition_player = $TransitionPlayer
 onready var combat_duration = $CombatDuration
 
 onready var stab_detector = $StabDetector
+onready var stab_detector_collision = $StabDetector/CollisionShape2D
+onready var hurtbox_collision = $Body/CollisionShape2D
 
 func handle_movement():
 	.handle_movement()
@@ -51,6 +53,7 @@ func set_animation(anim : String):
 	
 	sprite.play(animation)
 
+
 func toggle_stealth():
 	stealth = !stealth
 	sprite.play("transition",!stealth)
@@ -62,18 +65,27 @@ func toggle_stealth():
 	
 	Player.update_stealth(stealth)
 
+
 func parry():
 	set_flipped(get_global_mouse_position().x < position.x)
 	set_animation("parry")
 	pivot.swipe()
 
+
 func damage(amount : int = 1):
 	if amount <= 0:
 		return
 	
-	emit_signal("damaged",Player.health)
 	Player.health -= amount
-
+	if Player.health <= 0:
+		emit_signal("died")
+		
+		transition_player.play("Death")
+		
+		camera.zoom_in(1)
+		
+		stab_detector_collision.set_deferred("disabled",true)
+		hurtbox_collision.set_deferred("disabled",true)
 
 func _on_Body_hit(info : HitInfo):
 	damage(info.damage)
