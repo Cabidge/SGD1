@@ -12,6 +12,11 @@ func _ready():
 	err = Player.connect("updated_stealth",self,"_on_Player_updated_stealth")
 	assert(err == OK)
 
+func reset_all():
+	vitals.reset_portrait()
+	vitals.reset_mana()
+	vitals.reset_health()
+
 func _on_Player_updated_stealth(stealth):
 	vitals.update_stealth(stealth)
 

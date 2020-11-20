@@ -7,6 +7,8 @@ onready var portrait_anim = $Portrait/AnimationPlayer
 onready var mana_bars = [$ManaWhite,$ManaProgress]
 onready var health_bars = [$HealthWhite,$HealthProgress]
 
+onready var portrait = $Portrait
+
 func _ready():
 	for mana in mana_bars:
 		mana.max_value = Player.MAX_MANA
@@ -38,3 +40,13 @@ func update_mana(mana):
 func update_health(health):
 	health_count = health
 	health_bars[1].value = min(health,health_bars[1].value)
+
+
+func reset_portrait():
+	portrait.value = 0
+
+func reset_mana():
+	mana_bars[1].value = Player.MAX_MANA
+
+func reset_health():
+	health_bars[1].value = Player.MAX_HEALTH
