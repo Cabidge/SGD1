@@ -4,10 +4,12 @@ signal died
 
 const MAX_SPEED = Global.TILE * 3
 
+export(float,-180.0,180.0) var start_angle = 0.0
+
 var flipped = false setget set_flipped
 var angle := 0.0 setget set_angle, get_angle
 
-var health := 8
+var health := 4
 
 var alert_pos : Vector2 = position
 var player_last_seen : Vector2 = position
@@ -27,6 +29,10 @@ onready var pivot = $Pivot
 onready var sight = pivot.get_node("Sight")
 onready var los = $LineOfSight
 
+func _ready():
+	set_angle(deg2rad(start_angle))
+	sprite.flip_h = abs(start_angle) < 90
+
 func _physics_process(_delta):
 	# debug line
 	$Line2D.points = path
@@ -40,7 +46,7 @@ func set_flipped(new):
 	sprite.flip_h = flipped
 
 func set_angle(new):
-	angle = new
+	pivot.rotation = new
 
 func get_angle():
 	return pivot.rotation
