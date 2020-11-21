@@ -61,7 +61,10 @@ func _enter(new, _old):
 			parent.sprite.play("default")
 		states.turn:
 			parent.request_path()
-			turn_angle = parent.next_vector().angle()
+			if parent.path.size() > 0:
+				turn_angle = parent.next_vector().angle()
+			else:
+				set_state(states.idle)
 		states.attack:
 			parent.sprite.play("attack")
 			wait_for_animation(states.alert)
