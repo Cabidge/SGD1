@@ -1,6 +1,7 @@
 extends Character2D
 
 signal died
+signal stalled
 
 const MAX_SPEED = Global.TILE * 5 # tiles per second
 const SLOW_SPEED = MAX_SPEED * 0.1
@@ -26,6 +27,8 @@ onready var combat_duration = $CombatDuration
 onready var stab_detector = $StabDetector
 onready var stab_detector_collision = $StabDetector/CollisionShape2D
 onready var hurtbox_collision = $Body/CollisionShape2D
+
+onready var timeout = $Timeout
 
 func handle_movement():
 	.handle_movement()
@@ -78,7 +81,7 @@ func damage(amount : int = 1):
 	
 	Player.health -= amount
 	if Player.health <= 0:
-		emit_signal("died")
+		stealth = false
 		
 		transition_player.play("Death")
 		
@@ -86,6 +89,8 @@ func damage(amount : int = 1):
 		
 		stab_detector_collision.set_deferred("disabled",true)
 		hurtbox_collision.set_deferred("disabled",true)
+		
+		emit_signal("died")
 
 func _on_Body_hit(info : HitInfo):
 	damage(info.damage)
@@ -116,3 +121,18 @@ func get_stab_target():
 
 func _on_DeflectHitbox_body_entered(body):
 	body.deflect(pivot.rotation)
+
+
+func delete():
+	sprite.visible = false
+	$Shadow.visible = false
+	transition_player.play_backwards("LightFade")
+	
+	emit_signal("stalled")
+	
+	camera.current = false
+	
+	timeout.start()
+
+func _on_Timeout_timeout():
+	call_deferred("free")

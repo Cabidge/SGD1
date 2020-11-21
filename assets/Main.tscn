@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
+[ext_resource path="res://assets/DoorTransition.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/UI.gd" type="Script" id=3]
 [ext_resource path="res://shaders/crt_material.tres" type="Material" id=5]
 [ext_resource path="res://assets/ui/vitals/Portrait1.png" type="Texture" id=6]
@@ -144,6 +145,33 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="DoorTransition" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="ColorRect" parent="CanvasLayer/DoorTransition"]
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="ColorRect" parent="CanvasLayer/DoorTransition"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="CanvasLayer/DoorTransition"]
 
 [node name="ColorModule" type="CanvasModulate" parent="."]
 color = Color( 0.862745, 0.87451, 0.913725, 1 )

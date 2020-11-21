@@ -18,13 +18,14 @@ func _ready():
 	add_state("stab_stealth")
 	add_state("stab")
 	add_state("death")
+	add_state("stall")
 	init_state(states.idle)
 
 func _state_logic(_delta):
 	dir = parent.move_dir()
 	
 	match state:
-		states.idle,states.stab_stealth,states.stab,states.death:
+		states.idle,states.stab_stealth,states.stab,states.death,states.stall:
 			parent.lerp_vel(Vector2.ZERO, 0)
 		states.run:
 			parent.lerp_vel(dir, parent.MAX_SPEED)
@@ -94,10 +95,12 @@ func _enter(new, _old):
 		states.stab:
 			parent.stab_begin(stab_target)
 			wait_for_animation(states.idle)
-		states.death:
+		states.death,states.stall:
 			mana_regen.stop()
 			mana_decay.stop()
 			unbuffer()
+			continue
+		states.death:
 			parent.animation = "dying"
 
 func _exit(old, _new):
@@ -156,3 +159,7 @@ func _on_IdleTime_timeout():
 
 func _on_Player_died():
 	set_state(states.death)
+
+
+func _on_Player_stalled():
+	set_state(states.stall)
