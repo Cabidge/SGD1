@@ -67,6 +67,8 @@ func _enter(new, _old):
 			if !parent.stealth:
 				idle_time.start()
 		states.run:
+			if !parent.stealth:
+				parent.auto_footsteps.start()
 			parent.animation = "walk"
 			auto_flip()
 		states.stealth:
@@ -107,6 +109,9 @@ func _exit(old, _new):
 	match old:
 		states.idle:
 			idle_time.stop()
+		states.run:
+			if !parent.stealth:
+				parent.auto_footsteps.stop()
 		states.stab:
 			parent.camera.zoom_in(1)
 
@@ -150,7 +155,7 @@ func _on_ManaDecay_timeout():
 
 func _on_ManaRegen_timeout():
 	if parent.combat_duration.is_stopped():
-		Player.health += 1
+		Player.health += 2
 		Player.mana += 1
 
 func _on_IdleTime_timeout():

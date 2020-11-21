@@ -30,6 +30,13 @@ onready var hurtbox_collision = $Body/CollisionShape2D
 
 onready var timeout = $Timeout
 
+onready var stealth_audio = $StealthAudio
+
+onready var auto_footsteps = $AutoFootsteps
+
+func _ready():
+	auto_footsteps.sprite = sprite
+
 func handle_movement():
 	.handle_movement()
 	camera.align()
@@ -58,6 +65,8 @@ func set_animation(anim : String):
 
 
 func toggle_stealth():
+	stealth_audio.play()
+	
 	stealth = !stealth
 	sprite.play("transition",!stealth)
 	
