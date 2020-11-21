@@ -28,11 +28,11 @@ func next_vector() -> Vector2:
 func set_path(new : PoolVector2Array):
 	path = new
 
-func rand_waypoint() -> Vector2:
-	if waypoint_cluser:
+func rand_waypoint(count = 20) -> Vector2:
+	if waypoint_cluser and count > 0:
 		var point = waypoint_cluser.rand_point()
 		if position.distance_squared_to(point) <= 400:
-			return rand_waypoint() # if point is too close, try again
+			return rand_waypoint(count - 1) # if point is too close, try again
 		return point
 	return position
 
