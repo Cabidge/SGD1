@@ -1,6 +1,6 @@
 extends Node
 
-var initial_scene = load("res://levels/DebugLevel2.tscn")
+var initial_scene = load("res://levels/Level1.tscn")
 
 var current_level : Level2D
 var current_scene : PackedScene
