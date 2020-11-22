@@ -12,10 +12,11 @@ onready var tween = $Tween
 func set_progress(new):
 	progress = new
 	
-	var length = lerp(0,width/2,progress)
+	var length = lerp(0,width/2,progress) + 1
 	left.rect_size.x = length
+	left.rect_position.x = -1
 	right.rect_size.x = length
-	right.rect_position.x = width - length
+	right.rect_position.x = width - length + 1
 
 
 func close():
