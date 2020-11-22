@@ -23,10 +23,11 @@ func _state_logic(_delta):
 			var _in_sight = parent.player_in_sight()
 			parent.lerp_sight(parent.player_last_seen.angle_to_point(parent.position), 0.15)
 			continue
-		states.idle,states.attack,states.stall,states.death:
-			parent.lerp_vel(Vector2.ZERO, 0)
 		states.turn:
 			parent.lerp_sight(turn_angle)
+			continue
+		states.idle,states.attack,states.stall,states.death,states.turn:
+			parent.lerp_vel(Vector2.ZERO, 0)
 		states.patrol:
 			vec = parent.next_vector()
 			parent.lerp_vel(vec, parent.MAX_SPEED, 0.1)
@@ -56,16 +57,17 @@ func _enter(new, _old):
 		states.idle:
 			idle_time.start()
 			continue
-		states.stall,states.idle:
-			parent.sprite.play("default")
 		states.turn:
 			if parent.path.size() > 0:
 				turn_angle = parent.next_vector().angle()
+				continue
 			else:
 				parent.alert_level -= 1
 				set_state(states.idle)
+		states.stall,states.turn,states.idle:
+			parent.sprite.play("default")
 		states.attack:
-			parent.alert_level = 3
+			parent.alert_level = 4
 			parent.sprite.play("attack")
 			wait_for_animation(states.turn)
 		states.patrol:
@@ -80,19 +82,22 @@ func _exit(old, new):
 		states.idle:
 			idle_time.stop()
 		states.patrol:
-			parent.current_alert = 0
 			parent.alert_level -= 1
+			parent.current_alert = 0
 		states.attack:
 			if new != states.death:
 				parent.fire_orb()
 				if !parent.player_in_sight():
 					parent.extend_player_seen()
-				parent.alert_pos = parent.player_last_seen
-				parent.request_path(parent.alert_pos)
+				parent.request_path(parent.player_last_seen)
 
 
 func _on_IdleTime_timeout():
-	parent.request_path()
+	if parent.alert_pos != Vector2.ZERO:
+		parent.request_path(parent.alert_pos)
+		parent.alert_pos = Vector2.ZERO
+	else:
+		parent.request_path()
 	set_state(states.turn)
 
 
@@ -118,3 +123,15 @@ func disconnect_animation():
 func unbuffer():
 	if parent.sprite.is_connected("animation_finished",self,"_on_Sprite_animation_finished"):
 		parent.sprite.disconnect("animation_finished",self,"_on_Sprite_animation_finished")
+
+
+func _on_AlertReceiver_alerted(level, threshold, location):
+	if [states.death,states.stall].has(state):
+		return
+	if parent.alert_level >= threshold:
+		if level > parent.current_alert:
+			parent.request_path(location)
+			set_state(states.turn)
+			parent.alert_level = max(parent.alert_level,level)
+		elif level == parent.current_alert:
+			parent.alert_pos = location

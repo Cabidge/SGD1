@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://assets/guard/sprites/default.png" type="Texture" id=1]
 [ext_resource path="res://assets/guard/sprites/walk.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://assets/audio/AudioAlert2D.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/audio/GuardDeath.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/guard/Pivot.gd" type="Script" id=14]
+[ext_resource path="res://assets/audio/AlertReceiver.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 9, 12 )
@@ -206,6 +207,9 @@ tracks/3/keys = {
 } ]
 }
 
+[sub_resource type="CircleShape2D" id=32]
+radius = 136.0
+
 [node name="Guard" type="KinematicBody2D" groups=[
 "Guard",
 ]]
@@ -235,6 +239,7 @@ texture = ExtResource( 8 )
 shadow_enabled = true
 
 [node name="Sight" type="Area2D" parent="Pivot"]
+visible = false
 collision_layer = 0
 collision_mask = 32
 
@@ -293,10 +298,19 @@ shape = SubResource( 30 )
 anims/Death = SubResource( 31 )
 
 [node name="DeathAudio" parent="." instance=ExtResource( 12 )]
+visible = false
 stream = ExtResource( 13 )
 bus = "SFX"
+alert_level = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathAudio"]
+shape = SubResource( 32 )
+
+[node name="AlertReceiver" parent="." instance=ExtResource( 15 )]
+visible = false
 [connection signal="died" from="." to="StateMachine" method="_on_Guard_died"]
 [connection signal="timeout" from="StateMachine/IdleTime" to="StateMachine" method="_on_IdleTime_timeout"]
 [connection signal="stalled" from="StabRange" to="StateMachine" method="_on_StabRange_stalled"]
 [connection signal="hit" from="Hurtbox" to="." method="_on_Hurtbox_hit"]
 [connection signal="recovered" from="Hurtbox" to="." method="_on_Hurtbox_recovered"]
+[connection signal="alerted" from="AlertReceiver" to="StateMachine" method="_on_AlertReceiver_alerted"]

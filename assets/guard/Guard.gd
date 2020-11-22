@@ -17,7 +17,7 @@ var health := 5
 var alert_level := 0 setget set_alert_level
 var current_alert := 0
 
-var alert_pos : Vector2 = position
+var alert_pos : Vector2 = Vector2.ZERO
 var player_last_seen : Vector2 = position
 var previous_last_seen : Vector2 = position
 
@@ -116,10 +116,11 @@ func fire_orb():
 
 
 func set_alert_level(new):
-	alert_level = int(clamp(new,0,3))
+	alert_level = int(clamp(new,0,4))
+	current_alert = alert_level
 	var color : Color
 	match alert_level:
 		0: color = calm_color
-		1: color = sus_color
-		2,3: color = alert_color
+		1,2: color = sus_color
+		3,4: color = alert_color
 	pivot.tween_light(color)
