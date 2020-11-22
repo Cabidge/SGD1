@@ -81,6 +81,7 @@ func toggle_stealth():
 
 
 func parry():
+	rustle_audio.play()
 	set_flipped(get_global_mouse_position().x < position.x)
 	set_animation("parry")
 	pivot.swipe()
