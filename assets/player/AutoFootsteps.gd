@@ -14,5 +14,5 @@ func stop():
 		sprite.disconnect("frame_changed",self,"_on_sprite_frame_changed")
 
 func _on_sprite_frame_changed():
-	if sprite.frame == 0 or sprite.frame == 5:
+	if [0,5].has(sprite.frame):
 		step.play()
