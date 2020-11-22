@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/turret/sprites/Sprite.gd" type="Script" id=1]
 [ext_resource path="res://assets/turret/sprites/sheet.png" type="Texture" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://assets/turret/Laser.gd" type="Script" id=4]
 [ext_resource path="res://assets/turret/TurretSM.gd" type="Script" id=5]
 [ext_resource path="res://Hurtbox.gd" type="Script" id=6]
+[ext_resource path="res://assets/audio/AudioAlert2D.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/audio/BeepFive.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/Beep.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/audio/Gunfire.wav" type="AudioStream" id=10]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( -6, -4, -6, 3, -3, 5, 3, 5, 6, 3, 6, -4, 3, -6, -3, -6 )
@@ -103,6 +107,27 @@ script = ExtResource( 6 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 visible = false
 shape = SubResource( 6 )
+
+[node name="BeepAudio" parent="." instance=ExtResource( 7 )]
+stream = ExtResource( 9 )
+volume_db = -10.0
+max_distance = 320.0
+attenuation = 2.0
+bus = "SFX"
+
+[node name="AlertAudio" parent="." instance=ExtResource( 7 )]
+stream = ExtResource( 8 )
+volume_db = 6.0
+max_distance = 1000.0
+attenuation = 0.63728
+bus = "SFX"
+
+[node name="ShootAudio" parent="." instance=ExtResource( 7 )]
+stream = ExtResource( 10 )
+volume_db = -7.0
+max_distance = 1000.0
+attenuation = 2.0
+bus = "SFX"
 [connection signal="died" from="." to="StateMachine" method="_on_Turret_died"]
 [connection signal="timeout" from="StateMachine/FireRate" to="StateMachine" method="_on_Timer_timeout"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

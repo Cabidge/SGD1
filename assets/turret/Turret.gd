@@ -26,6 +26,10 @@ onready var tween = $Tween
 
 onready var los = $LineOfSight
 
+onready var beep_audio = $BeepAudio
+onready var alert_audio = $AlertAudio
+onready var shoot_audio = $ShootAudio
+
 func _ready():
 	set_angle(central_angle)
 
@@ -49,6 +53,7 @@ func tween_angle(new_angle : float):
 
 func _on_Tween_tween_all_completed():
 	if scanning:
+		beep_audio.play()
 		scan_auto()
 
 
@@ -61,6 +66,8 @@ func set_angle(new):
 
 
 func fire():
+	shoot_audio.play()
+	
 	var bullet = bullet_scene.instance()
 	bullet.position = global_position
 	get_parent().add_child(bullet)
