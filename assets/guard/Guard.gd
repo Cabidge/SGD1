@@ -29,6 +29,8 @@ onready var pivot = $Pivot
 onready var sight = pivot.get_node("Sight")
 onready var los = $LineOfSight
 
+onready var death_audio = $DeathAudio
+
 func _ready():
 	set_angle(deg2rad(start_angle))
 	sprite.flip_h = abs(start_angle) < 90
@@ -61,6 +63,8 @@ func damage(amount : int = 1):
 		emit_signal("died")
 		stab_range_collision.set_deferred("disabled", true)
 		hurtbox_collision.set_deferred("disabled", true)
+		
+		death_audio.play()
 
 
 func _on_Hurtbox_hit(info : HitInfo):
