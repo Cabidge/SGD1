@@ -31,6 +31,8 @@ onready var hurtbox_collision = $Body/CollisionShape2D
 onready var timeout = $Timeout
 
 onready var stealth_audio = $StealthAudio
+onready var stab_audio = $StabAudio
+onready var rustle_audio = $RustleAudio
 
 onready var auto_footsteps = $AutoFootsteps
 
@@ -113,6 +115,8 @@ func _on_Body_recovered():
 
 
 func stab_begin(a_target):
+	rustle_audio.play()
+	
 	target = a_target
 	
 	set_animation("stab")
@@ -120,6 +124,7 @@ func stab_begin(a_target):
 
 func stab_target():
 	if target:
+		stab_audio.play()
 		if target.hurtbox:
 			target.hurtbox.hit(stab_info)
 		Player.mana += target.mana_count
