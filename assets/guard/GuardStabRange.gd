@@ -5,7 +5,7 @@ const BACKSTAB_ANGLE = deg2rad(65)
 onready var parent = get_parent()
 
 func can_stab(player : Character2D) -> bool:
-	if parent.state_machine.state == parent.state_machine.states.attack:
+	if parent.alert_level != 0:
 		return false
 	
 	var player_vec = (player.position - get_parent().position)

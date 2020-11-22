@@ -5,11 +5,17 @@ signal died
 const MAX_SPEED = Global.TILE * 3
 
 export(float,-180.0,180.0) var start_angle = 0.0
+export(Color) var calm_color
+export(Color) var sus_color
+export(Color) var alert_color
 
 var flipped = false setget set_flipped
 var angle := 0.0 setget set_angle, get_angle
 
-var health := 4
+var health := 5
+
+var alert_level := 0 setget set_alert_level
+var current_alert := 0
 
 var alert_pos : Vector2 = position
 var player_last_seen : Vector2 = position
@@ -32,6 +38,8 @@ onready var los = $LineOfSight
 onready var death_audio = $DeathAudio
 
 func _ready():
+	pivot.light.color = calm_color
+	
 	set_angle(deg2rad(start_angle))
 	sprite.flip_h = abs(start_angle) < 90
 
@@ -105,3 +113,13 @@ func fire_orb():
 	get_parent().add_child(orb)
 	orb.position = position + Vector2.UP * 14
 	orb.fire_at(player_last_seen)
+
+
+func set_alert_level(new):
+	alert_level = int(clamp(new,0,3))
+	var color : Color
+	match alert_level:
+		0: color = calm_color
+		1: color = sus_color
+		2,3: color = alert_color
+	pivot.tween_light(color)

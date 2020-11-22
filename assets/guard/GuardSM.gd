@@ -12,7 +12,6 @@ func _ready():
 	add_state("turn")
 	add_state("patrol")
 	add_state("attack")
-	add_state("alert")
 	# backstab
 	add_state("stall")
 	add_state("death")
@@ -28,7 +27,7 @@ func _state_logic(_delta):
 			parent.lerp_vel(Vector2.ZERO, 0)
 		states.turn:
 			parent.lerp_sight(turn_angle)
-		states.patrol,states.alert:
+		states.patrol:
 			vec = parent.next_vector()
 			parent.lerp_vel(vec, parent.MAX_SPEED, 0.1)
 			if vec.x != 0:
@@ -44,11 +43,11 @@ func _transition(_delta):
 			if abs(turn_angle - wrapf(parent.angle, -PI, PI)) <= 0.1:
 				return states.patrol
 			continue
-		states.patrol,states.alert:
+		states.patrol:
 			if vec == Vector2.ZERO:
 				return states.idle
 			continue
-		states.idle,states.turn,states.patrol,states.alert:
+		states.idle,states.turn,states.patrol:
 			if parent.player_in_sight():
 				return states.attack
 
@@ -60,18 +59,16 @@ func _enter(new, _old):
 		states.stall,states.idle:
 			parent.sprite.play("default")
 		states.turn:
-			parent.request_path()
 			if parent.path.size() > 0:
 				turn_angle = parent.next_vector().angle()
 			else:
+				parent.alert_level -= 1
 				set_state(states.idle)
 		states.attack:
+			parent.alert_level = 3
 			parent.sprite.play("attack")
-			wait_for_animation(states.alert)
-		states.alert:
-			parent.request_path(parent.alert_pos)
-			continue
-		states.patrol,states.alert:
+			wait_for_animation(states.turn)
+		states.patrol:
 			parent.sprite.play("walk")
 		states.death:
 			unbuffer()
@@ -82,15 +79,20 @@ func _exit(old, new):
 	match old:
 		states.idle:
 			idle_time.stop()
+		states.patrol:
+			parent.current_alert = 0
+			parent.alert_level -= 1
 		states.attack:
 			if new != states.death:
 				parent.fire_orb()
 				if !parent.player_in_sight():
 					parent.extend_player_seen()
 				parent.alert_pos = parent.player_last_seen
+				parent.request_path(parent.alert_pos)
 
 
 func _on_IdleTime_timeout():
+	parent.request_path()
 	set_state(states.turn)
 
 
