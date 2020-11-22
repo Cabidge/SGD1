@@ -6,12 +6,13 @@ onready var elevator = $Elevator
 onready var player_tween_timer = $PlayerTweenTimer
 
 func _on_PlayerDetector_body_entered(body):
-	elevator.tween_player_sprite(body.sprite)
-	elevator.enable_camera = true
-	
-	body.delete()
-	
-	player_tween_timer.start()
+	if !body.stealth:
+		elevator.tween_player_sprite(body.sprite)
+		elevator.enable_camera = true
+		
+		body.delete()
+		
+		player_tween_timer.start()
 
 func _on_PlayerTweenTimer_timeout():
 	emit_signal("player_entered")
