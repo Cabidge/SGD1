@@ -146,6 +146,7 @@ reload={
 2d_physics/layer_11="StabRange"
 2d_physics/layer_12="AudioAlert"
 2d_physics/layer_16="PlayerCharacter"
+2d_physics/layer_17="PlayerVisible"
 
 [rendering]
 

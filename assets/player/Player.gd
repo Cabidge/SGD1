@@ -27,6 +27,7 @@ onready var combat_duration = $CombatDuration
 onready var stab_detector = $StabDetector
 onready var stab_detector_collision = $StabDetector/CollisionShape2D
 onready var hurtbox_collision = $Body/CollisionShape2D
+onready var sight_collision = $SightBox/CollisionShape2D
 
 onready var timeout = $Timeout
 
@@ -101,6 +102,7 @@ func damage(amount : int = 1):
 		
 		stab_detector_collision.set_deferred("disabled",true)
 		hurtbox_collision.set_deferred("disabled",true)
+		sight_collision.set_deferred("disabled",true)
 		
 		emit_signal("died")
 
