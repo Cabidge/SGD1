@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ManaZap.wav-94553b5cabea906e33169c902845aa97.sample"
+
+[deps]
+
+source_file="res://assets/audio/ManaZap.wav"
+dest_files=[ "res://.import/ManaZap.wav-94553b5cabea906e33169c902845aa97.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
