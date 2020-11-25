@@ -27,6 +27,7 @@ func _on_Guard_died():
 func pick_up():
 	sprite.visible = false
 	$Timer.start()
+	Player.has_id = true
 
 func _on_InteractArea2D_interacted():
 	pick_up()
