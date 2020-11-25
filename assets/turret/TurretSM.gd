@@ -32,7 +32,7 @@ func _enter(new, _old):
 		states.scan:
 			parent.scan_auto()
 		states.alert:
-			parent.alert_audio.play()
+			parent.alert_audio.play(0, player.global_position)
 			firerate.start()
 
 func _exit(old, _new):
