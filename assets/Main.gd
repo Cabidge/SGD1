@@ -17,6 +17,7 @@ func _ready():
 	load_scene(initial_scene)
 	
 	var err = Player.connect("updated_health",self,"_on_Player_updated_health")
+	assert(err == OK)
 
 
 #func _input(event):
