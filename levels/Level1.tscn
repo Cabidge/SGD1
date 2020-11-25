@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://levels/Level2D.gd" type="Script" id=1]
 [ext_resource path="res://assets/guard/Guard.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/elevator/exit/ExitElevator.tscn" type="PackedScene" id=7]
 [ext_resource path="res://levels/Level2.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/id_card/IDCard.tscn" type="PackedScene" id=9]
+[ext_resource path="res://TutorialLabel.tscn" type="PackedScene" id=10]
 
 [node name="Level2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -39,26 +40,18 @@ start_angle = 180.0
 [node name="ExitElevator" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 156, -240 )
 
-[node name="Label" type="Label" parent="."]
-margin_left = 108.0
+[node name="Stealth" parent="." instance=ExtResource( 10 )]
+margin_left = 48.0
 margin_top = 48.0
-margin_right = 197.0
-margin_bottom = 79.0
+margin_right = 264.0
+margin_bottom = 83.0
 text = "Right click to
 Toggle Stealth"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Label2" type="Label" parent="."]
-margin_left = 324.0
+[node name="Stab" parent="." instance=ExtResource( 10 )]
+margin_left = 312.0
 margin_top = -216.0
-margin_right = 413.0
-margin_bottom = -185.0
-text = "Left click to
-Backstab"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_right = 432.0
+margin_bottom = -181.0
+text = "Left clck to
+backstab"
