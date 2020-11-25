@@ -22,13 +22,13 @@ onready var camera = $Camera2D
 
 onready var transition_player = $TransitionPlayer
 
-onready var combat_duration = $CombatDuration
-
 onready var stab_detector = $StabDetector
 onready var stab_detector_collision = $StabDetector/CollisionShape2D
 onready var hurtbox_collision = $Body/CollisionShape2D
 onready var sight_collision = $SightBox/CollisionShape2D
 
+onready var combat_duration = $CombatDuration
+onready var parry_cooldown = $ParryCooldown
 onready var timeout = $Timeout
 
 onready var stealth_audio = $StealthAudio
@@ -86,6 +86,8 @@ func parry():
 	set_flipped(get_global_mouse_position().x < position.x)
 	set_animation("parry")
 	pivot.swipe()
+	
+	parry_cooldown.start()
 
 
 func damage(amount : int = 1):

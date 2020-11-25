@@ -605,6 +605,9 @@ shape = SubResource( 62 )
 wait_time = 3.0
 one_shot = true
 
+[node name="ParryCooldown" type="Timer" parent="."]
+one_shot = true
+
 [node name="Timeout" type="Timer" parent="."]
 
 [node name="StealthAudio" parent="." instance=ExtResource( 16 )]

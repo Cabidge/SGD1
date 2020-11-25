@@ -125,7 +125,7 @@ func can_stealth() -> bool:
 	return [states.idle,states.run].has(state) and Player.mana > 0
 
 func can_parry() -> bool:
-	return [states.idle,states.run].has(state) and !parent.stealth
+	return [states.idle,states.run].has(state) and !parent.stealth and parent.parry_cooldown.is_stopped()
 
 func can_stab() -> bool:
 	return [states.idle,states.run].has(state) and parent.get_stab_target() != null
