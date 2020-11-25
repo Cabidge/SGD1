@@ -2,7 +2,7 @@ extends "res://assets/projectiles/Projectile.gd"
 
 const KNOCKBACK = 128
 
-var hit_info = HitInfo.new(2)
+var hit_info = HitInfo.new(8)
 
 onready var sprite = $AnimatedSprite
 
