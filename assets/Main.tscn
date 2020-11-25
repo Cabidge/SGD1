@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/DoorTransition.gd" type="Script" id=1]
+[ext_resource path="res://assets/ui/idcard.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/UI.gd" type="Script" id=3]
 [ext_resource path="res://shaders/crt_material.tres" type="Material" id=5]
 [ext_resource path="res://assets/ui/vitals/Portrait1.png" type="Texture" id=6]
@@ -26,6 +27,22 @@ tracks/0/keys = {
 "transitions": PoolRealArray( -3.03143, -3.03143 ),
 "update": 0,
 "values": [ -0.1, 100.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Show"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 270, 175 ), Vector2( 270, 141 ) ]
 }
 
 [node name="Main" type="Node"]
@@ -135,6 +152,27 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Vitals/Portrait"]
 anims/Transition = SubResource( 1 )
+
+[node name="ID" type="TextureRect" parent="CanvasLayer/UI"]
+margin_left = 270.0
+margin_top = 175.0
+margin_right = 294.0
+margin_bottom = 199.0
+texture = ExtResource( 2 )
+
+[node name="Shadow" type="TextureRect" parent="CanvasLayer/UI/ID"]
+modulate = Color( 0, 0, 0, 0.447059 )
+show_behind_parent = true
+margin_top = 2.0
+margin_right = 24.0
+margin_bottom = 26.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/ID"]
+anims/Show = SubResource( 2 )
 
 [node name="CRT" type="ColorRect" parent="CanvasLayer"]
 material = ExtResource( 5 )
