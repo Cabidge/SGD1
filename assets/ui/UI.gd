@@ -20,6 +20,9 @@ func reset_all():
 	vitals.reset_portrait()
 	vitals.reset_mana()
 	vitals.reset_health()
+	
+	id_display_anim.play_backwards("Show")
+	id_display_anim.seek(0)
 
 func _on_Player_updated_stealth(stealth):
 	vitals.update_stealth(stealth)
@@ -35,4 +38,3 @@ func _on_Player_updated_id(has_id):
 		id_display_anim.play("Show")
 	else:
 		id_display_anim.play_backwards("Show")
-		id_display_anim.seek(0)

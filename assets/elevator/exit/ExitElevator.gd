@@ -7,6 +7,8 @@ onready var player_tween_timer = $PlayerTweenTimer
 
 func _on_PlayerDetector_body_entered(body):
 	if !body.stealth and Player.has_id:
+		Player.has_id = false
+		
 		elevator.tween_player_sprite(body.sprite)
 		elevator.enable_camera = true
 		
