@@ -5,6 +5,8 @@ var turn_angle := 0.0
 
 var buffered_state := 0
 
+var respotted = false
+
 onready var idle_time = $IdleTime
 
 func _ready():
@@ -67,7 +69,10 @@ func _enter(new, _old):
 		states.stall,states.turn,states.idle:
 			parent.sprite.play("default")
 		states.attack:
-			Player.times_spotted += 1
+			if !respotted:
+				Player.times_spotted += 1
+				parent.alert_audio.play(0, parent.player_last_seen)
+			
 			parent.alert_level = 4
 			parent.sprite.play("attack")
 			wait_for_animation(states.turn)
@@ -90,7 +95,10 @@ func _exit(old, new):
 				parent.fire_orb()
 				if !parent.player_in_sight():
 					parent.extend_player_seen()
-				parent.request_path(parent.player_last_seen)
+					parent.request_path(parent.player_last_seen)
+					respotted = false
+				else:
+					respotted = true
 
 
 func _on_IdleTime_timeout():
