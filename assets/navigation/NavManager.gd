@@ -20,7 +20,7 @@ func _on_Entity_path_requested(destination : Vector2, entity : PatrolCharacter2D
 	entity.path = generate_path(entity, destination)
 
 func generate_path(entity : PatrolCharacter2D, destination : Vector2):
-	destination = snap_to_tile(destination)
+	destination = snap_to_tile(destination) + Vector2(rand_range(-6,6),rand_range(-6,6))
 	var from = snap_to_tile(entity.position)
 	
 	var path = nav_gen.get_simple_path(from,destination,true)
