@@ -5,6 +5,7 @@ const KNOCKBACK = 128
 var hit_info = HitInfo.new(8)
 
 onready var sprite = $AnimatedSprite
+onready var deflect_audio = $DeflectAudio
 
 func _physics_process(delta):
 	handle_collision(delta)
@@ -19,6 +20,8 @@ func _on_Orb_fired(vec):
 
 
 func deflect(angle):
+	deflect_audio.play()
+	
 	fire_at_angle(angle)
 	
 	# tweak collisions
