@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://levels/Level2D.gd" type="Script" id=1]
 [ext_resource path="res://assets/guard/Guard.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/turret/Turret.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/elevator/exit/ExitElevator.tscn" type="PackedScene" id=7]
 [ext_resource path="res://levels/Level2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/id_card/IDCard.tscn" type="PackedScene" id=9]
 
 [node name="Level2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -32,6 +33,8 @@ starting_angle = 90.0
 [node name="Guard" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 204, -180 )
 start_angle = 180.0
+
+[node name="IDCard" parent="YSort/Guard" instance=ExtResource( 9 )]
 
 [node name="ExitElevator" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 156, -240 )
