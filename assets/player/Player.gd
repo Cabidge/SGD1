@@ -34,6 +34,8 @@ onready var timeout = $Timeout
 onready var stealth_audio = $StealthAudio
 onready var stab_audio = $StabAudio
 onready var rustle_audio = $RustleAudio
+onready var impact_audio = $ImpactAudio
+onready var grunt_audio = $GruntAudio
 
 onready var auto_footsteps = $AutoFootsteps
 
@@ -94,6 +96,8 @@ func damage(amount : int = 1):
 	if amount <= 0:
 		return
 	
+	impact_audio.play()
+	
 	Player.health -= amount
 	if Player.health <= 0:
 		stealth = false
@@ -107,6 +111,8 @@ func damage(amount : int = 1):
 		sight_collision.set_deferred("disabled",true)
 		
 		emit_signal("died")
+	elif !grunt_audio.playing:
+		grunt_audio.play()
 
 func _on_Body_hit(info : HitInfo):
 	damage(info.damage)
