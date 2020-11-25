@@ -27,6 +27,7 @@ func _ready():
 func load_scene(scene : PackedScene):
 	if current_level != null:
 		remove_child(current_level)
+		current_level.free()
 	
 	current_level = scene.instance()
 	var err = current_level.connect("level_completed",self,"_on_current_level_complete")
