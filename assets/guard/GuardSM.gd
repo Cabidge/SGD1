@@ -43,7 +43,7 @@ func _state_logic(_delta):
 func _transition(_delta):
 	match state:
 		states.turn:
-			if abs(turn_angle - wrapf(parent.angle, -PI, PI)) <= 0.1:
+			if abs(wrapf(turn_angle - parent.angle, -PI, PI)) <= 0.1:
 				return states.patrol
 			continue
 		states.patrol:
