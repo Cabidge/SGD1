@@ -67,6 +67,7 @@ func _enter(new, _old):
 		states.stall,states.turn,states.idle:
 			parent.sprite.play("default")
 		states.attack:
+			Player.times_spotted += 1
 			parent.alert_level = 4
 			parent.sprite.play("attack")
 			wait_for_animation(states.turn)

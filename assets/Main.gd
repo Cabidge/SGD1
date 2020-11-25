@@ -61,6 +61,8 @@ func restart_level():
 
 
 func _on_current_level_complete(scene : PackedScene):
+	print("Score: ", Player.get_score())
+	Player.times_spotted = 0
 	if scene:
 		change_scene(scene)
 	else:
