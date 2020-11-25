@@ -36,6 +36,7 @@ onready var sight = pivot.get_node("Sight")
 onready var los = $LineOfSight
 
 onready var death_audio = $DeathAudio
+onready var alert_audio = $AlertAudio
 
 func _ready():
 	pivot.light.color = calm_color

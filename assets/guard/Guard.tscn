@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://assets/guard/sprites/default.png" type="Texture" id=1]
 [ext_resource path="res://assets/guard/sprites/walk.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/audio/GuardDeath.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/guard/Pivot.gd" type="Script" id=14]
 [ext_resource path="res://assets/audio/AlertReceiver.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/audio/GuardAlert.wav" type="AudioStream" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 7 )
@@ -208,7 +209,7 @@ tracks/3/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=32]
-radius = 190.0
+radius = 278.016
 
 [node name="Guard" type="KinematicBody2D" groups=[
 "Guard",
@@ -302,9 +303,20 @@ anims/Death = SubResource( 31 )
 visible = false
 stream = ExtResource( 13 )
 bus = "SFX"
+exclude_path = NodePath("../AlertReceiver")
 alert_level = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathAudio"]
+shape = SubResource( 32 )
+
+[node name="AlertAudio" parent="." instance=ExtResource( 12 )]
+stream = ExtResource( 16 )
+bus = "SFX"
+exclude_path = NodePath("../AlertReceiver")
+alert_level = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlertAudio"]
+visible = false
 shape = SubResource( 32 )
 
 [node name="AlertReceiver" parent="." instance=ExtResource( 15 )]
