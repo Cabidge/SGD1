@@ -12,7 +12,7 @@ export(Color) var alert_color
 var flipped = false setget set_flipped
 var angle := 0.0 setget set_angle, get_angle
 
-var health := 5
+var health := 10
 
 var alert_level := 0 setget set_alert_level
 var current_alert := 0
