@@ -392,6 +392,7 @@ bus = "SFX"
 
 [node name="ResetShowSound" type="AudioStreamPlayer" parent="CanvasLayer/CRT"]
 stream = ExtResource( 16 )
+volume_db = -6.0
 bus = "SFX"
 
 [node name="MissionFailed" type="Sprite" parent="CanvasLayer/CRT"]
