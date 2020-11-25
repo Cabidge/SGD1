@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://levels/Level2D.gd" type="Script" id=1]
 [ext_resource path="res://assets/elevator/enter/EnterElevator.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/guard/Guard.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/turret/Turret.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/elevator/exit/ExitElevator.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/id_card/IDCard.tscn" type="PackedScene" id=10]
 
 [node name="Level2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -51,6 +52,8 @@ waypoint_cluster_path = NodePath("../../69Cluster")
 [node name="Guard3" parent="YSort/NavManager" instance=ExtResource( 7 )]
 position = Vector2( 588, 684 )
 waypoint_cluster_path = NodePath("../../Cluster2")
+
+[node name="IDCard" parent="YSort/NavManager/Guard3" instance=ExtResource( 10 )]
 
 [node name="Guard4" parent="YSort/NavManager" instance=ExtResource( 7 )]
 position = Vector2( 756, 828 )
@@ -105,6 +108,21 @@ margin_top = 36.0
 margin_right = 180.0
 margin_bottom = 60.0
 color = Color( 1, 0.172549, 0.172549, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 840.0
+margin_top = 420.0
+margin_right = 984.0
+margin_bottom = 502.0
+text = "In a pinch and
+out of mana?
+Left click
+to parry the
+guards' orbs"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
