@@ -1,5 +1,5 @@
 class_name HitInfo
-extends Object
+extends Reference
 
 var damage : int
 var knockback : Vector2
