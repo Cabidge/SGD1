@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/DoorTransition.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/idcard.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/UI.gd" type="Script" id=3]
+[ext_resource path="res://assets/audio/CRT.wav" type="AudioStream" id=4]
 [ext_resource path="res://shaders/crt_material.tres" type="Material" id=5]
 [ext_resource path="res://assets/ui/vitals/Portrait1.png" type="Texture" id=6]
 [ext_resource path="res://assets/ui/vitals/Portrait0.png" type="Texture" id=7]
@@ -12,6 +13,8 @@
 [ext_resource path="res://assets/ui/vitals/VitalBar2.png" type="Texture" id=11]
 [ext_resource path="res://assets/ui/vitals/VitalBar3.png" type="Texture" id=12]
 [ext_resource path="res://assets/ui/vitals/VitalBar4.png" type="Texture" id=13]
+[ext_resource path="res://assets/ui/mission_failed.png" type="Texture" id=14]
+[ext_resource path="res://assets/ui/retry.png" type="Texture" id=15]
 [ext_resource path="res://assets/Main.gd" type="Script" id=20]
 
 [sub_resource type="Animation" id=1]
@@ -55,6 +58,169 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
 "values": [ -15.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "MissionFailed"
+length = 4.0
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/show_curvature")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material:shader_param/curvature_x_amount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.3, 1.8 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ 15.0, 4.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:material:shader_param/curvature_y_amount")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.3, 1.8 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ 15.0, 3.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:material:shader_param/aberration_amount")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.4, 1.9 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ 0.0768111, 0.0, 1.2 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:material:shader_param/show_horizontal_scan_lines")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:material:shader_param/horizontal_scan_lines_amount")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.3, 1.9 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ 1.64858, 0.0, 180.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:material:shader_param/horizontal_scan_lines_opacity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.3, 1.8 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ 0.0182754, 0.0, 0.8 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath(".:material:shader_param/boost")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 1.3, 1.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ 1.0, 1.5 ]
+}
+tracks/8/type = "method"
+tracks/8/path = NodePath("ActivateSound")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 1.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("MissionFailed:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 1.5, 1.6, 2.1, 3 ),
+"transitions": PoolRealArray( 1, 0.5, 0.5, 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0.1 ), Vector2( 2, 0.1 ), Vector2( 2, 2 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Retry:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Retry:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 3.5, 3.55 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 1 ), Color( 10, 10, 10, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Retry:rect_scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 3.5, 3.55 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 3, 1 ), Vector2( 2, 2 ) ]
 }
 
 [node name="Main" type="Node"]
@@ -200,6 +366,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/CRT"]
+anims/MissionFailed = SubResource( 3 )
+
+[node name="ActivateSound" type="AudioStreamPlayer" parent="CanvasLayer/CRT"]
+stream = ExtResource( 4 )
+
+[node name="MissionFailed" type="Sprite" parent="CanvasLayer/CRT"]
+show_behind_parent = true
+position = Vector2( 152, 72 )
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 14 )
+
+[node name="Retry" type="TextureButton" parent="CanvasLayer/CRT"]
+visible = false
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -16.0
+margin_top = 22.5
+margin_right = 17.0
+margin_bottom = 32.5
+rect_scale = Vector2( 2, 2 )
+rect_pivot_offset = Vector2( 16.5, 5 )
+texture_normal = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="DoorTransition" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -229,3 +425,4 @@ __meta__ = {
 
 [node name="ColorModule" type="CanvasModulate" parent="."]
 color = Color( 0.862745, 0.87451, 0.913725, 1 )
+[connection signal="pressed" from="CanvasLayer/CRT/Retry" to="." method="_on_Retry_pressed"]
