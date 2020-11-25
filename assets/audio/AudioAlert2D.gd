@@ -8,11 +8,13 @@ enum LEVELS {
 	ALERT_HIGH
 }
 
+export(NodePath) var exclude_path
 export(LEVELS) var alert_level := 0
 export(LEVELS) var alert_threshold := 0
 export var looping = false
 
 var disabled = true
+var exclusion : Area2D
 
 onready var area = $Area2D
 
@@ -22,13 +24,17 @@ func _ready():
 			remove_child(child)
 			area.add_child(child)
 			disabled = false
+	
+	if exclude_path:
+		exclusion = get_node(exclude_path)
 
 
-func play(from_positon : float = 0.0):
+func play(from_positon : float = 0.0, alert_pos : Vector2 = global_position):
 	.play(from_positon)
 	if !disabled:
 		for alert_receiver in area.get_overlapping_areas():
-			alert_receiver.alert(alert_level, alert_threshold, global_position)
+			if alert_receiver != exclusion:
+				alert_receiver.alert(alert_level, alert_threshold, alert_pos)
 
 func loop():
 	play()
