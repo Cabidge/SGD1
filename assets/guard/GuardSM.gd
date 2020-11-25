@@ -73,6 +73,8 @@ func _enter(new, _old):
 				Player.times_spotted += 1
 				parent.alert_audio.play(0, parent.player_last_seen)
 			
+			parent.charge_audio.play()
+			
 			parent.alert_level = 4
 			parent.sprite.play("attack")
 			wait_for_animation(states.turn)
@@ -91,6 +93,7 @@ func _exit(old, new):
 			parent.alert_level -= 1
 			parent.current_alert = 0
 		states.attack:
+			parent.charge_audio.stop()
 			if new != states.death:
 				parent.fire_orb()
 				if !parent.player_in_sight():

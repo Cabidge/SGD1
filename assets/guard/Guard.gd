@@ -39,6 +39,9 @@ onready var death_audio = $DeathAudio
 onready var grunt_audio = $GruntAudio
 onready var alert_audio = $AlertAudio
 
+onready var charge_audio = $OrbChargeAudio
+onready var fire_audio = $OrbFireAudio
+
 func _ready():
 	pivot.light.color = calm_color
 	
@@ -113,6 +116,8 @@ func extend_player_seen():
 
 
 func fire_orb():
+	fire_audio.play()
+	
 	var orb = orb_scene.instance()
 	get_parent().add_child(orb)
 	orb.position = position + Vector2.UP * 14
