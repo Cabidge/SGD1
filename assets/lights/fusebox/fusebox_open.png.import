@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fusebox_open.png-b4615116c44627a146c36c1d96fdf22e.stex"
+path="res://.import/fusebox_open.png-bba4311990611ba596f5d03abcdbafe1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/lights/fusebox_open.png"
-dest_files=[ "res://.import/fusebox_open.png-b4615116c44627a146c36c1d96fdf22e.stex" ]
+source_file="res://assets/lights/fusebox/fusebox_open.png"
+dest_files=[ "res://.import/fusebox_open.png-bba4311990611ba596f5d03abcdbafe1.stex" ]
 
 [params]
 
