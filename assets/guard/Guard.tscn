@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://assets/guard/sprites/default.png" type="Texture" id=1]
 [ext_resource path="res://assets/guard/sprites/walk.png" type="Texture" id=2]
@@ -212,7 +212,10 @@ tracks/3/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=32]
-radius = 278.016
+radius = 194.435
+
+[sub_resource type="CircleShape2D" id=33]
+radius = 256.049
 
 [node name="Guard" type="KinematicBody2D" groups=[
 "Guard",
@@ -313,6 +316,7 @@ alert_level = 2
 shape = SubResource( 32 )
 
 [node name="AlertAudio" parent="." instance=ExtResource( 12 )]
+visible = false
 stream = ExtResource( 16 )
 pitch_scale = 1.12
 bus = "SFX"
@@ -320,8 +324,7 @@ exclude_path = NodePath("../AlertReceiver")
 alert_level = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AlertAudio"]
-visible = false
-shape = SubResource( 32 )
+shape = SubResource( 33 )
 
 [node name="GruntAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 17 )
