@@ -11,6 +11,7 @@ onready var door_transition = $CanvasLayer/DoorTransition
 
 onready var crt = $CanvasLayer/CRT
 onready var crt_anim = crt.get_node("AnimationPlayer")
+onready var crt_button_sound = crt.get_node("CRTButton")
 
 func _ready():
 	load_scene(initial_scene)
@@ -75,4 +76,5 @@ func _on_Player_updated_health(health):
 
 
 func _on_Retry_pressed():
+	crt_button_sound.play()
 	restart_level()

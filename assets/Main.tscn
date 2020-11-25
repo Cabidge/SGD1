@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/DoorTransition.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/idcard.png" type="Texture" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://assets/ui/vitals/VitalBar4.png" type="Texture" id=13]
 [ext_resource path="res://assets/ui/mission_failed.png" type="Texture" id=14]
 [ext_resource path="res://assets/ui/retry.png" type="Texture" id=15]
+[ext_resource path="res://assets/audio/CRTResetShow.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/audio/CRTButton.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/Main.gd" type="Script" id=20]
 
 [sub_resource type="Animation" id=1]
@@ -222,6 +224,20 @@ tracks/12/keys = {
 "update": 0,
 "values": [ Vector2( 3, 1 ), Vector2( 2, 2 ) ]
 }
+tracks/13/type = "method"
+tracks/13/path = NodePath("ResetShowSound")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 3.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
 
 [node name="Main" type="Node"]
 script = ExtResource( 20 )
@@ -371,6 +387,12 @@ anims/MissionFailed = SubResource( 3 )
 
 [node name="ActivateSound" type="AudioStreamPlayer" parent="CanvasLayer/CRT"]
 stream = ExtResource( 4 )
+volume_db = 5.0
+bus = "SFX"
+
+[node name="ResetShowSound" type="AudioStreamPlayer" parent="CanvasLayer/CRT"]
+stream = ExtResource( 16 )
+bus = "SFX"
 
 [node name="MissionFailed" type="Sprite" parent="CanvasLayer/CRT"]
 show_behind_parent = true
@@ -395,6 +417,11 @@ texture_normal = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CRTButton" type="AudioStreamPlayer" parent="CanvasLayer/CRT"]
+stream = ExtResource( 17 )
+volume_db = -10.0
+bus = "SFX"
 
 [node name="DoorTransition" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
