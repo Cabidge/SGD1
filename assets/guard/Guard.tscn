@@ -274,14 +274,14 @@ default_color = Color( 0.992157, 1, 0, 0.376471 )
 scale = Vector2( 10, 3 )
 
 [node name="StabRange" parent="." instance=ExtResource( 9 )]
-position = Vector2( 0, -37 )
+position = Vector2( 0, -36 )
 script = ExtResource( 10 )
 hurtbox_path = NodePath("../Hurtbox")
 mana_count = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StabRange"]
 visible = false
-position = Vector2( 0, 39 )
+position = Vector2( 0, 38 )
 rotation = 1.5708
 shape = SubResource( 29 )
 
