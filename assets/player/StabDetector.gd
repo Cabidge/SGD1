@@ -11,7 +11,7 @@ func set_target(new):
 	if target != new:
 		if target != null:
 			target.is_target = false
-		elif new != null:
+		if new != null:
 			new.is_target = true
 		
 		target = new
