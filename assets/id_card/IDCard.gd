@@ -2,6 +2,11 @@ extends Node2D
 
 onready var interact_area = $InteractArea2D
 onready var sprite = $Sprite
+onready var shadow = $Shadow
+
+onready var pickup_audio = $PickUpAudio
+
+onready var timer = $Timer
 
 func _ready():
 	interact_area.disabled = true
@@ -21,14 +26,16 @@ func _on_Guard_died():
 	reparent()
 
 func pick_up():
+	pickup_audio.play()
+	
 	sprite.visible = false
-	$Timer.start()
+	timer.start()
 	Player.has_id = true
 
 func drop():
 	sprite.position.y = -4
 	interact_area.disabled = false
-	$Shadow.visible = true
+	shadow.visible = true
 
 func reparent():
 	position = get_parent().position
@@ -40,7 +47,6 @@ func reparent():
 
 func _on_InteractArea2D_interacted():
 	pick_up()
-	$Shadow.visible = false
 	interact_area.disabled = true
 
 func _on_Timer_timeout():
