@@ -29,6 +29,7 @@ func pick_up():
 	pickup_audio.play()
 	
 	sprite.visible = false
+	shadow.visible = false
 	timer.start()
 	Player.has_id = true
 
