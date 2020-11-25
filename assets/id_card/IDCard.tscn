@@ -5,8 +5,8 @@
 [ext_resource path="res://assets/id_card/IDCard.gd" type="Script" id=3]
 [ext_resource path="res://assets/Shadow.tscn" type="PackedScene" id=4]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 25.02
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 34.0
 
 [node name="IDCard" type="Node2D"]
 script = ExtResource( 3 )
@@ -23,6 +23,7 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea2D"]
 visible = false
 position = Vector2( 0, 13 )
+rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
