@@ -9,7 +9,7 @@ var hurtbox : Hurtbox
 
 export var mana_count = 1
 
-onready var anim_player = $AnimationPlayer
+onready var indicator = $Indicator
 
 func _ready():
 	if hurtbox_path:
@@ -20,10 +20,7 @@ func can_stab(_player : Character2D) -> bool:
 
 func set_is_target(new):
 	is_target = new
-	if is_target:
-		anim_player.play("Show")
-	else:
-		anim_player.play_backwards("Show")
+	indicator.enabled = is_target
 
 func stall():
 	emit_signal("stalled")
