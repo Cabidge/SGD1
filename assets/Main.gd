@@ -31,6 +31,7 @@ func load_scene(scene : PackedScene):
 	# Reset Player var
 	Player.health = Player.MAX_HEALTH
 	Player.mana = Player.MAX_MANA
+	Player.has_id = false
 	ui.reset_all()
 
 func change_scene(scene : PackedScene):
