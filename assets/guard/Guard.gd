@@ -36,6 +36,7 @@ onready var sight = pivot.get_node("Sight")
 onready var los = $LineOfSight
 
 onready var death_audio = $DeathAudio
+onready var grunt_audio = $GruntAudio
 onready var alert_audio = $AlertAudio
 
 func _ready():
@@ -74,6 +75,8 @@ func damage(amount : int = 1):
 		hurtbox_collision.set_deferred("disabled", true)
 		
 		death_audio.play()
+	else:
+		grunt_audio.play()
 
 
 func _on_Hurtbox_hit(info : HitInfo):
