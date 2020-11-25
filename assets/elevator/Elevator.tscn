@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/elevator/Elevator.gd" type="Script" id=1]
 [ext_resource path="res://assets/elevator/elevator.png" type="Texture" id=2]
 [ext_resource path="res://assets/elevator/Door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/player/sprites/default.png" type="Texture" id=4]
 [ext_resource path="res://assets/Shadow.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/audio/ElevatorDoor.wav" type="AudioStream" id=6]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( -12, 0, -10, 0, -10, -16, 10, -16, 10, 0, 12, 0, 12, -20, -12, -20 )
@@ -102,3 +103,8 @@ playback_process_mode = 0
 [node name="Door" parent="." instance=ExtResource( 3 )]
 light_mask = -2147483648
 frames = SubResource( 13 )
+
+[node name="DoorAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+volume_db = -5.0
+bus = "SFX"

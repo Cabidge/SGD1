@@ -5,6 +5,8 @@ signal player_entered
 onready var elevator = $Elevator
 onready var player_tween_timer = $PlayerTweenTimer
 
+onready var ding_audio = $DingAudio
+
 func _on_PlayerDetector_body_entered(body):
 	if !body.stealth and Player.has_id:
 		Player.has_id = false
@@ -15,6 +17,9 @@ func _on_PlayerDetector_body_entered(body):
 		body.delete()
 		
 		player_tween_timer.start()
+		
+		ding_audio.play()
+
 
 func _on_PlayerTweenTimer_timeout():
 	emit_signal("player_entered")

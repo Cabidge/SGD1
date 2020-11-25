@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/elevator/Elevator.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/elevator/exit/ExitElevator.gd" type="Script" id=2]
+[ext_resource path="res://assets/audio/ElevatorDing.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 5 )
@@ -35,5 +36,8 @@ shape = SubResource( 2 )
 [node name="PlayerTweenTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="DingAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]
 [connection signal="timeout" from="PlayerTweenTimer" to="." method="_on_PlayerTweenTimer_timeout"]

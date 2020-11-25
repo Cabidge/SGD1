@@ -15,6 +15,8 @@ onready var player_tween = player.get_node("Tween")
 
 onready var door = $Door
 
+onready var door_audio = $DoorAudio
+
 func set_door_open(new : bool):
 	$Door.is_open = new
 
@@ -25,6 +27,7 @@ func open_door():
 	door.open()
 
 func close_door():
+	door_audio.play()
 	door.close()
 
 
@@ -60,6 +63,7 @@ func tween_cabin(from_y : float, to_y : float):
 	player_tween.start()
 
 func cabin_bot_up():
+	door_audio.play()
 	tween_cabin(CABIN_BOT,-24)
 
 func cabin_mid_up():
