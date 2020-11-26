@@ -212,7 +212,7 @@ tracks/3/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=32]
-radius = 194.435
+radius = 216.037
 
 [sub_resource type="CircleShape2D" id=33]
 radius = 256.049
@@ -321,7 +321,7 @@ stream = ExtResource( 16 )
 pitch_scale = 1.12
 bus = "SFX"
 exclude_path = NodePath("../AlertReceiver")
-alert_level = 3
+alert_level = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AlertAudio"]
 shape = SubResource( 33 )
