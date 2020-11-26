@@ -18,6 +18,7 @@ modulate = Color( 1, 1, 1, 0.207843 )
 shape = SubResource( 1 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
 enabled = true
 collision_mask = 32768
 
