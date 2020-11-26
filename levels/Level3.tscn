@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://levels/Level2D.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles/tilemaps/Walls.tscn" type="PackedScene" id=2]
@@ -10,9 +10,11 @@
 [ext_resource path="res://assets/turret/Turret.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/id_card/IDCard.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/elevator/enter/EnterElevator.tscn" type="PackedScene" id=10]
+[ext_resource path="res://levels/Level4.tscn" type="PackedScene" id=11]
 
 [node name="Level2D" type="Node2D"]
 script = ExtResource( 1 )
+next_scene = ExtResource( 11 )
 elevator_path = NodePath("YSort/ExitElevator")
 
 [node name="Floor" parent="." instance=ExtResource( 3 )]
@@ -20,7 +22,7 @@ tile_data = PoolIntArray( 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65
 
 [node name="CenterCluster" parent="." instance=ExtResource( 5 )]
 visible = false
-points = PoolVector2Array( 348, 252, 228, 60, 444, 180, 252, 300, 348, 252 )
+points = PoolVector2Array( 348, 252, 240, 96, 384, 48, 456, 204, 240, 288, 348, 252 )
 
 [node name="LeftCluster" parent="." instance=ExtResource( 5 )]
 visible = false
@@ -44,6 +46,10 @@ position = Vector2( 348, 252 )
 waypoint_cluster_path = NodePath("../../../CenterCluster")
 
 [node name="IDCard" parent="YSort/NavManager/Guard" instance=ExtResource( 9 )]
+
+[node name="Guard4" parent="YSort/NavManager" instance=ExtResource( 7 )]
+position = Vector2( 240, 96 )
+waypoint_cluster_path = NodePath("../../../CenterCluster")
 
 [node name="Guard2" parent="YSort/NavManager" instance=ExtResource( 7 )]
 position = Vector2( 264, 408 )
