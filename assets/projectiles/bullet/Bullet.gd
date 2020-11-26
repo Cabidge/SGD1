@@ -4,7 +4,7 @@ const KNOCKBACK = 64
 
 var spark_scene = load("res://assets/projectiles/bullet/BulletSpark.tscn")
 
-var hit_info = HitInfo.new(2)
+var hit_info = HitInfo.new(4)
 
 onready var light = $Light2D
 
