@@ -12,16 +12,16 @@
 extents = Vector2( 19, 13 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 132.0
+radius = 168.0
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.14359, 0.184615, 0.312821, 0.333333, 0.45641, 0.553846, 0.887179 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.695313, 1, 1, 0.937267, 0.441406, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.53125, 1, 1, 1, 0.32549, 0 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=5]
 emission_shape = 1
 emission_sphere_radius = 6.0
 flag_disable_z = true
@@ -38,7 +38,7 @@ linear_accel = -27.35
 linear_accel_random = 0.21
 scale = 2.0
 scale_random = 1.0
-color_ramp = SubResource( 5 )
+color_ramp = SubResource( 4 )
 hue_variation_random = 0.1
 
 [node name="Fusebox" type="Node2D"]
@@ -84,5 +84,5 @@ lifetime = 0.8
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
-process_material = SubResource( 3 )
+process_material = SubResource( 5 )
 [connection signal="interacted" from="InteractArea2D" to="." method="_on_InteractArea2D_interacted"]
