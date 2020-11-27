@@ -9,10 +9,10 @@
 [ext_resource path="res://assets/audio/FuseboxZap.wav" type="AudioStream" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 19, 13 )
+extents = Vector2( 36, 36 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 168.0
+radius = 200.0
 
 [sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.14359, 0.184615, 0.312821, 0.333333, 0.45641, 0.553846, 0.887179 )
@@ -66,7 +66,7 @@ script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea2D"]
 visible = false
-position = Vector2( 0, 31 )
+position = Vector2( 0, 28 )
 shape = SubResource( 1 )
 
 [node name="ZapAudio" parent="." instance=ExtResource( 6 )]
