@@ -5,6 +5,8 @@ var initial_scene = load("res://levels/Level1.tscn")
 var current_level : Level2D
 var current_scene : PackedScene
 
+var last_health := Player.MAX_HEALTH
+
 onready var ui = $CanvasLayer/UI
 
 onready var door_transition = $CanvasLayer/DoorTransition
@@ -73,8 +75,12 @@ func _on_current_level_complete(scene : PackedScene):
 
 
 func _on_Player_updated_health(health):
-	if health <= 0:
-		crt_anim.play("MissionFailed")
+	if health < last_health: # I'm too lazy to do this correctly, but it works so it's fine
+		crt_anim.play("Damaged")
+		crt_anim.seek(0)
+		if health <= 0:
+			crt_anim.queue("MissionFailed")
+	last_health = health
 
 
 func _on_Retry_pressed():
