@@ -318,7 +318,7 @@ shape = SubResource( 32 )
 [node name="AlertAudio" parent="." instance=ExtResource( 12 )]
 visible = false
 stream = ExtResource( 16 )
-pitch_scale = 1.12
+volume_db = -10.0
 bus = "SFX"
 exclude_path = NodePath("../AlertReceiver")
 alert_level = 2
@@ -328,8 +328,7 @@ shape = SubResource( 33 )
 
 [node name="GruntAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 17 )
-volume_db = -10.0
-pitch_scale = 0.8
+volume_db = 2.0
 bus = "SFX"
 
 [node name="AlertReceiver" parent="." instance=ExtResource( 15 )]
