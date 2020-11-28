@@ -62,7 +62,10 @@ func _enter(new, _old):
 		states.turn:
 			if parent.path.size() > 0:
 				turn_angle = parent.next_vector().angle()
-				continue
+				if abs(wrapf(turn_angle - parent.angle, -PI, PI)) <= 0.2:
+					set_state(states.patrol)
+				else:
+					continue
 			else:
 				parent.alert_level -= 1
 				set_state(states.idle)
@@ -141,7 +144,7 @@ func _on_AlertReceiver_alerted(level, threshold, location):
 	if [states.death,states.stall].has(state):
 		return
 	if parent.alert_level >= threshold:
-		if level > parent.current_alert:
+		if level >= parent.current_alert:
 			parent.request_path(location)
 			set_state(states.turn)
 			parent.alert_level = max(parent.alert_level,level)
