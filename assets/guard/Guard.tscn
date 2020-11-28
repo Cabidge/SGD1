@@ -21,7 +21,7 @@
 [ext_resource path="res://assets/audio/OrbCharge.wav" type="AudioStream" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7, 7 )
+extents = Vector2( 4, 13 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 4 )
