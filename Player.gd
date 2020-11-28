@@ -35,18 +35,12 @@ func set_id(new):
 	has_id = new
 	emit_signal("updated_id",has_id)
 
-
-func get_score_index() -> int:
-	return int(ceil(pow(1.4,times_spotted) - 1))
-
-func get_score(index : int = get_score_index()) -> String:
-	match index:
+func get_score(spotted : int = times_spotted) -> String:
+	match spotted:
 		0: return "S"
-		1: return "A+"
-		2: return "A"
-		3: return "A-"
+		1: return "A"
+		2,3: return "A-"
 		4: return "B"
-		5: return "B-"
-		6: return "C"
+		5,6: return "C"
 		7: return "D"
 		_: return "F"
