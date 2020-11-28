@@ -53,8 +53,12 @@ func _physics_process(_delta):
 	$Line2D.points = path
 	$Line2D.global_position = Vector2.ZERO
 
-func lerp_sight(to_angle : float, weight = 0.04):
+func lerp_sight(to_angle : float, weight = get_alert_weight()):
 	pivot.rotation = lerp_angle(pivot.rotation,to_angle,weight)
+
+func get_alert_weight() -> float:
+	return 0.04 + alert_level * 0.03
+
 
 func set_flipped(new):
 	flipped = new
