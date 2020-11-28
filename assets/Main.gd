@@ -84,5 +84,7 @@ func _on_Player_updated_health(health):
 
 
 func _on_Retry_pressed():
+	crt_anim.stop()
+	
 	crt_button_sound.play()
 	restart_level()
