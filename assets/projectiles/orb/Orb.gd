@@ -19,11 +19,11 @@ func _physics_process(delta):
 
 func _on_Orb_collided(collision):
 	if collision.collider is Hurtbox:
+		hit_info.knockback = velocity.normalized() * KNOCKBACK
 		collision.collider.hit(hit_info)
 
 func _on_Orb_fired(vec):
 	position += vec * 8
-	hit_info.knockback = vec * KNOCKBACK
 
 
 func deflect(angle):
