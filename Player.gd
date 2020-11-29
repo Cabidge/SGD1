@@ -14,6 +14,7 @@ var mana := MAX_MANA setget set_mana
 var has_id := false setget set_id
 
 var times_spotted := 0
+var scores = []
 
 func set_health(new : int):
 	new = int(clamp(new,0,MAX_HEALTH))
