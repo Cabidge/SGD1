@@ -16,7 +16,7 @@ onready var crt_anim = crt.get_node("AnimationPlayer")
 onready var crt_button_sound = crt.get_node("CRTButton")
 
 func _ready():
-	load_scene(initial_scene)
+#	load_scene(initial_scene)
 	
 	var err = Player.connect("updated_health",self,"_on_Player_updated_health")
 	assert(err == OK)
@@ -66,7 +66,7 @@ func restart_level():
 
 
 func _on_current_level_complete(scene : PackedScene):
-	print("Score: ", Player.get_score())
+	Player.scores.append(Player.times_spotted)
 	Player.times_spotted = 0
 	if scene:
 		change_scene(scene)
@@ -88,3 +88,9 @@ func _on_Retry_pressed():
 	
 	crt_button_sound.play()
 	restart_level()
+
+
+func _on_Start_pressed():
+	$CanvasLayer/Menu.stop()
+	
+	load_scene(initial_scene)

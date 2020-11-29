@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/DoorTransition.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/idcard.png" type="Texture" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://assets/ui/retry.png" type="Texture" id=15]
 [ext_resource path="res://assets/audio/CRTResetShow.wav" type="AudioStream" id=16]
 [ext_resource path="res://assets/audio/CRTButton.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/ui/menu/main_menu.png" type="Texture" id=18]
+[ext_resource path="res://assets/ui/menu/Menu.gd" type="Script" id=19]
 [ext_resource path="res://assets/Main.gd" type="Script" id=20]
 
 [sub_resource type="Animation" id=1]
@@ -259,7 +261,33 @@ script = ExtResource( 20 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Menu" type="Sprite" parent="CanvasLayer"]
+texture = ExtResource( 18 )
+centered = false
+vframes = 3
+hframes = 4
+script = ExtResource( 19 )
+
+[node name="Timer" type="Timer" parent="CanvasLayer/Menu"]
+wait_time = 1.5
+autostart = true
+
+[node name="Start" type="Button" parent="CanvasLayer/Menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -41.5
+margin_top = -10.0
+margin_right = 41.5
+margin_bottom = 10.0
+text = "Start Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="UI" type="Control" parent="CanvasLayer"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -469,4 +497,6 @@ __meta__ = {
 
 [node name="ColorModule" type="CanvasModulate" parent="."]
 color = Color( 0.862745, 0.87451, 0.913725, 1 )
+[connection signal="timeout" from="CanvasLayer/Menu/Timer" to="CanvasLayer/Menu" method="_on_Timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Menu/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="CanvasLayer/CRT/Retry" to="." method="_on_Retry_pressed"]
