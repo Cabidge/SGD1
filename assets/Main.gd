@@ -7,6 +7,8 @@ var current_scene : PackedScene
 
 var last_health := Player.MAX_HEALTH
 
+var level_num := 0
+
 onready var ui = $CanvasLayer/UI
 
 onready var door_transition = $CanvasLayer/DoorTransition
@@ -14,6 +16,10 @@ onready var door_transition = $CanvasLayer/DoorTransition
 onready var crt = $CanvasLayer/CRT
 onready var crt_anim = crt.get_node("AnimationPlayer")
 onready var crt_button_sound = crt.get_node("CRTButton")
+
+onready var floor_ui = $CanvasLayer/Floor
+
+onready var main_menu = $CanvasLayer/Menu
 
 func _ready():
 #	load_scene(initial_scene)
@@ -48,12 +54,15 @@ func load_scene(scene : PackedScene):
 	crt_anim.play_backwards("MissionFailed")
 	crt_anim.seek(0)
 
-func change_scene(scene : PackedScene):
+func change_scene(scene : PackedScene, next_level = false):
 	door_transition.close()
 	yield(get_tree().create_timer(0.6),"timeout")
 	load_scene(scene)
 	yield(get_tree().create_timer(0.6),"timeout")
 	door_transition.open()
+	
+	if next_level:
+		show_level_ui()
 
 func restart_level():
 	crt.material.set_shader_param("aberration_amount",3)
@@ -65,13 +74,18 @@ func restart_level():
 	door_transition.open()
 
 
+func end_game():
+	door_transition.close()
+	yield(get_tree().create_timer(0.6),"timeout")
+
+
 func _on_current_level_complete(scene : PackedScene):
 	Player.scores.append(Player.times_spotted)
 	Player.times_spotted = 0
 	if scene:
-		change_scene(scene)
+		change_scene(scene, true)
 	else:
-		change_scene(initial_scene)
+		end_game()
 
 
 func _on_Player_updated_health(health):
@@ -91,6 +105,20 @@ func _on_Retry_pressed():
 
 
 func _on_Start_pressed():
-	$CanvasLayer/Menu.stop()
+	current_scene = initial_scene
 	
-	load_scene(initial_scene)
+	crt_button_sound.play()
+	restart_level()
+	
+	yield(get_tree().create_timer(0.8),"timeout")
+	
+	crt_anim.stop()
+	
+	main_menu.stop()
+	show_level_ui()
+	
+	ui.visible = true
+
+func show_level_ui():
+	floor_ui.show_floor(level_num)
+	level_num += 1

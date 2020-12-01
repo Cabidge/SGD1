@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://assets/DoorTransition.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/idcard.png" type="Texture" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://assets/ui/menu/main_menu.png" type="Texture" id=18]
 [ext_resource path="res://assets/ui/menu/Menu.gd" type="Script" id=19]
 [ext_resource path="res://assets/Main.gd" type="Script" id=20]
+[ext_resource path="res://assets/FloorUI.gd" type="Script" id=21]
+[ext_resource path="res://assets/ui/floor_signs.png" type="Texture" id=22]
 
 [sub_resource type="Animation" id=1]
 length = 0.5
@@ -65,7 +67,34 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "Damaged"
+resource_name = "Show"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.9, 2.5 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 275, 200 ), Vector2( 275, 154 ) ]
+}
+
+[sub_resource type="Animation" id=4]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/aberration_amount")
@@ -80,7 +109,7 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 4.0
 step = 0.01
 tracks/0/type = "value"
@@ -256,12 +285,140 @@ tracks/13/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=6]
+resource_name = "StartMenu"
+length = 4.0
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/show_curvature")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.43 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material:shader_param/curvature_x_amount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.56, 1.63 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ 10.0, 4.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:material:shader_param/curvature_y_amount")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.56, 1.63 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ 10.0, 3.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:material:shader_param/aberration_amount")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.23, 1.73 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.8 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:material:shader_param/show_horizontal_scan_lines")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.13 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:material:shader_param/horizontal_scan_lines_amount")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.13, 1.73 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ 1.64858, 0.0, 180.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:material:shader_param/horizontal_scan_lines_opacity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.13, 1.63 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ 0.0182754, 0.0, 0.8 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath(".:material:shader_param/boost")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 1.13, 1.33 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ 1.0, 1.5 ]
+}
+tracks/8/type = "method"
+tracks/8/path = NodePath("ActivateSound")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.93 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("../Menu:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.94, 2.67 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Main" type="Node"]
 script = ExtResource( 20 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Menu" type="Sprite" parent="CanvasLayer"]
+modulate = Color( 0, 0, 0, 1 )
 texture = ExtResource( 18 )
 centered = false
 vframes = 3
@@ -415,6 +572,16 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/ID"]
 anims/Show = SubResource( 2 )
 
+[node name="Floor" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 275, 200 )
+texture = ExtResource( 22 )
+vframes = 2
+hframes = 3
+script = ExtResource( 21 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Floor"]
+anims/Show = SubResource( 3 )
+
 [node name="CRT" type="ColorRect" parent="CanvasLayer"]
 material = ExtResource( 5 )
 anchor_right = 1.0
@@ -426,8 +593,10 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/CRT"]
-anims/Damaged = SubResource( 3 )
-anims/MissionFailed = SubResource( 4 )
+autoplay = "StartMenu"
+anims/Damaged = SubResource( 4 )
+anims/MissionFailed = SubResource( 5 )
+anims/StartMenu = SubResource( 6 )
 
 [node name="ActivateSound" type="AudioStreamPlayer" parent="CanvasLayer/CRT"]
 stream = ExtResource( 4 )
@@ -456,7 +625,7 @@ margin_left = -16.0
 margin_top = 22.5
 margin_right = 17.0
 margin_bottom = 32.5
-rect_scale = Vector2( 2, 2 )
+rect_scale = Vector2( 2.04, 1.96 )
 rect_pivot_offset = Vector2( 16.5, 5 )
 texture_normal = ExtResource( 15 )
 __meta__ = {
