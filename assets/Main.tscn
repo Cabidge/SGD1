@@ -288,7 +288,7 @@ tracks/13/keys = {
 [sub_resource type="Animation" id=6]
 resource_name = "StartMenu"
 length = 4.0
-step = 0.01
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/show_curvature")
 tracks/0/interp = 1
@@ -406,10 +406,22 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0, 0.94, 2.67 ),
+"times": PoolRealArray( 0, 0.2, 2.67 ),
 "transitions": PoolRealArray( 1, 0.5, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("../Menu:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.9, 1.1, 1.85 ),
+"transitions": PoolRealArray( 1, 0.5, 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0.1 ), Vector2( 0, 0.02 ), Vector2( 1, 0.02 ), Vector2( 1, 1 ) ]
 }
 
 [node name="Main" type="Node"]
@@ -417,10 +429,17 @@ script = ExtResource( 20 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer"]
+show_behind_parent = true
+z_index = -1
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, 0, 0, 180, 312, 180, 312, 0 )
+
 [node name="Menu" type="Sprite" parent="CanvasLayer"]
-modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 152, 85 )
 texture = ExtResource( 18 )
 centered = false
+offset = Vector2( -152, -84.5 )
 vframes = 3
 hframes = 4
 script = ExtResource( 19 )
@@ -434,10 +453,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -41.5
-margin_top = -10.0
-margin_right = 41.5
-margin_bottom = 10.0
+margin_left = -193.5
+margin_top = -95.5
+margin_right = -110.5
+margin_bottom = -75.5
 text = "Start Game"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -573,7 +592,8 @@ __meta__ = {
 anims/Show = SubResource( 2 )
 
 [node name="Floor" type="Sprite" parent="CanvasLayer"]
-position = Vector2( 275, 200 )
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 275, 154 )
 texture = ExtResource( 22 )
 vframes = 2
 hframes = 3
