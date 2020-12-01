@@ -107,14 +107,15 @@ func _on_Retry_pressed():
 func _on_Start_pressed():
 	current_scene = initial_scene
 	
+	crt_anim.stop()
+	
 	crt_button_sound.play()
 	restart_level()
 	
 	yield(get_tree().create_timer(0.8),"timeout")
 	
-	crt_anim.stop()
-	
 	main_menu.stop()
+	$CanvasLayer/Polygon2D.visible = false
 	show_level_ui()
 	
 	ui.visible = true
