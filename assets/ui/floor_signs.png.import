@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/floor_signs.png-c08f8944bc0c7b6169cafff5ce154c9d.stex"
+path="res://.import/floor_signs.png-2628848a1ec56e7ef5785660bce33990.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/floor_signs.png"
-dest_files=[ "res://.import/floor_signs.png-c08f8944bc0c7b6169cafff5ce154c9d.stex" ]
+source_file="res://assets/ui/floor_signs.png"
+dest_files=[ "res://.import/floor_signs.png-2628848a1ec56e7ef5785660bce33990.stex" ]
 
 [params]
 
