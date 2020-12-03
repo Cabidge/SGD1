@@ -113,7 +113,7 @@ points = PoolVector2Array( 0, 24, 24, 24, 24, 42, 0, 42 )
 polygon = PoolVector2Array( 0, 23, 0, 24, 8, 24, 8, 47, 0, 47, 0, 48, 24, 48, 24, 23 )
 
 [sub_resource type="ConvexPolygonShape2D" id=37]
-points = PoolVector2Array( 0, 23, 24, 23, 24, 48, 0, 48 )
+points = PoolVector2Array( 0, 24, 24, 24, 24, 48, 0, 48 )
 
 [sub_resource type="TileSet" id=38]
 0/name = "Walls.png 0"
