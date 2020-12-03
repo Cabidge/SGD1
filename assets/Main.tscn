@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://assets/DoorTransition.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/idcard.png" type="Texture" id=2]
@@ -22,6 +22,13 @@
 [ext_resource path="res://assets/Main.gd" type="Script" id=20]
 [ext_resource path="res://assets/FloorUI.gd" type="Script" id=21]
 [ext_resource path="res://assets/ui/floor_signs.png" type="Texture" id=22]
+[ext_resource path="res://assets/ui/end/ScrollingText.gd" type="Script" id=23]
+[ext_resource path="res://assets/ui/end/End.gd" type="Script" id=24]
+[ext_resource path="res://assets/font/Lilian.ttf" type="DynamicFontData" id=25]
+[ext_resource path="res://assets/ui/end/arrow.png" type="Texture" id=26]
+[ext_resource path="res://assets/audio/EndAdvance.wav" type="AudioStream" id=27]
+[ext_resource path="res://assets/audio/EndClick.wav" type="AudioStream" id=28]
+[ext_resource path="res://assets/ui/end/Minigame.tscn" type="PackedScene" id=29]
 
 [sub_resource type="Animation" id=1]
 length = 0.5
@@ -94,7 +101,37 @@ tracks/1/keys = {
 "values": [ Vector2( 275, 200 ), Vector2( 275, 154 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 25 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "Show"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 120 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/aberration_amount")
@@ -109,7 +146,160 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
+resource_name = "EndScreen"
+length = 3.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/show_curvature")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material:shader_param/curvature_x_amount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.05, 0.56, 1.63 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ 9.55979, 15.0, 4.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:material:shader_param/curvature_y_amount")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.05, 0.56, 1.63 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ 15.0, 10.0, 3.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:material:shader_param/aberration_amount")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.23, 1.73 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.8 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:material:shader_param/show_horizontal_scan_lines")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.13 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:material:shader_param/horizontal_scan_lines_amount")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.13, 1.73 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ 1.64858, 0.0, 180.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:material:shader_param/horizontal_scan_lines_opacity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.13, 1.63 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ 0.0182754, 0.0, 0.8 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath(".:material:shader_param/boost")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 1.13, 1.33 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ 1.0, 1.5 ]
+}
+tracks/8/type = "method"
+tracks/8/path = NodePath("ActivateSound")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.93 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("../End:rect_scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.9, 1.1, 1.85 ),
+"transitions": PoolRealArray( 1, 0.5, 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0.02 ), Vector2( 1, 0.02 ), Vector2( 1, 1 ) ]
+}
+tracks/10/type = "method"
+tracks/10/path = NodePath("../End")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "start"
+} ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("../End:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=7]
 length = 4.0
 step = 0.01
 tracks/0/type = "value"
@@ -285,8 +475,7 @@ tracks/13/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "StartMenu"
+[sub_resource type="Animation" id=8]
 length = 4.0
 step = 0.05
 tracks/0/type = "value"
@@ -296,7 +485,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.43 ),
+"times": PoolRealArray( 0, 0.05 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -308,10 +497,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.56, 1.63 ),
-"transitions": PoolRealArray( 0.5, 1 ),
+"times": PoolRealArray( 0.05, 0.56, 1.63 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
 "update": 0,
-"values": [ 10.0, 4.0 ]
+"values": [ 9.55979, 15.0, 4.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:material:shader_param/curvature_y_amount")
@@ -320,10 +509,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.56, 1.63 ),
-"transitions": PoolRealArray( 0.5, 1 ),
+"times": PoolRealArray( 0.05, 0.56, 1.63 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
 "update": 0,
-"values": [ 10.0, 3.0 ]
+"values": [ 15.0, 10.0, 3.0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath(".:material:shader_param/aberration_amount")
@@ -436,7 +625,9 @@ color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( 0, 0, 0, 180, 312, 180, 312, 0 )
 
 [node name="Menu" type="Sprite" parent="CanvasLayer"]
+modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 152, 85 )
+scale = Vector2( 1e-05, 0.1 )
 texture = ExtResource( 18 )
 centered = false
 offset = Vector2( -152, -84.5 )
@@ -602,6 +793,100 @@ script = ExtResource( 21 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Floor"]
 anims/Show = SubResource( 3 )
 
+[node name="DoorTransition" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="ColorRect" parent="CanvasLayer/DoorTransition"]
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="ColorRect" parent="CanvasLayer/DoorTransition"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="CanvasLayer/DoorTransition"]
+
+[node name="End" type="Control" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 152, 85 )
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/End"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.141176, 0.141176, 0.141176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollingText" type="RichTextLabel" parent="CanvasLayer/End"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 18.0
+margin_right = -24.0
+margin_bottom = -18.0
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.25098 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+bbcode_enabled = true
+scroll_active = false
+scroll_following = true
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="CanvasLayer/End/ScrollingText"]
+one_shot = true
+
+[node name="TextAudio" type="AudioStreamPlayer" parent="CanvasLayer/End/ScrollingText"]
+stream = ExtResource( 28 )
+bus = "SFX"
+
+[node name="Advance" type="TextureRect" parent="CanvasLayer/End"]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -28.0
+margin_top = -27.0
+texture = ExtResource( 26 )
+
+[node name="AdvanceAudio" type="AudioStreamPlayer" parent="CanvasLayer/End"]
+stream = ExtResource( 27 )
+volume_db = -8.0
+bus = "SFX"
+
+[node name="Minigame" parent="CanvasLayer/End" instance=ExtResource( 29 )]
+visible = false
+margin_top = 120.0
+margin_bottom = 120.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/End/Minigame"]
+anims/Show = SubResource( 9 )
+
 [node name="CRT" type="ColorRect" parent="CanvasLayer"]
 material = ExtResource( 5 )
 anchor_right = 1.0
@@ -614,9 +899,10 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/CRT"]
 autoplay = "StartMenu"
-anims/Damaged = SubResource( 4 )
-anims/MissionFailed = SubResource( 5 )
-anims/StartMenu = SubResource( 6 )
+anims/Damaged = SubResource( 5 )
+anims/EndScreen = SubResource( 6 )
+anims/MissionFailed = SubResource( 7 )
+anims/StartMenu = SubResource( 8 )
 
 [node name="ActivateSound" type="AudioStreamPlayer" parent="CanvasLayer/CRT"]
 stream = ExtResource( 4 )
@@ -657,35 +943,10 @@ stream = ExtResource( 17 )
 volume_db = -10.0
 bus = "SFX"
 
-[node name="DoorTransition" type="Control" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Left" type="ColorRect" parent="CanvasLayer/DoorTransition"]
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Right" type="ColorRect" parent="CanvasLayer/DoorTransition"]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Tween" type="Tween" parent="CanvasLayer/DoorTransition"]
-
 [node name="ColorModule" type="CanvasModulate" parent="."]
 color = Color( 0.862745, 0.87451, 0.913725, 1 )
 [connection signal="timeout" from="CanvasLayer/Menu/Timer" to="CanvasLayer/Menu" method="_on_Timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/Menu/Start" to="." method="_on_Start_pressed"]
+[connection signal="finished" from="CanvasLayer/End/ScrollingText" to="CanvasLayer/End" method="_on_ScrollingText_finished"]
+[connection signal="timeout" from="CanvasLayer/End/ScrollingText/Timer" to="CanvasLayer/End/ScrollingText" method="_on_Timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/CRT/Retry" to="." method="_on_Retry_pressed"]

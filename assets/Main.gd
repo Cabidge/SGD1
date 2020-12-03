@@ -28,9 +28,9 @@ func _ready():
 	assert(err == OK)
 
 
-#func _input(event):
-#	if event.is_action_pressed("reload"):
-#		change_scene(current_scene)
+func _input(event):
+	if event.is_action_pressed("reload"):
+		end_game()
 
 func load_scene(scene : PackedScene):
 	if current_level != null:
@@ -77,6 +77,13 @@ func restart_level():
 func end_game():
 	door_transition.close()
 	yield(get_tree().create_timer(0.6),"timeout")
+	
+	if current_level != null:
+		remove_child(current_level)
+		current_level.free()
+	
+	yield(get_tree().create_timer(0.2),"timeout")
+	crt_anim.play("EndScreen")
 
 
 func _on_current_level_complete(scene : PackedScene):
