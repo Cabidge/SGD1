@@ -27,7 +27,7 @@ func _ready():
 	set_process_unhandled_input(false)
 	time_progress.max_value = timer.wait_time
 
-func _process(delta):
+func _process(_delta):
 	time_progress.value = timer.time_left
 
 func _unhandled_input(event):

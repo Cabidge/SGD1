@@ -17,6 +17,8 @@ onready var crt = $CanvasLayer/CRT
 onready var crt_anim = crt.get_node("AnimationPlayer")
 onready var crt_button_sound = crt.get_node("CRTButton")
 
+onready var end = $CanvasLayer/End
+
 onready var floor_ui = $CanvasLayer/Floor
 
 onready var main_menu = $CanvasLayer/Menu
@@ -28,9 +30,9 @@ func _ready():
 	assert(err == OK)
 
 
-func _input(event):
-	if event.is_action_pressed("reload"):
-		end_game()
+#func _input(event):
+#	if event.is_action_pressed("reload"):
+#		end_game()
 
 func load_scene(scene : PackedScene):
 	if current_level != null:
@@ -130,3 +132,19 @@ func _on_Start_pressed():
 func show_level_ui():
 	floor_ui.show_floor(level_num)
 	level_num += 1
+
+
+func _on_End_ended():
+	crt_button_sound.play()
+	
+	crt_anim.stop()
+	crt.material.set_shader_param("aberration_amount",3)
+	
+	yield(get_tree().create_timer(0.1),"timeout")
+	
+	end.visible = false
+	
+	yield(get_tree().create_timer(1),"timeout")
+	
+	var err = get_tree().reload_current_scene()
+	assert(err == OK)

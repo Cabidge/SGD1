@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://assets/DoorTransition.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/idcard.png" type="Texture" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://assets/audio/EndAdvance.wav" type="AudioStream" id=27]
 [ext_resource path="res://assets/audio/EndClick.wav" type="AudioStream" id=28]
 [ext_resource path="res://assets/ui/end/Minigame.tscn" type="PackedScene" id=29]
+[ext_resource path="res://assets/ui/end/window.png" type="Texture" id=30]
 
 [sub_resource type="Animation" id=1]
 length = 0.5
@@ -101,10 +102,122 @@ tracks/1/keys = {
 "values": [ Vector2( 275, 200 ), Vector2( 275, 154 ) ]
 }
 
+[sub_resource type="Animation" id=10]
+resource_name = "Close"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Background:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 1.1 ),
+"transitions": PoolRealArray( 0.277392, 1 ),
+"update": 0,
+"values": [ Vector2( 6, 6 ), Vector2( 2, 2 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1, 1.1, 1.2, 2 ),
+"transitions": PoolRealArray( -2, 0, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 117, 44 ), Vector2( 117, 58.5 ), Vector2( 117, 58.5 ), Vector2( 117, 203 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Background2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../ScrollingText:custom_colors/default_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.168627, 0.168627, 0.168627, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../ScrollingText:rect_size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 256, 135 ), Vector2( 256, 37 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("../ScrollingText:rect_position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 24, 18 ), Vector2( 24, 67 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("../Advance:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.168627, 0.168627, 0.168627, 1 ) ]
+}
+
 [sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 25 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=5]
 resource_name = "Show"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:visible")
@@ -131,7 +244,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 120 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/aberration_amount")
@@ -146,8 +259,7 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "EndScreen"
+[sub_resource type="Animation" id=7]
 length = 3.0
 step = 0.05
 tracks/0/type = "value"
@@ -299,7 +411,7 @@ tracks/11/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 4.0
 step = 0.01
 tracks/0/type = "value"
@@ -475,7 +587,7 @@ tracks/13/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 4.0
 step = 0.05
 tracks/0/type = "value"
@@ -838,6 +950,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Background2" type="ColorRect" parent="CanvasLayer/End"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.780392, 0.72549, 0.584314, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Window" type="TextureRect" parent="CanvasLayer/End"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -35.0
+margin_top = -41.5
+margin_right = 35.0
+margin_bottom = 12.5001
+rect_scale = Vector2( 6, 6 )
+rect_pivot_offset = Vector2( 35, 27 )
+texture = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/End/Window"]
+anims/Close = SubResource( 10 )
+
 [node name="ScrollingText" type="RichTextLabel" parent="CanvasLayer/End"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -846,6 +987,7 @@ margin_top = 18.0
 margin_right = -24.0
 margin_bottom = -18.0
 custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0.25098 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 2
@@ -885,7 +1027,7 @@ margin_top = 120.0
 margin_bottom = 120.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/End/Minigame"]
-anims/Show = SubResource( 9 )
+anims/Show = SubResource( 5 )
 
 [node name="CRT" type="ColorRect" parent="CanvasLayer"]
 material = ExtResource( 5 )
@@ -899,10 +1041,10 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/CRT"]
 autoplay = "StartMenu"
-anims/Damaged = SubResource( 5 )
-anims/EndScreen = SubResource( 6 )
-anims/MissionFailed = SubResource( 7 )
-anims/StartMenu = SubResource( 8 )
+anims/Damaged = SubResource( 6 )
+anims/EndScreen = SubResource( 7 )
+anims/MissionFailed = SubResource( 8 )
+anims/StartMenu = SubResource( 9 )
 
 [node name="ActivateSound" type="AudioStreamPlayer" parent="CanvasLayer/CRT"]
 stream = ExtResource( 4 )
@@ -947,6 +1089,7 @@ bus = "SFX"
 color = Color( 0.862745, 0.87451, 0.913725, 1 )
 [connection signal="timeout" from="CanvasLayer/Menu/Timer" to="CanvasLayer/Menu" method="_on_Timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/Menu/Start" to="." method="_on_Start_pressed"]
+[connection signal="ended" from="CanvasLayer/End" to="." method="_on_End_ended"]
 [connection signal="finished" from="CanvasLayer/End/ScrollingText" to="CanvasLayer/End" method="_on_ScrollingText_finished"]
 [connection signal="timeout" from="CanvasLayer/End/ScrollingText/Timer" to="CanvasLayer/End/ScrollingText" method="_on_Timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/CRT/Retry" to="." method="_on_Retry_pressed"]
