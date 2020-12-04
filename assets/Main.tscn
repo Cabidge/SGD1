@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=105 format=2]
 
 [ext_resource path="res://assets/DoorTransition.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/idcard.png" type="Texture" id=2]
@@ -31,6 +31,261 @@
 [ext_resource path="res://assets/ui/end/Minigame.tscn" type="PackedScene" id=29]
 [ext_resource path="res://assets/ui/end/window.png" type="Texture" id=30]
 [ext_resource path="res://assets/audio/airtone-nightWalk.ogg" type="AudioStream" id=31]
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 18 )
+region = Rect2( 304, 0, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 18 )
+region = Rect2( 608, 0, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 18 )
+region = Rect2( 912, 0, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 18 )
+region = Rect2( 1216, 0, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 18 )
+region = Rect2( 1520, 0, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 18 )
+region = Rect2( 1824, 0, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 18 )
+region = Rect2( 2128, 0, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 171, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 18 )
+region = Rect2( 304, 171, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 18 )
+region = Rect2( 608, 171, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 18 )
+region = Rect2( 912, 171, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 18 )
+region = Rect2( 1216, 171, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 18 )
+region = Rect2( 1520, 171, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 18 )
+region = Rect2( 1824, 171, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 18 )
+region = Rect2( 2128, 171, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 342, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 18 )
+region = Rect2( 304, 342, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 18 )
+region = Rect2( 608, 342, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 18 )
+region = Rect2( 912, 342, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 18 )
+region = Rect2( 1216, 342, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 18 )
+region = Rect2( 1520, 342, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 18 )
+region = Rect2( 1824, 342, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 18 )
+region = Rect2( 2128, 342, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 513, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 18 )
+region = Rect2( 304, 513, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 18 )
+region = Rect2( 608, 513, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 18 )
+region = Rect2( 912, 513, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 18 )
+region = Rect2( 1216, 513, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 18 )
+region = Rect2( 1520, 513, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 18 )
+region = Rect2( 1824, 513, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 18 )
+region = Rect2( 2128, 513, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 684, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 18 )
+region = Rect2( 304, 684, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 18 )
+region = Rect2( 608, 684, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 18 )
+region = Rect2( 912, 684, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 18 )
+region = Rect2( 1216, 684, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 18 )
+region = Rect2( 1520, 684, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 18 )
+region = Rect2( 1824, 684, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 18 )
+region = Rect2( 2128, 684, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 855, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 18 )
+region = Rect2( 304, 855, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 18 )
+region = Rect2( 608, 855, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 18 )
+region = Rect2( 912, 855, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 18 )
+region = Rect2( 1216, 855, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 18 )
+region = Rect2( 1520, 855, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 18 )
+region = Rect2( 1824, 855, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 18 )
+region = Rect2( 2128, 855, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 1026, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=60]
+atlas = ExtResource( 18 )
+region = Rect2( 304, 1026, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=61]
+atlas = ExtResource( 18 )
+region = Rect2( 608, 1026, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 18 )
+region = Rect2( 912, 1026, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 18 )
+region = Rect2( 1216, 1026, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=64]
+atlas = ExtResource( 18 )
+region = Rect2( 1520, 1026, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=65]
+atlas = ExtResource( 18 )
+region = Rect2( 1824, 1026, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=66]
+atlas = ExtResource( 18 )
+region = Rect2( 2128, 1026, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=67]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 1197, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=68]
+atlas = ExtResource( 18 )
+region = Rect2( 304, 1197, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=69]
+atlas = ExtResource( 18 )
+region = Rect2( 608, 1197, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=70]
+atlas = ExtResource( 18 )
+region = Rect2( 912, 1197, 304, 171 )
+
+[sub_resource type="AtlasTexture" id=71]
+atlas = ExtResource( 18 )
+region = Rect2( 1216, 1197, 304, 171 )
+
+[sub_resource type="SpriteFrames" id=72]
+animations = [ {
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+} ]
+
+[sub_resource type="DynamicFont" id=73]
+font_data = ExtResource( 25 )
 
 [sub_resource type="Animation" id=1]
 length = 0.5
@@ -736,31 +991,47 @@ z_index = -1
 color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( 0, 0, 0, 180, 312, 180, 312, 0 )
 
-[node name="Menu" type="Sprite" parent="CanvasLayer"]
-modulate = Color( 0, 0, 0, 1 )
+[node name="Menu" type="AnimatedSprite" parent="CanvasLayer"]
 position = Vector2( 152, 85 )
-scale = Vector2( 1e-05, 0.1 )
-texture = ExtResource( 18 )
+frames = SubResource( 72 )
+frame = 18
+playing = true
 centered = false
 offset = Vector2( -152, -84.5 )
-vframes = 3
-hframes = 4
 script = ExtResource( 19 )
 
 [node name="Timer" type="Timer" parent="CanvasLayer/Menu"]
 wait_time = 1.5
 autostart = true
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -195.0
+margin_top = -84.5
+margin_right = -109.0
+margin_bottom = -76.5
+color = Color( 0, 0, 0, 0.388235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Start" type="Button" parent="CanvasLayer/Menu"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -193.5
+margin_left = -198.5
 margin_top = -95.5
-margin_right = -110.5
-margin_bottom = -75.5
+margin_right = -105.5
+margin_bottom = -73.5
+focus_mode = 0
+custom_fonts/font = SubResource( 73 )
+enabled_focus_mode = 0
 text = "Start Game"
+flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1093,7 +1364,6 @@ stream = ExtResource( 31 )
 volume_db = -24.0
 autoplay = true
 bus = "Music"
-[connection signal="timeout" from="CanvasLayer/Menu/Timer" to="CanvasLayer/Menu" method="_on_Timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/Menu/Start" to="." method="_on_Start_pressed"]
 [connection signal="ended" from="CanvasLayer/End" to="." method="_on_End_ended"]
 [connection signal="finished" from="CanvasLayer/End/ScrollingText" to="CanvasLayer/End" method="_on_ScrollingText_finished"]
