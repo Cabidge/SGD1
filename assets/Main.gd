@@ -85,6 +85,9 @@ func end_game():
 		current_level.free()
 	
 	yield(get_tree().create_timer(0.2),"timeout")
+	door_transition.visible = false
+	ui.visible = false
+	$CanvasLayer/Polygon2D.visible = true
 	crt_anim.play("EndScreen")
 
 
@@ -135,6 +138,8 @@ func show_level_ui():
 
 
 func _on_End_ended():
+	Player.scores = []
+	
 	crt_button_sound.play()
 	
 	crt_anim.stop()

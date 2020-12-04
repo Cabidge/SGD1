@@ -129,6 +129,9 @@ func _on_Sprite_animation_finished():
 	call_deferred("set_state",buffered_state)
 
 func wait_for_animation(buffer : int = states.idle):
+	if parent.sprite.is_connected("animation_finished",self,"_on_Sprite_animation_finished"):
+		unbuffer()
+	
 	parent.sprite.connect("animation_finished",self,"_on_Sprite_animation_finished")
 	buffered_state = buffer
 

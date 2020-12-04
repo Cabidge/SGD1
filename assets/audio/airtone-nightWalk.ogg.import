@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/airtone-nightWalk.ogg-1245ade2ddd530fe9768c871fca0fde0.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/airtone-nightWalk.ogg"
+dest_files=[ "res://.import/airtone-nightWalk.ogg-1245ade2ddd530fe9768c871fca0fde0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

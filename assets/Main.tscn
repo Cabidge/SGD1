@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://assets/DoorTransition.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/idcard.png" type="Texture" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://assets/audio/EndClick.wav" type="AudioStream" id=28]
 [ext_resource path="res://assets/ui/end/Minigame.tscn" type="PackedScene" id=29]
 [ext_resource path="res://assets/ui/end/window.png" type="Texture" id=30]
+[ext_resource path="res://assets/audio/airtone-nightWalk.ogg" type="AudioStream" id=31]
 
 [sub_resource type="Animation" id=1]
 length = 0.5
@@ -102,7 +103,7 @@ tracks/1/keys = {
 "values": [ Vector2( 275, 200 ), Vector2( 275, 154 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=4]
 resource_name = "Close"
 length = 2.0
 tracks/0/type = "value"
@@ -214,11 +215,10 @@ tracks/8/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.168627, 0.168627, 0.168627, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 25 )
 
-[sub_resource type="Animation" id=5]
-resource_name = "Show"
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
@@ -244,7 +244,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 120 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/aberration_amount")
@@ -259,7 +259,7 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 3.0
 step = 0.05
 tracks/0/type = "value"
@@ -411,7 +411,7 @@ tracks/11/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 4.0
 step = 0.01
 tracks/0/type = "value"
@@ -587,7 +587,7 @@ tracks/13/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 length = 4.0
 step = 0.05
 tracks/0/type = "value"
@@ -905,33 +905,6 @@ script = ExtResource( 21 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Floor"]
 anims/Show = SubResource( 3 )
 
-[node name="DoorTransition" type="Control" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Left" type="ColorRect" parent="CanvasLayer/DoorTransition"]
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Right" type="ColorRect" parent="CanvasLayer/DoorTransition"]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Tween" type="Tween" parent="CanvasLayer/DoorTransition"]
-
 [node name="End" type="Control" parent="CanvasLayer"]
 visible = false
 anchor_right = 1.0
@@ -977,7 +950,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/End/Window"]
-anims/Close = SubResource( 10 )
+anims/Close = SubResource( 4 )
 
 [node name="ScrollingText" type="RichTextLabel" parent="CanvasLayer/End"]
 anchor_right = 1.0
@@ -986,7 +959,7 @@ margin_left = 24.0
 margin_top = 18.0
 margin_right = -24.0
 margin_bottom = -18.0
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0.25098 )
 custom_constants/shadow_offset_x = 0
@@ -1027,7 +1000,7 @@ margin_top = 120.0
 margin_bottom = 120.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/End/Minigame"]
-anims/Show = SubResource( 5 )
+anims/Show = SubResource( 6 )
 
 [node name="CRT" type="ColorRect" parent="CanvasLayer"]
 material = ExtResource( 5 )
@@ -1041,10 +1014,10 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/CRT"]
 autoplay = "StartMenu"
-anims/Damaged = SubResource( 6 )
-anims/EndScreen = SubResource( 7 )
-anims/MissionFailed = SubResource( 8 )
-anims/StartMenu = SubResource( 9 )
+anims/Damaged = SubResource( 7 )
+anims/EndScreen = SubResource( 8 )
+anims/MissionFailed = SubResource( 9 )
+anims/StartMenu = SubResource( 10 )
 
 [node name="ActivateSound" type="AudioStreamPlayer" parent="CanvasLayer/CRT"]
 stream = ExtResource( 4 )
@@ -1085,8 +1058,41 @@ stream = ExtResource( 17 )
 volume_db = -10.0
 bus = "SFX"
 
+[node name="DoorTransition" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="ColorRect" parent="CanvasLayer/DoorTransition"]
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="ColorRect" parent="CanvasLayer/DoorTransition"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="CanvasLayer/DoorTransition"]
+
 [node name="ColorModule" type="CanvasModulate" parent="."]
 color = Color( 0.862745, 0.87451, 0.913725, 1 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 31 )
+volume_db = -24.0
+autoplay = true
+bus = "Music"
 [connection signal="timeout" from="CanvasLayer/Menu/Timer" to="CanvasLayer/Menu" method="_on_Timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/Menu/Start" to="." method="_on_Start_pressed"]
 [connection signal="ended" from="CanvasLayer/End" to="." method="_on_End_ended"]

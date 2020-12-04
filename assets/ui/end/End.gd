@@ -5,7 +5,7 @@ signal ended
 
 var lines = [ # format: ["text" : String, is_newline : bool]
 	[ # before hacking:
-		["[center][December 22nd, 1:03 AM]",true],
+		["[center][October 5th, 1:43 AM]",true],
 		["I've arrived at the destination.", true],
 		["Good work.",true],
 		["Do you have the dirt?",false],
@@ -126,7 +126,7 @@ func generate_report():
 	]
 	var total_spotted = 0
 	for i in Player.scores.size():
-		var level_number = ["[center]Level " + str(i + 1) + ":",true]
+		var level_number = ["[center]Floor " + str(i + 1) + ":",true]
 		var spotted = Player.scores[i]
 		total_spotted += spotted
 		var score = [Player.get_score(spotted),false]
